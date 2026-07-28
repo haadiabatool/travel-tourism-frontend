@@ -61,6 +61,9 @@ A clean contact section provides sample contact information including:<br>
 - Tailwind CSS<br>
 - JavaScript<br>
 
+## Images
+![NatureNest Showcase](src/assets/landscape-2.jpg)
+![NatureNest Showcase](src/assets/landscape-2.jpg)
 
 ## 📂 Project Structure<br>
 
