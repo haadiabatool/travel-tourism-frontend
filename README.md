@@ -55,37 +55,36 @@ A clean contact section provides sample contact information including:<br>
 - Address<br>
 
 
-## 🛠️ Built With
+## 🛠️ Built With<br>
 
-- HTML5
-- Tailwind CSS
-- JavaScript
+- HTML5<br>
+- Tailwind CSS<br>
+- JavaScript<br>
 
 
-## 📂 Project Structure
+## 📂 Project Structure<br>
 
-```text
-NatureNest/
+travel-torism/<br>
 │
-├── src/
-│   ├── assets/
-│   │   ├── Beaches/
-│   │   ├── Mountains/
-│   │   ├── Historical/
-│   │   ├── Adventure/
-│   │   ├── Culture/
-│   │   ├── Nature & Wildlife/
+├── src/<br>
+│   ├── assets/<br>
+│   │   ├── Beaches/<br>
+│   │   ├── Mountains/<br>
+│   │   ├── Historical/<br>
+│   │   ├── Adventure/<br>
+│   │   ├── Culture/<br>
+│   │   ├── Nature & Wildlife/<br>
 │   │
-│   ├── style.css
-│   └── main.js
+│   ├── style.css<br>
+│   └── main.js<br>
 │
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
-└── README.md
+├── index.html<br>
+├── package.json<br>
+├── tailwind.config.js<br>
+├── vite.config.js<br>
+└── README.md<br>
 
 
-## 👩‍💻 Author
+## 👩‍💻 Author<br>
 
-**Haadia Batool**
+**Haadia Batool**<br>
