@@ -1,0 +1,91 @@
+# NatureNest 🌍 - Travel & Tourism Website<br>
+
+NatureNest is a modern, fully responsive travel and tourism website that helps users discover beautiful destinations from around the world.
+The website showcases famous beaches, mountains, historical places, cultural destinations, adventure spots, and nature & wildlife locations through an attractive and user-friendly interface.<br>
+
+It is built using **HTML5**, **Tailwind CSS**, and **Vanilla JavaScript**, focusing on responsive design, smooth user experience, and dynamic destination filtering.<br>
+
+## ✨ Features<br>
+
+### 📱 Fully Responsive Design<br>
+
+- Mobile-first responsive layout<br>
+- Optimized for mobile phones, tablets, laptops, and desktop screens<br>
+- Flexible grid system built with Tailwind CSS<br>
+
+
+### 🌍 Explore Destinations<br>
+
+Browse destinations from different travel categories:<br>
+
+- 🏖️ Beaches<br>
+- 🏔️ Mountains<br>
+- 🏛️ Historical Places<br>
+- 🧗 Adventure Destinations<br>
+- 🕌 Cultural Destinations<br>
+- 🦁 Nature & Wildlife<br>
+
+ ### 🔍 Dynamic Destination Filtering</br>
+
+The website includes category filter buttons that allow users to instantly view destinations by category.<br>
+
+Examples:<br>
+
+- Clicking **Beaches** displays only beach destinations.<br>
+- Clicking **Mountains** displays only mountain destinations.<br>
+- Clicking **Historical Places** displays only historical destinations.<br>
+- Clicking **Adventure** displays only adventure destinations.<br>
+- Clicking **Culture** displays only cultural destinations.<br>
+- Clicking **Nature & Wildlife** displays only wildlife and nature destinations.<br>
+
+Filtering happens dynamically using **JavaScript** without reloading the page.<br>
+
+
+### 📖 About Us Section<br>
+
+The website contains an About Us section introducing NatureNest's mission of promoting travel, tourism, and exploration of natural and cultural destinations around the world.<br>
+
+
+### 📞 Contact Section<br>
+
+A clean contact section provides sample contact information including:<br>
+
+- Email<br>
+- Phone Number<br>
+- Address<br>
+
+
+## 🛠️ Built With
+
+- HTML5
+- Tailwind CSS
+- JavaScript
+
+
+## 📂 Project Structure
+
+```text
+NatureNest/
+│
+├── src/
+│   ├── assets/
+│   │   ├── Beaches/
+│   │   ├── Mountains/
+│   │   ├── Historical/
+│   │   ├── Adventure/
+│   │   ├── Culture/
+│   │   ├── Nature & Wildlife/
+│   │
+│   ├── style.css
+│   └── main.js
+│
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── vite.config.js
+└── README.md
+
+
+## 👩‍💻 Author
+
+**Haadia Batool**
