@@ -29,6 +29,15 @@ Browse destinations from different travel categories:<br>
 
 The website includes category filter buttons that allow users to instantly view destinations by category.<br>
 
+
+### 📖 Explore Destination Page<br>
+Each destination card contains an **Explore Destination** button.<br>
+
+When a user clicks the button:<br>
+
+- A dedicated destination details page opens.<br>
+- The page is generated dynamically using JavaScript.<br>
+
 Examples:<br>
 
 - Clicking **Beaches** displays only beach destinations.<br>
@@ -82,8 +91,10 @@ travel-torism/<br>
 │   │
 │   ├── style.css<br>
 │   └── main.js<br>
-│
+│   └── dynamic-destination.js
+│    └──destination.js
 ├── index.html<br>
+├──explore-destination.html
 ├── package.json<br>
 ├── tailwind.config.js<br>
 ├── vite.config.js<br>
