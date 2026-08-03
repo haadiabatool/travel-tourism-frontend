@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destination Details</title>
+</head>
+
+<body class="bg-gradient-to-br from-emerald-50 via-white to-emerald-100 min-h-screen">
+
+
+
+
+    <!-- Main Section -->
+    <!-- Main Section -->
+<section class="min-h-screen bg-gray-100 py-8">
+
+    <div class="max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+        <!-- TOP IMAGE -->
+        <div class="relative w-full h-[300px] md:h-[450px] lg:h-[550px] overflow-hidden">
+
+            <img
+                id="destinationImage"
+                src=""
+                alt=""
+                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+            <div class="absolute top-8 left-8">
+                <h2
+                    id="imageTitle"
+                    class="text-white text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
+                </h2>
+            </div>
+
+        </div>
+
+        <!-- CONTENT -->
+        <div class="px-6 py-10 md:px-10 lg:px-14">
+
+            <!-- Destination Name -->
+            <div class="flex flex-wrap items-center gap-5">
+
+                <h1
+                    id="destinationName"
+                    class="text-4xl lg:text-5xl font-bold text-gray-800">
+                </h1>
+
+                <div class="mt-2">
+                    <span
+                        id="destinationCategory"
+                        class="inline-block bg-emerald-100 text-emerald-700 px-3 py-2 rounded-full text-sm font-semibold">
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Location -->
+            <div class="mt-3 flex items-center gap-2">
+
+                <span class="text-emerald-700 text-lg">
+                    📍
+                </span>
+
+                <span
+                    id="destinationLocation"
+                    class="text-gray-600 font-medium">
+                </span>
+
+            </div>
+
+            <!-- Description -->
+            <div class="mt-8">
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                    Destination Story
+                </h2>
+
+                <p
+                    id="destinationDescription"
+                    class="text-gray-600 leading-8">
+                </p>
+
+            </div>
+
+            <!-- Highlights -->
+            <div class="mt-8">
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                    Highlights
+                </h2>
+
+                <ul
+                    id="highlights"
+                    class="space-y-3 text-gray-600">
+                </ul>
+
+            </div>
+
+            <!-- Travel Information -->
+            <div class="mt-10">
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-5">
+                    Basic Travel Information
+                </h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                    <div class="bg-emerald-50 rounded-2xl p-5">
+
+                        <p class="text-sm text-gray-500">
+                            Best Time
+                        </p>
+
+                        <h3
+                            id="bestTime"
+                            class="text-lg font-semibold text-gray-800 mt-2">
+                        </h3>
+
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-2xl p-5">
+
+                        <p class="text-sm text-gray-500">
+                            Entry Fee
+                        </p>
+
+                        <h3
+                            id="entryFee"
+                            class="text-lg font-semibold text-gray-800 mt-2">
+                        </h3>
+
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-2xl p-5">
+
+                        <p class="text-sm text-gray-500">
+                            Duration
+                        </p>
+
+                        <h3
+                            id="duration"
+                            class="text-lg font-semibold text-gray-800 mt-2">
+                        </h3>
+
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-2xl p-5">
+
+                        <p class="text-sm text-gray-500">
+                            Weather
+                        </p>
+
+                        <h3
+                            id="weather"
+                            class="text-lg font-semibold text-gray-800 mt-2">
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-10 flex flex-wrap gap-5">
+
+                <button
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full transition hover:scale-105 shadow-lg flex items-center gap-3">
+
+                    Book Your Trip
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+
+                    </svg>
+
+                </button>
+
+                <button
+                    class="text-emerald-600 hover:bg-emerald-100 bg-emerald-50 px-10 py-4 rounded-full transition hover:scale-105 shadow-lg">
+
+                    <a href="index.html">
+                        ← Back to Homepage
+                    </a>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- JS -->
+     <script type="module" src="/src/main.js"></script>
+     <script type="module" src="/src/dynamic-destination.js"></script>
+</body>
+</html>
+
+
+
+
