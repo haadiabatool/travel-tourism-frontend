@@ -63,7 +63,9 @@ A clean contact section provides sample contact information including:<br>
 
 ## Images
 ![NatureNest Showcase](naturenest1.jpeg)
-![NatureNest Showcase](naturenest2.jpeg)
+![NatureNest Showcase](github4.jpeg)
+![NatureNest Showcase](github5.jpeg)
+![NatureNest Showcase](github6.jpeg)
 
 ## 📂 Project Structure<br>
 
