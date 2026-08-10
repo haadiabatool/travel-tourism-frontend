@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>travel-tourism</title>
 </head>
@@ -29,30 +28,32 @@
       </div>
 
       <!-- Search Bar -->
-      <div class="hidden lg:flex items-center mx-auto">
+      <div class="hidden lg:flex items-center mx-50">
 
         <div class="relative">
 
-        <input
-        id="searchInput" type="text"
-        placeholder="Search destination..." class="w-72 px-5 py-2 rounded-full bg-white/90 text-gray-800 placeholder:text-gray-500 outline-none border-2 border-transparent focus:border-emerald-500 focus:ring-4 focus:ring-emerald-400/30 transition-all duration-300">
+        <input id="searchInput" type="text"
+        placeholder="Search destination..." class="w-82 px-5 py-2 rounded-full bg-white/90 text-gray-800 placeholder:text-gray-500 outline-none border-2 border-transparent focus:border-emerald-500 focus:ring-4 focus:ring-emerald-400/30 transition-all duration-300">
 
         <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-4 top-2.5 w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 10.825A5.825 5.825 0 115 10.825a5.825 5.825 0 0111.65 0z"/>
         </svg>
 
-    </div>
+       </div>
 
       </div>
 
       <!-- Desktop Navigation Links  -->
-      <div class="hidden md:flex items-center gap-10 ml-auto justify-end">
+      <div class="hidden md:flex items-center gap-6 ml-auto justify-end">
         <a href="#home-section" class="font-sans font-medium text-sm text-white tracking-wide hover:text-emerald-400 transition-colors duration-200">Home</a>
         <a href="#about-section" class="font-sans font-medium text-sm text-white tracking-wide hover:text-emerald-400 transition-colors duration-200">AboutUs</a>
         <a href="#contact-section" class="font-sans font-medium text-sm text-white tracking-wide hover:text-emerald-400 transition-colors duration-200">Contact Us</a>
-      </div>
+        <a href="profile.html" class="font-sans font-medium text-sm text-white tracking-wide hover:text-emerald-400 transition-colors duration-200">Profile</a>
+        <a href="dashboard.html" class="font-sans font-medium text-sm text-white tracking-wide hover:text-emerald-400 transition-colors duration-200">Dashboard</a>
 
+      </div>
+      
 
       <!-- Mobile Hamburger Menu Button (Sirf mobile/tablet par dikhega) -->
       <button id="menu-btn" class="md:hidden text-white focus:outline-none z-50 p-1" aria-label="Toggle Menu">
@@ -72,14 +73,12 @@
     <!-- Mobile Overlay Navigation Screen -->
     <div id="mobile-menu"
       class="absolute inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 transform -translate-y-full opacity-0 md:hidden">
-      <a href="#"
-        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Home</a>
-      <a href="#"
-        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">About
-        Us</a>
-      <a href="#"
-        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Contact
-        Us</a>
+      <a href="#home-section" class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Home</a>
+      <a href="#about-section" class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">About Us</a>
+      <a href="#contact-section" class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Contact Us</a>
+      <a href="#profile.html" class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Profile</a>
+      <a href="#dashboard.html" class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Dashboard</a>
+
     </div>
 
     <!-- Main container ....which contain heading,subheading, and introduction about website -->
@@ -197,7 +196,7 @@
 
     <!--Place 1  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Clifton Beach karachi">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Clifton Beach" data-location="karachi">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -208,9 +207,9 @@
         <div
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Clifton Beach</span>
-        </div>
       </div>
-
+      
+      </div>
 
       <!-- Country Name -->
       <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
@@ -238,7 +237,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=clifton-beach'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
         <!-- <a href="explore-destination.html?id=1"> -->
           <span class="relative z-10">Explore Destination</span>
@@ -256,7 +255,7 @@
 
     <!--Place 2  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="grace bay" data-location="Turks and Caicos">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -295,7 +294,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=grace-bay-beach'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
         
@@ -311,7 +310,7 @@
 
     <!--Place 3  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="kund malir" data-location="Balochistan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -323,6 +322,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Kund Malir</span>
         </div>
+
       </div>
 
 
@@ -350,7 +350,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=kund-malir'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
 
@@ -367,7 +367,7 @@
 
     <!--Place 4  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Navagio Beach" data-location="Greece">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -408,7 +408,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=navagio-beach'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
 
@@ -425,7 +425,7 @@
 
     <!--Place 5  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Whitehaven Beach" data-location="Australia">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -437,6 +437,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Whitehaven Beach</span>
         </div>
+
       </div>
 
 
@@ -453,19 +454,21 @@
           it offers a peaceful tropical escape with breathtaking coastal views.</p>
       </div>
 
-      <!-- Rating -->
+        <!-- Rating -->
       <div class="px-4 flex flex-row items-center relative mb-2">
         <p class="font-sans font-normal text-neutral-600">Rating:</p>
         <span class="text-orange-400">★★★★</span>
         <span class="text-gray-400">★</span>
         <span class="text-orange-400">4.5</span>
       </div>
+    
+      
 
       <!-- Explore Destination Button -->
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=whitehaven-beach'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -494,7 +497,7 @@
 
     <!--Place 1  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Fairy Medows" data-location="Gilgit Baltistan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -506,6 +509,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Fairy Meadows</span>
         </div>
+      
       </div>
 
 
@@ -533,7 +537,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=fairy-meadows'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -549,7 +553,7 @@
 
     <!--Place 2  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="mount fauji" data-location="japan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -561,6 +565,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Mount Fuji</span>
         </div>
+        
       </div>
 
 
@@ -588,7 +593,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=mount-fuji'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -604,7 +609,7 @@
 
     <!--Place 3  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Rakaposhi" data-location="Pakistan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -616,6 +621,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Rakaposhi</span>
         </div>
+  
       </div>
 
 
@@ -642,7 +648,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=rakaposhi'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -658,7 +664,7 @@
 
     <!--Place 4  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Swiss Alps" data-location="Switzerland">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -670,6 +676,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Swiss Alps</span>
         </div>
+      
       </div>
 
 
@@ -697,7 +704,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=swiss-alps'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -713,7 +720,7 @@
 
     <!--Place 5  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Rocky mountain" data-location="Canada">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -725,6 +732,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Rocky Mountains</span>
         </div>
+       
       </div>
 
 
@@ -751,7 +759,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=rocky-mountains'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -779,7 +787,7 @@
 
     <!--Place 1  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Colosseum" data-location="Italy">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -791,6 +799,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Colosseum</span>
         </div>
+        
       </div>
 
 
@@ -817,7 +826,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=colosseum'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -833,7 +842,7 @@
 
     <!--Place 2  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Lahore Fort" data-location="Lahore">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -845,6 +854,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Lahore Fort</span>
         </div>
+        
       </div>
 
 
@@ -871,7 +881,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=lahore-fort'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -887,7 +897,7 @@
 
     <!--Place 3  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Mohenjo daro" data-location="Sindh">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -899,6 +909,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Mohenjo-daro</span>
         </div>
+        
       </div>
 
 
@@ -925,7 +936,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=mohenjo-daro'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -941,7 +952,7 @@
 
     <!--Place 4  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Michu Picchu" data-location="peru">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -953,6 +964,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Machu Picchu</span>
         </div>
+        
       </div>
 
 
@@ -979,7 +991,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=machu-picchu'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -995,7 +1007,7 @@
 
     <!--Place 5  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Petra" data-location="Jordan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1007,6 +1019,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Petra</span>
         </div>
+        
       </div>
 
 
@@ -1033,7 +1046,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=petra'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1062,7 +1075,7 @@
 
     <!--Place 1  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Deosai National" data-location="Skardu">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1074,6 +1087,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Deosai National</span>
         </div>
+        
       </div>
 
 
@@ -1100,7 +1114,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=deosai-national-park'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1116,7 +1130,7 @@
 
     <!--Place 2  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Interlaken" data-location="Switzerland">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1128,6 +1142,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Interlaken</span>
         </div>
+        
       </div>
 
 
@@ -1154,7 +1169,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=interlaken'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1170,7 +1185,7 @@
 
     <!--Place 3  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Moab" data-location="Utah">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1182,6 +1197,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Moab</span>
         </div>
+        
       </div>
 
 
@@ -1208,7 +1224,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=moab'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1224,7 +1240,7 @@
 
     <!--Place 4  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Queenstown" data-location="Newzealand">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1236,6 +1252,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Queenstown</span>
         </div>
+        
       </div>
 
 
@@ -1262,7 +1279,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=queenstown'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1278,7 +1295,7 @@
 
     <!--Place 5  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Queenstown bungee" data-location="Canada">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1290,6 +1307,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Queenstown Bungee</span>
         </div>
+       
       </div>
 
 
@@ -1317,7 +1335,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=bungee'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1345,7 +1363,7 @@
 
     <!--Place 1  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Hunza Valley" data-location="Gilgit balitistan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1357,6 +1375,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Hunza Valley</span>
         </div>
+        
       </div>
 
 
@@ -1384,7 +1403,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=hunza-valley'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1400,7 +1419,7 @@
 
     <!--Place 2  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Istanbul" data-location="Turkey">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1412,6 +1431,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Istanbul</span>
         </div>
+      
       </div>
 
 
@@ -1438,7 +1458,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=istanbul'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1454,7 +1474,7 @@
 
     <!--Place 3  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="marrakech" data-location="Morocco">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1466,6 +1486,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Marrakech</span>
         </div>
+        
       </div>
 
 
@@ -1492,7 +1513,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=marrakech'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1508,7 +1529,7 @@
 
     <!--Place 4  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="kalash valley" data-location="Chiteral">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1520,6 +1541,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Kalash Valley</span>
         </div>
+        
       </div>
 
 
@@ -1546,7 +1568,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=kalash-valley'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1562,7 +1584,7 @@
 
     <!--Place 5  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Kyoto" data-location="japan">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1574,6 +1596,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Kyoto</span>
         </div>
+        
       </div>
 
 
@@ -1600,7 +1623,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=kyoto'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1628,7 +1651,7 @@
 
     <!--Place 1  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Galápagos Islands" data-location="Pacific">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1640,6 +1663,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Galápagos Islands</span>
         </div>
+      
       </div>
 
 
@@ -1667,7 +1691,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=galapagos-islands'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1683,7 +1707,7 @@
 
     <!--Place 2  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Serengeti National" data-location="Tanzania">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1695,6 +1719,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Serengeti National</span>
         </div>
+        
       </div>
 
 
@@ -1721,7 +1746,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=serengeti-national-park'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1737,7 +1762,7 @@
 
     <!--Place 3  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Katmai National" data-location="USA">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1749,6 +1774,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Katmai National</span>
         </div>
+        
       </div>
 
 
@@ -1777,7 +1803,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=katmai-national-park'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1793,7 +1819,7 @@
 
     <!--Place 4  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Kruger National" data-location="South Africa">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1805,6 +1831,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Kruger National Park</span>
         </div>
+        
       </div>
 
 
@@ -1831,7 +1858,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=kruger-national-park'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1847,7 +1874,7 @@
 
     <!--Place 5  -->
     <div
-      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
+      class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80" data-name="Masai Mara" data-location="Kenya">
 
       <!-- Place image -->
       <div class="relative overflow-hidden aspect-4/3">
@@ -1859,6 +1886,7 @@
           class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
           <span>Masai Mara</span>
         </div>
+        
       </div>
 
 
@@ -1886,7 +1914,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=masai-mara'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -1952,7 +1980,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=masai-mara'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -2006,7 +2034,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=istanbul'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -2060,7 +2088,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=deosai-national-park'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -2115,7 +2143,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=mount-fuji'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     
@@ -2170,7 +2198,7 @@
       <div class="mt-auto flex justify-center  pb-3">
         <button onclick="window.location.href='explore-destination.html?id=grace-bay-beach'" class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
         <!-- Background shimmer overlay effect for uniqueness -->
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+        <span class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
     
           <span class="relative z-10">Explore Destination</span>
     

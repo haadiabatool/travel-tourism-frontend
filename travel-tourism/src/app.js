@@ -14,7 +14,7 @@ Object.entries(destinations).forEach(([id, place]) => {
     data-search="${place.title.toLowerCase()} ${place.location.toLowerCase()} ${place.category.toLowerCase()} ${place.description.toLowerCase()}">
 
         <!-- Image -->
-        <div class="relative overflow-hidden aspect-[4/3]">
+        <div class="relative overflow-hidden aspect-4/3">
 
             <img
             src="${place.image}"
@@ -97,3 +97,7 @@ if (searchInput) {
     });
 
 }
+
+
+
+

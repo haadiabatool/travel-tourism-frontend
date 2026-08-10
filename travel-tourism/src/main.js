@@ -53,7 +53,7 @@ buttons.forEach(button => {
         });
 
         button.classList.remove("bg-white");
-        button.classList.add("bg-green-600","text-white");
+        button.classList.add("bg-emerald-700","text-white");
 
         cards.forEach(card => {
 
@@ -79,4 +79,5 @@ buttons.forEach(button => {
 
 
 });
+
 

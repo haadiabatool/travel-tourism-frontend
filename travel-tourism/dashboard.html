@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NatureNest | My Dashboard</title>
+
+</head>
+
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+
+        <div class=" max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+            <!-- LOGO -->
+            <a href="index.html" class=" text-2xl font-bold text-emerald-700">
+                NatureNest
+            </a>
+
+            <!-- NAVIGATION -->
+            <div class=" flex items-center gap-3">
+
+                <a href="index.html" class=" px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">
+                    Home
+                </a>
+
+                <a href="explore.html" class=" px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100">
+                    Explore
+                </a>
+
+                <a href="profile.html" class=" px-4 py-2 rounded-lg bg-emerald-50 text-emerald-700 font-semibold">
+                    Profile
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- MAIN -->
+    <main class=" max-w-7xl mx-auto px-6 py-10">
+
+        <!-- WELCOME -->
+        <section class="bg-linear-to-r from-emerald-700 to-emerald-500 rounded-3xl p-8 md:p-10 text-white mb-10 shadow-lg">
+
+            <div class=" flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+                <div>
+
+                    <p class="text-emerald-100 mb-2">
+                        Welcome back
+                    </p>
+
+                    <h1 id="dashboardUserName" class=" text-3xl md:text-4xl font-bold mb-3">
+                        Nature Explorer
+                    </h1>
+
+                    <p class=" text-emerald-50 max-w-xl">
+                        Discover places you love,continue your travel journey,and plan your next adventure.
+                    </p>
+
+                </div>
+
+
+                <a href="explore.html" class="inline-flex items-center justify-center px-6 py-3 bg-white text-emerald-700 rounded-xl font-semibold hover:bg-emerald-50 transition">
+                    Explore Destinations
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK NAVIGATION -->
+
+        <section class="mb-12">
+
+            <div class="mb-5">
+
+                <p class=" text-sm font-semibold text-emerald-600 uppercase tracking-wide">
+                    Quick Access
+                </p>
+
+                <h2 class="text-2xl font-bold text-gray-800">
+                    Your Travel Shortcuts
+                </h2>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                <!-- FAVORITES -->
+                <a href="favorites.html" class=" bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+
+                    <div class="w-12 h-12 rounded-xl bg-rose-50 flex items-center justify-center text-2xl mb-4">
+                        ❤️
+                    </div>
+
+                    <h3 class="font-bold text-lg mb-1">
+                        Favorites
+                    </h3>
+
+                    <p class="text-sm text-gray-500">
+                        <span id="dashboardFavoriteCount">0</span>
+                        destinations saved
+                    </p>
+                </a>
+
+
+
+                <!-- PLANNED -->
+
+                <a href="planned-trips.html" class=" bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition ">
+
+                    <div class=" w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-2xl mb-4">
+                        ✈️
+                    </div>
+
+                    <h3 class=" font-bold text-lg mb-1">
+                        Planned Trips
+                    </h3>
+
+                    <p class=" text-sm text-gray-500">
+                        <span id="dashboardPlannedCount">0</span>
+                        trips planned
+                    </p>
+
+                </a>
+
+
+
+                <!-- SAVED -->
+                <a href="saved.html" class=" bg-white rounded-2xl p-6 border  border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+
+                    <div class=" w-12 h-12 rounded-xl  bg-blue-50 flex items-center justify-center text-2xl mb-4">
+                        🔖
+                    </div>
+
+                    <h3 class=" font-bold text-lg mb-1">
+                        Saved Places
+                    </h3>
+
+                    <p class=" text-sm text-gray-500">
+                        <span id="dashboardSavedCount">0</span>
+                        places saved
+                    </p>
+
+                </a>
+
+
+
+                <!-- PROFILE -->
+
+                <a href="profile.html" class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+
+                    <div
+                        class=" w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-2xl mb-4">
+                        👤
+                    </div>
+
+                    <h3 class="font-bold text-lg mb-1">
+                        My Profile
+                    </h3>
+
+                    <p class="text-sm text-gray-500">
+                        View and edit profile
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- VIEWED DESTINATIONS -->
+
+        <section class="mb-12">
+
+            <div
+                class=" flex items-end justify-between mb-5">
+
+                <div>
+
+                    <p
+                        class=" text-sm font-semibold text-blue-600 uppercase tracking-wide">
+                        Based on your activity
+                    </p>
+
+                    <h2 class=" text-2xl font-bold">
+                        Recently Viewed
+                    </h2>
+
+                </div>
+
+                <a
+                    href="explore.html"
+                    class=" text-sm font-semibold text-emerald-700 hover:underline">
+                    Explore more →
+                </a>
+
+            </div>
+
+
+            <div
+                id="viewedDestinationsGrid"
+                class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+
+
+            <p
+                id="noViewedDestinations"
+                class=" hidden text-center py-10 text-gray-500">
+                You haven't viewed any destinations yet.
+            </p>
+
+        </section>
+
+
+        <!-- FAVORITE DESTINATIONS -->
+
+        <section class="mb-12">
+
+            <div
+                class=" flex items-end justify-between mb-5">
+
+                <div>
+                    <p
+                        class=" text-sm font-semibold text-rose-500 uppercase tracking-wide">
+                        Your collection
+                    </p>
+
+                    <h2
+                        class="text-2xl font-bold">
+                        Favorite Destinations
+                    </h2>
+
+                </div>
+
+                <a
+                    href="favorites.html"
+                    class=" text-sm font-semibold text-emerald-700 hover:underline">
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div
+                id="favoriteDestinationsGrid"
+                class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+
+
+            <p
+                id="noFavoriteDestinations"
+                class=" hidden text-center py-10 text-gray-500">
+                You haven't added any favorites yet.
+            </p>
+
+        </section>
+
+
+        <!-- POPULAR DESTINATIONS -->
+
+        <section class="mb-12">
+
+            <div class="mb-5">
+
+                <p class=" text-sm font-semibold  text-amber-600 uppercase tracking-wide">
+                    Trending now
+                </p>
+
+                <h2 class="text-2xl font-bold">
+                    Popular Destinations
+                </h2>
+
+            </div>
+
+            <div id="popularDestinationsGrid" class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="bg-white border-t border-gray-100 py-8">
+
+        <div class="max-w-7xl mx-auto px-6 text-center text-sm text-gray-500">
+            © 2026 NatureNest.
+            Discover. Explore. Remember.
+        </div>
+
+    </footer>
+
+    <!-- DASHBOARD JS -->
+
+    <script type="module" src="/src/dashboard.js"></script>
+
+</body>
+
+</html>
