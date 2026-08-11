@@ -49,6 +49,26 @@ Examples:<br>
 
 Filtering happens dynamically using **JavaScript** without reloading the page.<br>
 
+### ❤️ Favorite Destinations
+
+Users can mark destinations as Favorites.
+
+The favorite functionality allows users to:
+
+- Add a destination to Favorites
+- Remove a destination from Favorites
+- View all favorite destinations on a dedicated page
+- Keep favorite selections stored using localStorage
+
+### ✈️ Planned Trips
+
+Users can add destinations to their Planned Trips.
+
+The Planned Trips feature allows users to:
+
+-Add destinations to their travel plans
+-Remove destinations from planned trips
+-View all planned destinations on a dedicated page
 
 ### 📖 About Us Section<br>
 
