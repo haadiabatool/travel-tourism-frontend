@@ -133,7 +133,7 @@ travel-torism/<br>
 │    ├── profile.js <br>
 │    ├── saved.js<br>
 │    └── style.css<br>   
-│
+│<br>
 ├── dashboard.html<br>
 ├── explore-destination.html<br>
 ├── favorites.html<br>
