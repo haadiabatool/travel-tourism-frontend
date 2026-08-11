@@ -51,24 +51,34 @@ Filtering happens dynamically using **JavaScript** without reloading the page.<b
 
 ### ❤️ Favorite Destinations
 
-Users can mark destinations as Favorites.
+Users can mark destinations as Favorites.<br>
 
-The favorite functionality allows users to:
+The favorite functionality allows users to:<br>
 
-- Add a destination to Favorites
-- Remove a destination from Favorites
-- View all favorite destinations on a dedicated page
-- Keep favorite selections stored using localStorage
+- Add a destination to Favorites<br>
+- Remove a destination from Favorites<br>
+- View all favorite destinations on a dedicated page<br>
+- Keep favorite selections stored using localStorage<br>
 
 ### ✈️ Planned Trips
 
-Users can add destinations to their Planned Trips.
+Users can add destinations to their Planned Trips.<br>
 
-The Planned Trips feature allows users to:
+The Planned Trips feature allows users to:<br>
 
--Add destinations to their travel plans
--Remove destinations from planned trips
--View all planned destinations on a dedicated page
+- Add destinations to their travel plans<br>
+- Remove destinations from planned trips<br>
+- View all planned destinations on a dedicated page<br>
+
+🔖 Saved Destinations
+
+Users can save destinations for later.<br>
+
+The Saved Destinations feature allows users to:<br>
+
+- Save destinations<br>
+- Remove saved destinations<br>
+- View saved destinations on a dedicated page<br>
 
 ### 📖 About Us Section<br>
 
@@ -95,26 +105,42 @@ A clean contact section provides sample contact information including:<br>
 ![NatureNest Showcase](github4.jpeg)
 ![NatureNest Showcase](github5.jpeg)
 ![NatureNest Showcase](github6.jpeg)
+![NatureNest Showcase](profile-setup.jpeg)
+![NatureNest Showcase](profile-display.jpeg)
+![NatureNest Showcase](dashboard.jpeg)
 
 ## 📂 Project Structure<br>
 
 travel-torism/<br>
 │
 ├── src/<br>
-│   ├── assets/<br>
-│   │   ├── Beaches/<br>
-│   │   ├── Mountains/<br>
-│   │   ├── Historical/<br>
-│   │   ├── Adventure/<br>
-│   │   ├── Culture/<br>
-│   │   ├── Nature & Wildlife/<br>
-│   │
-│   ├── style.css<br>
-│   └── main.js<br>
-│   └── dynamic-destination.js
-│    └──destination.js
+│    ├── assets/<br>
+│    │   ├── Beaches/<br>
+│    │   ├── Mountains/<br>
+│    │   ├── Historical/<br>
+│    │   ├── Adventure/<br>
+│    │   ├── Culture/<br>
+│    │   ├── Nature & Wildlife/<br>
+│    │
+│    ├──app.js<br>
+│    ├──counter.js<br>
+│    ├── dashboard.js <br>
+│    ├── destination.js <br>
+│    ├── dynamic-destination.js <br>
+│    ├── favorites.js <br>
+│    ├── main.js<br>
+│    ├── planned-trips.js<br>
+│    ├── profile.js <br>
+│    ├── saved.js<br>
+│    └── style.css<br>   
+│
+├── dashboard.html
+├── explore-destination.html
+├── favorites.html<br>
 ├── index.html<br>
-├──explore-destination.html
+├── planned-trips.html<br>
+├── profile.html<br>
+├── saved.html<br>
 ├── package.json<br>
 ├── tailwind.config.js<br>
 ├── vite.config.js<br>
