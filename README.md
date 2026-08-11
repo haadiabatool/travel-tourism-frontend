@@ -70,7 +70,7 @@ The Planned Trips feature allows users to:<br>
 - Remove destinations from planned trips<br>
 - View all planned destinations on a dedicated page<br>
 
-🔖 Saved Destinations
+### 🔖 Saved Destinations
 
 Users can save destinations for later.<br>
 
@@ -121,7 +121,7 @@ travel-torism/<br>
 │    │   ├── Adventure/<br>
 │    │   ├── Culture/<br>
 │    │   ├── Nature & Wildlife/<br>
-│    │
+│    │<br>
 │    ├──app.js<br>
 │    ├──counter.js<br>
 │    ├── dashboard.js <br>
@@ -134,8 +134,8 @@ travel-torism/<br>
 │    ├── saved.js<br>
 │    └── style.css<br>   
 │
-├── dashboard.html
-├── explore-destination.html
+├── dashboard.html<br>
+├── explore-destination.html<br>
 ├── favorites.html<br>
 ├── index.html<br>
 ├── planned-trips.html<br>
