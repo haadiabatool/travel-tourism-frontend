@@ -141,11 +141,11 @@ function refreshDashboardData() {
     // ------------------------------------------
 
     plannedTrips =
-        JSON.parse(
-            localStorage.getItem(
-                "plannedTrips"
-            )
-        ) || [];
+    JSON.parse(
+        localStorage.getItem(
+            "natureNestTrips"
+        )
+    ) || [];
 
 
     // ------------------------------------------
