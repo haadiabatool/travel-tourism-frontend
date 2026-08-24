@@ -2,26 +2,16 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trip Itinerary | NatureNest</title>
-
 </head>
-
 
 <body class="bg-gray-50 min-h-screen">
 
-
     <!-- HEADER -->
-
     <header class="bg-white border-b border-gray-100">
-
+        
         <div class="max-w-6xl mx-auto px-6 py-6">
 
             <div class="flex items-center justify-between gap-4">
@@ -32,26 +22,15 @@
                         ✈️ NatureNest
                     </p>
 
-                    <h1
-                        id="tripTitle"
-                        class="text-3xl font-bold text-gray-800 mt-1"
-                    >
+                    <h1 id="tripTitle" class="text-3xl font-bold text-gray-800 mt-1">
                     </h1>
 
-                    <p
-                        id="tripInfo"
-                        class="text-gray-500 mt-2"
-                    >
+                    <p id="tripInfo" class="text-gray-500 mt-2">
                     </p>
 
                 </div>
 
-
-                <button
-                    type="button"
-                    onclick="goBack()"
-                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2.5 rounded-xl font-semibold"
-                >
+                <button type="button" onclick="goBack()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2.5 rounded-xl font-semibold">
                     ← Back
                 </button>
 
@@ -61,15 +40,10 @@
 
     </header>
 
-
-
     <!-- MAIN -->
-
     <main class="max-w-6xl mx-auto px-6 py-8">
 
-
         <!-- PAGE HEADING -->
-
         <div class="mb-8">
 
             <p class="text-sm font-semibold text-emerald-600 uppercase tracking-wide">
@@ -86,36 +60,20 @@
 
         </div>
 
-
-
         <!-- ITINERARY FORM -->
-
         <form id="itineraryForm">
 
-            <div
-                id="itineraryContainer"
-                class="space-y-6"
-            >
+            <div id="itineraryContainer" class="space-y-6">
             </div>
 
-
             <!-- SAVE BUTTON -->
-
             <div class="mt-8 flex flex-wrap gap-3">
 
-                <button
-                    type="submit"
-                    class="bg-emerald-600 hover:bg-emerald-700 text-white px-7 py-3 rounded-xl font-semibold transition"
-                >
+                <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-7 py-3 rounded-xl font-semibold transition">
                     💾 Save All Changes
                 </button>
 
-
-                <button
-                    type="button"
-                    onclick="goBack()"
-                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-7 py-3 rounded-xl font-semibold transition"
-                >
+                <button type="button" onclick="goBack()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-7 py-3 rounded-xl font-semibold transition">
                     Cancel
                 </button>
 
@@ -123,15 +81,9 @@
 
         </form>
 
-
     </main>
 
-
-
-    <script
-        type="module"
-        src="/src/itinerary.js"
-    ></script>
+    <script type="module" src="/src/itinerary.js"></script>
 
 </body>
 

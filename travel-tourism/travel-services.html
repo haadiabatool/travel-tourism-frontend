@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Services | NatureNest</title>
+
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+            <!-- TITLE -->
+            <div>
+
+                <p class="text-sm font-semibold text-emerald-600 uppercase tracking-wide">
+                    ✈️ NatureNest
+                </p>
+
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
+                    Travel Services
+                </h1>
+
+                <p class="text-gray-500 mt-1">
+                    Find everything you need for your journey.
+                </p>
+
+            </div>
+
+            <!-- BACK BUTTON -->
+            <button onclick="window.location.href='planned-trips.html'" class="px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold transition">
+                ← Planned Trips
+            </button>
+
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- PAGE INTRO -->
+        <section class="mb-8">
+
+            <p class="text-sm font-semibold text-emerald-600 uppercase tracking-wide">
+                Plan Your Journey
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-1">
+                Explore Travel Services
+            </h2>
+
+            <p class="text-gray-500 mt-2 max-w-2xl">
+                Discover hotels, transportation, tours, activities, and restaurants for your next adventure.
+            </p>
+
+        </section>
+
+        <!-- SEARCH -->
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-6">
+
+            <div class="flex flex-col md:flex-row gap-4">
+
+                <!-- SEARCH INPUT -->
+                <div class="flex-1">
+                    
+                    <label for="serviceSearch" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Search Services
+                    </label>
+
+                    <input id="serviceSearch" type="text" placeholder="Search hotel, tour, restaurant..."
+                        class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+
+                <!-- DESTINATION FILTER -->
+                <div class="md:w-64">
+
+                    <label for="destinationFilter" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Destination
+                    </label>
+
+                    <select id="destinationFilter" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500 bg-white">
+                        <option value="all">
+                            All Destinations
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CATEGORY FILTER -->
+        <section class="mb-8">
+
+            <div class="flex flex-wrap gap-3">
+                
+                <button class="category-btn active-category" data-category="all">
+                    🌎 All
+                </button>
+
+                <button class="category-btn" data-category="Hotel">
+                    🏨 Hotels
+                </button>
+
+                <button class="category-btn" data-category="Transportation">
+                    🚐 Transportation
+                </button>
+
+                <button class="category-btn" data-category="Tour Package">
+                    🗺️ Tour Packages
+                </button>
+
+                <button class="category-btn" data-category="Activity">
+                    🏔️ Activities
+                </button>
+
+                <button class="category-btn" data-category="Restaurant">
+                    🍽️ Restaurants
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- SERVICES COUNT -->
+        <div class="flex items-center justify-between mb-5">
+
+            <h3 class="text-xl font-bold text-gray-800">
+                Available Services
+            </h3>
+
+            <p id="serviceCount" class="text-sm text-gray-500">
+                0 services
+            </p>
+
+        </div>
+
+        <!-- SERVICES GRID -->
+        <section id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        </section>
+
+        <!-- NO RESULTS -->
+        <section id="noServices" class="hidden text-center py-20">
+            <div class="text-6xl mb-5">
+                🔍
+            </div>
+
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                No Services Found
+            </h2>
+
+            <p class="text-gray-500">
+                Try another category, destination, or search term.
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- JS -->
+    <script type="module" src="/src/travel-services.js"></script>
+
+</body>
+
+</html>

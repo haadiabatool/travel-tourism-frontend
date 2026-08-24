@@ -13,6 +13,17 @@ const trip =
         )
     );
 
+    // ==========================================
+// GET ALL BOOKINGS
+// ==========================================
+
+const bookings =
+    JSON.parse(
+        localStorage.getItem(
+            "natureNestBookings"
+        )
+    ) || [];
+
 
 // ==========================================
 // CHECK TRIP
@@ -25,6 +36,10 @@ if (!trip) {
 
 }
 
+
+
+const selectedTripId =
+    String(trip.id);
 
 // ==========================================
 // DOM ELEMENTS
@@ -83,6 +98,11 @@ const completeItinerary =
 const editTripBtn =
     document.getElementById(
         "editTripBtn"
+    );
+
+const viewTravelServicesBtn =
+    document.getElementById(
+        "viewTravelServicesBtn"
     );
 
 
@@ -366,6 +386,12 @@ function showCompleteItinerary() {
     );
 
 
+    // =====================================================
+// RENDER TRIP BOOKINGS
+// =====================================================
+
+
+
     // ======================================
     // CREATE DAY SECTIONS
     // ======================================
@@ -567,6 +593,261 @@ function showCompleteItinerary() {
         );
 
 }
+
+function renderTripBookings() {
+
+    const tripBookingsContainer =
+        document.getElementById(
+            "tripBookings"
+        );
+
+    const noTripBookings =
+        document.getElementById(
+            "noTripBookings"
+        );
+
+    const tripBookings =
+    bookings.filter(
+        booking =>
+            String(booking.tripId) ===
+            String(trip.id)
+    );
+
+
+    if (!tripBookingsContainer) {
+        return;
+    }
+
+
+    // Get all bookings
+    const allBookings =
+        JSON.parse(
+            localStorage.getItem(
+                "natureNestBookings"
+            )
+        ) || [];
+
+
+
+    // Clear previous content
+    tripBookingsContainer.innerHTML = "";
+
+
+    // =============================================
+    // NO BOOKINGS
+    // =============================================
+
+    if (tripBookings.length === 0) {
+
+        noTripBookings?.classList.remove(
+            "hidden"
+        );
+
+        return;
+    }
+
+
+    noTripBookings?.classList.add(
+        "hidden"
+    );
+
+
+    // =============================================
+    // RENDER BOOKINGS
+    // =============================================
+
+    tripBookings.forEach(
+        booking => {
+
+            tripBookingsContainer.innerHTML += `
+
+                <article
+                    class="
+                        bg-white
+                        border
+                        border-gray-100
+                        rounded-2xl
+                        p-6
+                        shadow-sm
+                    "
+                >
+
+                    <div
+                        class="
+                            flex
+                            items-start
+                            justify-between
+                            gap-4
+                            mb-5
+                        "
+                    >
+
+                        <div>
+
+                            <p
+                                class="
+                                    text-sm
+                                    font-semibold
+                                    text-emerald-600
+                                "
+                            >
+                                ${booking.category}
+                                ${booking.category}
+                            </p>
+
+                            <h3
+                                class="
+                                    text-xl
+                                    font-bold
+                                    text-gray-800
+                                    mt-1
+                                "
+                            >
+                                ${booking.service}
+                            </h3>
+
+                            <p
+                                class="
+                                    text-sm
+                                    text-gray-500
+                                    mt-1
+                                "
+                            >
+                                📍 ${booking.location}
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="
+                                bg-yellow-100
+                                text-yellow-700
+                                px-3
+                                py-1
+                                rounded-full
+                                text-sm
+                                font-semibold
+                            "
+                        >
+                            ${booking.status}
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            grid
+                            grid-cols-2
+                            gap-4
+                            text-sm
+                        "
+                    >
+
+                        <div>
+
+                            <p class="text-gray-400">
+                                Booking Date
+                            </p>
+
+                            <p
+                                class="
+                                    text-gray-700
+                                    font-semibold
+                                    mt-1
+                                "
+                            >
+                                ${booking.date}
+                            </p>
+
+                        </div>
+
+
+                        <div>
+
+                            <p class="text-gray-400">
+                                Travelers
+                            </p>
+
+                            <p
+                                class="
+                                    text-gray-700
+                                    font-semibold
+                                    mt-1
+                                "
+                            >
+                                👥 ${booking.people}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="
+                            mt-5
+                            pt-5
+                            border-t
+                            border-gray-100
+                            flex
+                            items-center
+                            justify-between
+                        "
+                    >
+
+                        <div>
+
+                            <p class="text-xs text-gray-400">
+                                Booking ID
+                            </p>
+
+                            <p
+                                class="
+                                    text-sm
+                                    font-semibold
+                                    text-gray-700
+                                "
+                            >
+                                ${booking.bookingId}
+                            </p>
+
+                        </div>
+
+
+                        <div class="text-right">
+
+                            <p class="text-xs text-gray-400">
+                                Total
+                            </p>
+
+                            <p
+                                class="
+                                    text-xl
+                                    font-bold
+                                    text-emerald-600
+                                "
+                            >
+                                PKR ${Number(
+                                    booking.total
+                                ).toLocaleString()}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+    );
+
+}
+
+
 
 
 
@@ -1049,6 +1330,27 @@ if (editEndDate) {
 
 }
 
+// ==========================================
+// VIEW TRAVEL SERVICES
+// ==========================================
+
+if (viewTravelServicesBtn) {
+
+    viewTravelServicesBtn.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                `travel-services.html?destination=${encodeURIComponent(
+                    trip.destination
+                )}&tripId=${encodeURIComponent(
+                    trip.id
+                )}`;
+
+        }
+    );
+
+}
 
 // ==========================================
 // EDIT TRIP BUTTON
@@ -1075,7 +1377,6 @@ if (editTripBtn) {
 
 
 
-
 // ==========================================
 // BACK
 // ==========================================
@@ -1095,4 +1396,6 @@ window.goBack = function () {
 showTripSummary();
 
 showCompleteItinerary();
+
+renderTripBookings();
 

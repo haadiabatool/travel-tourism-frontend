@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | NatureNest</title>
+
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-100">
+
+        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
+
+            <div>
+
+                <p class="text-sm font-semibold text-emerald-600">
+                    ✈️ NatureNest
+                </p>
+
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
+                    Booking Request
+                </h1>
+
+            </div>
+
+            <button id="backBtn" type="button" class="px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold">
+                ← Back
+            </button>
+
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+
+        <!-- BOOKING CONTAINER -->
+        <section class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8">
+
+            <!-- HEADING -->
+            <div class="mb-8">
+
+                <p class="text-sm font-semibold text-emerald-600 uppercase tracking-wide">
+                    Complete Your Request
+                </p>
+
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-1">
+                    Book Your Travel Service
+                </h2>
+
+                <p class="text-gray-500 mt-2">
+                    Enter your information to submit a booking request.
+                </p>
+
+            </div>
+
+            <!-- SELECTED SERVICE -->
+            <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-5 mb-8">
+
+                <div class="flex flex-col md:flex-row gap-5 md:items-center">
+
+                    <img id="selectedServiceImage" src="" alt="Selected Service" class="w-full md:w-40 h-28 object-cover rounded-xl">
+
+                    <div class="flex-1">
+
+                        <p class="text-xs uppercase tracking-wide font-semibold text-emerald-600 mb-1">
+                            Selected Service
+                        </p>
+
+                        <h3 id="selectedServiceName" class="text-2xl font-bold text-gray-800"></h3>
+
+                        <p id="selectedServiceLocation" class="text-gray-500 mt-1"></p>
+
+                        <p id="selectedServiceCategory" class="text-sm text-emerald-700 font-semibold mt-2"></p>
+
+                    </div>
+
+                    <div class="md:text-right">
+
+                        <p class="text-sm text-gray-500">
+                            Price
+                        </p>
+
+                        <p id="selectedServicePrice" class="text-xl font-bold text-emerald-700"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BOOKING FORM -->
+
+            <form id="bookingForm" novalidate class="space-y-6">
+
+                <!-- FULL NAME -->
+                <div>
+
+                    <label for="fullName" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Full Name
+                    </label>
+
+                    <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
+
+                    <p id="fullNameError" class="hidden text-sm text-red-500 mt-1"></p>
+
+                </div>
+
+                <!-- EMAIL -->
+                <div>
+
+                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Email Address
+                    </label>
+
+                    <input id="email" name="email" type="email" placeholder="example@email.com" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
+
+                    <p id="emailError" class="hidden text-sm text-red-500 mt-1"></p>
+
+                </div>
+
+                <!-- PHONE -->
+                <div>
+
+                    <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Phone Number
+                    </label>
+
+                    <input id="phone" name="phone" type="tel" placeholder="03XX XXXXXXX" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
+
+                    <p id="phoneError" class="hidden text-sm text-red-500 mt-1"></p>
+                    
+                </div>
+
+                <!-- SERVICE -->
+                <div>
+
+                    <label for="bookingService" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Selected Service
+                    </label>
+
+                    <input id="bookingService" type="text" readonly class="w-full border border-gray-300 bg-gray-100 rounded-xl px-4 py-3 outline-none cursor-not-allowed">
+                
+                </div>
+
+                <!-- BOOKING DATE -->
+                <div>
+
+                    <label for="bookingDate" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Booking Date
+                    </label>
+
+                    <input id="bookingDate" name="bookingDate" type="date" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
+                    
+                    <p id="bookingDateError" class="hidden text-sm text-red-500 mt-1"></p>
+                
+                </div>
+
+                <!-- NUMBER OF PEOPLE -->
+                <div>
+
+                    <label for="numberOfPeople" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Number of People
+                    </label>
+
+                    <input id="numberOfPeople" name="numberOfPeople" type="number" min="1" max="50" value="1" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
+                    
+                    <p id="peopleError" class="hidden text-sm text-red-500 mt-1"></p>
+                
+                </div>
+
+                <!-- SPECIAL REQUEST -->
+                <div>
+                    
+                    <label for="specialRequest" class="block text-sm font-semibold text-gray-700 mb-2">
+                        Special Request
+                        <span class="text-gray-400 font-normal">(Optional)</span>
+                    </label>
+
+                    <textarea id="specialRequest" name="specialRequest" rows="4" placeholder="Any special requirements or requests?" class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                
+                </div>
+
+                <!-- TOTAL -->
+                <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                    
+                    <div class="flex items-center justify-between">
+                        
+                        <span class="text-gray-600 font-semibold">
+                            Estimated Total
+                        </span>
+
+                        <span id="estimatedTotal" class="text-2xl font-bold text-emerald-700">
+                            PKR 0
+                        </span>
+
+                    </div>
+
+                    <p class="text-xs text-gray-400 mt-2">
+                        Final price may vary based on availability and service terms.
+                    </p>
+
+                </div>
+
+                <!-- BUTTON -->
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-xl font-semibold text-lg transition">
+                    🛎️ Submit Booking Request
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- BOOKING SUMMARY -->
+        <section id="bookingSummarySection" class="hidden bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8 mt-8">
+            
+            <div class="mb-8">
+                
+                <p class="text-sm font-semibold text-emerald-600 uppercase tracking-wide">
+                    Booking Summary
+                
+                </p>
+            </div>
+            
+        </section>
+
+    </main>
+
+     <script type="module" src="/src/booking.js"></script>
+
+</body>
+</html>

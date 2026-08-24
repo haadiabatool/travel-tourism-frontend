@@ -1,7 +1,7 @@
 // Destination Data
 export const destinations = {
 
-  // Beaches Data 
+  // Beaches Data ✅
   "clifton-beach": {
     title: "Clifton Beach",
     location: "Karachi, Sindh, Pakistan",
@@ -27,6 +27,7 @@ export const destinations = {
     }
   },
 
+  //  ✅
   "grace-bay-beach": {
     title: "Grace Bay Beach",
     location: "Providenciales, Turks and Caicos Islands",
@@ -129,7 +130,7 @@ export const destinations = {
 
 
 
-// Mountains Data 
+// Mountains Data ✅
     "fairy-meadows": {
     title: "Fairy Meadows",
     location: "Gilgit-Baltistan, Pakistan",
@@ -155,6 +156,7 @@ export const destinations = {
     }
   },
 
+//  ✅
   "mount-fuji": {
     title: "Mount Fuji",
     location: "Honshu, Japan",
@@ -205,6 +207,7 @@ export const destinations = {
     }
   },
 
+  //  ✅
   "swiss-alps": {
     title: "Swiss Alps",
     location: "Switzerland",
@@ -256,7 +259,7 @@ export const destinations = {
   },
 
 
-  // Historical Places Data
+  // Historical Places Data ✅
     "colosseum": {
     title: "Colosseum",
     location: "Rome, Italy",
@@ -282,6 +285,7 @@ export const destinations = {
     }
   },
 
+  //  ✅
   "lahore-fort": {
     title: "Lahore Fort",
     location: "Lahore, Punjab, Pakistan",
@@ -332,6 +336,7 @@ export const destinations = {
   }
 },
 
+//  ✅
   "machu-picchu": {
     title: "Machu Picchu",
     location: "Cusco Region, Peru",
@@ -460,6 +465,7 @@ export const destinations = {
     }
   },
 
+//  ✅
   "queenstown": {
     title: "Queenstown",
     location: "Otago, New Zealand",
@@ -510,7 +516,7 @@ export const destinations = {
     }
   },
 
-// Culture
+// Culture ✅
     "hunza-valley": {
     title: "Hunza Valley",
     location: "Gilgit-Baltistan, Pakistan",
@@ -536,6 +542,7 @@ export const destinations = {
     }
   },
 
+  //  ✅
   "istanbul": {
     title: "Istanbul",
     location: "Turkey",
@@ -612,6 +619,7 @@ export const destinations = {
     }
   },
 
+  //  ✅
   "kyoto": {
     title: "Kyoto",
     location: "Japan",
@@ -664,6 +672,7 @@ export const destinations = {
     }
   },
 
+  //  ✅
   "serengeti-national-park": {
     title: "Serengeti National Park",
     location: "Tanzania",

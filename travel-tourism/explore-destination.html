@@ -172,7 +172,6 @@
 
                     <button id="bookTripBtn"
                         class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full transition hover:scale-105 shadow-lg flex items-center gap-3">
-
                         Book Your Trip
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -185,8 +184,7 @@
 
                     </button>
 
-                    <button
-                        class="text-emerald-600 hover:bg-emerald-100 bg-emerald-50 px-10 py-4 rounded-full transition hover:scale-105 shadow-lg">
+                    <button class="text-emerald-600 hover:bg-emerald-100 bg-emerald-50 px-10 py-4 rounded-full transition hover:scale-105 shadow-lg">
 
                         <a href="index.html">
                             ← Back to Homepage
@@ -203,8 +201,7 @@
     </section>
 
     <!-- Form to add trip  -->
-    <section id="tripModal"
-        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+    <section id="tripModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
 
         <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6 md:p-8">
 
@@ -309,8 +306,7 @@
                         Trip Description
                     </label>
 
-                    <textarea id="tripDescription" name="description" rows="4"
-                        placeholder="Tell us something about your trip..."
+                    <textarea id="tripDescription" name="description" rows="4" placeholder="Tell us something about your trip..."
                         class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-emerald-500">
                         </textarea>
 
@@ -321,13 +317,11 @@
                 <!-- Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3">
 
-                    <button id="cancelTripBtn" type="button"
-                        class="w-full border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-100 transition">
+                    <button id="cancelTripBtn" type="button" class="w-full border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-100 transition">
                         Cancel
                     </button>
 
-                    <button type="submit"
-                        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold transition">
                         Create Trip
                     </button>
 
@@ -340,13 +334,10 @@
     </section>
 
     <!-- Day-by-Day Itinerary -->
-    <section id="itinerarySection" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm
-           items-center justify-center px-4">
-        <div class="relative w-full max-w-4xl max-h-[90vh]
-               overflow-y-auto bg-white rounded-3xl shadow-2xl p-6 md:p-8">
+    <section id="itinerarySection" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm items-center justify-center px-4">
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl p-6 md:p-8">
 
-            <button id="closeItinerary" type="button" class="absolute top-4 right-5 text-gray-500
-                   hover:text-gray-800 text-2xl">
+            <button id="closeItinerary" type="button" class="absolute top-4 right-5 text-gray-500 hover:text-gray-800 text-2xl">
                 &times;
             </button>
 
@@ -367,9 +358,7 @@
             <!-- Days will be generated here -->
             <div id="itineraryDays" class="space-y-6"></div>
 
-            <button id="saveItineraryBtn" type="button" class="w-full mt-6 bg-emerald-600
-                   hover:bg-emerald-700 text-white
-                   py-3 rounded-xl font-semibold">
+            <button id="saveItineraryBtn" type="button" class="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold">
                 Save Itinerary
             </button>
 

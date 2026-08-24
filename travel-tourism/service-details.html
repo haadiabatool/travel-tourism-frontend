@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details | NatureNest</title>
+
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-100">
+
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
+
+            <div>
+
+                <p class="text-sm font-semibold text-emerald-600">
+                    ✈️ NatureNest
+                </p>
+
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
+                    Service Details
+                </h1>
+
+            </div>
+
+            <button id="backBtn" type="button" class="px-5 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold">
+                ← Back
+            </button>
+
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+        <!-- SERVICE DETAILS CARD -->
+        <section id="serviceDetails" class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+
+            <!-- SERVICE IMAGE -->
+            <div class="relative w-full h-72 md:h-96 lg:h-120 overflow-hidden">
+
+                <img id="serviceImage" src="" alt="Service" class="w-full h-full object-cover">
+
+                <!-- DARK GRADIENT -->
+                <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent"></div>
+
+                <!-- CATEGORY -->
+                <div class="absolute top-6 left-6">
+
+                    <span id="serviceCategory" class="inline-block bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow">
+                    </span>
+
+                </div>
+
+                <!-- SERVICE NAME -->
+                <div class="absolute bottom-6 left-6 right-6">
+
+                    <h2 id="serviceName" class="text-3xl md:text-5xl font-bold text-white drop-shadow-lg">
+                    </h2>
+
+                    <p id="serviceLocation" class="text-white/90 mt-2 text-base md:text-lg">
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="p-6 md:p-8 lg:p-10">
+
+                <!-- TOP INFORMATION -->
+                <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
+
+                    <div>
+
+                        <p class="text-sm uppercase tracking-wide font-semibold text-emerald-600">
+                            Travel Service
+                        </p>
+
+                        <h2 id="contentServiceName" class="text-3xl font-bold text-gray-800 mt-1">
+                        </h2>
+
+                        <p id="contentLocation" class="text-gray-500 mt-2">
+                        </p>
+
+                    </div>
+
+                    <!-- PRICE -->
+                    <div class="bg-emerald-50 rounded-2xl p-5 min-w-55">
+
+                        <p class="text-sm text-gray-500">
+                            Starting Price
+                        </p>
+
+                        <p id="servicePrice" class="text-2xl font-bold text-emerald-700 mt-1">
+                        </p>
+
+                        <p class="text-xs text-gray-500 mt-1">
+                            Price may vary
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- RATING -->
+                <div class="flex flex-wrap items-center gap-4 mb-8">
+
+                    <div class="flex items-center gap-2 bg-yellow-50 px-4 py-2 rounded-full">
+
+                        <span class="text-yellow-500">
+                            ★
+                        </span>
+
+                        <span id="serviceRating" class="font-bold text-gray-800">
+                        </span>
+
+                    </div>
+
+                    <span id="serviceReviews" class="text-gray-500 text-sm">
+                    </span>
+
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="mb-10">
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                        About This Service
+                    </h3>
+
+                    <p id="serviceDescription" class="text-gray-600 leading-8">
+                    </p>
+
+                </div>
+
+                <!-- FEATURES -->
+                <div class="mb-10">
+
+                    <h3 class="text-2xl font-bold text-gray-800 mb-5">
+                        Available Facilities & Features
+                    </h3>
+
+                    <div id="serviceFeatures" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    </div>
+
+                </div>
+
+                <!-- IMPORTANT INFORMATION -->
+                <div class="bg-orange-50 border border-orange-100 rounded-2xl p-6 mb-10">
+
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        Important Information
+                    </h3>
+
+                    <ul id="serviceTerms" class="space-y-3 text-gray-600">
+                    </ul>
+
+                </div>
+
+                <!-- BOOKING CTA -->
+                <div class="border-t border-gray-200 pt-8 flex flex-col sm:flex-row gap-4">
+                    
+                    <button id="bookNowBtn" type="button" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition">
+                        🛎️ Book Now
+                    </button>
+
+                    <button id="backToServicesBtn" type="button" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg transition">
+                        ← Back to Services
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SERVICE NOT FOUND -->
+        <section id="serviceNotFound" class="hidden bg-white rounded-3xl p-10 text-center shadow-sm">
+            
+            <div class="text-6xl mb-5">
+                😕
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">
+                Service Not Found
+            </h2>
+
+            <p class="text-gray-500 mb-6">
+                The selected travel service could not be found.
+            </p>
+
+            <button id="notFoundBackBtn" type="button" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-semibold">
+                Back to Services
+            </button>
+
+        </section>
+
+    </main>
+
+    <!-- JS -->
+    <script type="module" src="/src/service-details.js"></script>
+
+</body>
+
+</html>

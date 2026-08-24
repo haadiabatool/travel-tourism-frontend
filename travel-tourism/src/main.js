@@ -35,49 +35,67 @@ const menuBtn = document.getElementById('menu-btn');
   });
 
 
-// For button destination filtering
-
-const buttons = document.querySelectorAll(".filter-btn");
-const cards = document.querySelectorAll(".destination");
+});
 
 
-buttons.forEach(button => {
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const destinationCards = document.querySelectorAll('.destination-card');
 
-    button.addEventListener("click", () => {
+  function filterDestinations() {
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
 
-        const filter = button.dataset.filter;
+    // 1. Cards Filtering (Search + Category)
+    destinationCards.forEach((card) => {
+      const cardName = (card.getAttribute('data-name') || '').toLowerCase();
+      const cardLocation = (card.getAttribute('data-location') || '').toLowerCase();
+      const cardText = card.textContent.toLowerCase();
 
-        buttons.forEach(btn => {
-            btn.classList.remove("bg-green-600","text-white");
-            btn.classList.add("bg-white");
-        });
+      // Search matching check
+      const matchesSearch = query === '' || cardName.includes(query) || cardLocation.includes(query) || cardText.includes(query);
 
-        button.classList.remove("bg-white");
-        button.classList.add("bg-emerald-700","text-white");
+      // Category matching check
+      const matchesCategory = selectedCategory === 'all' || card.closest(`.destination.${selectedCategory}`) !== null;
 
-        cards.forEach(card => {
-
-            if(filter === "all"){
-
-                card.classList.remove("hidden");
-
-            }else{
-
-                if(card.classList.contains(filter)){
-                    card.classList.remove("hidden");
-                }else{
-                    card.classList.add("hidden");
-                }
-
-            }
-
-        });
-
+      if (matchesSearch && matchesCategory) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
     });
 
+    // 2. Section Headings Control
+    // Category classes: beach, mountain, historical, adventure, cultural, wildlife, popular-destination
+    const categories = ['beach', 'mountain', 'historical', 'adventure', 'cultural', 'wildlife', 'popular-destination'];
+
+    categories.forEach((cat) => {
+      // Find heading divs & grid sections for this category
+      const categoryElements = document.querySelectorAll(`.destination.${cat}`);
+      // Find visible cards inside this category
+      const visibleCards = document.querySelectorAll(`.destination.${cat} .destination-card:not(.hidden)`);
+
+      categoryElements.forEach((el) => {
+        // Dropdown selection check
+        const isCategorySelected = (selectedCategory === 'all' || selectedCategory === cat);
+
+        // Heading aur Grid tabhi dikhenge jab Category select ho AUR usme koi matching card visible ho
+        if (isCategorySelected && visibleCards.length > 0) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+    });
+  }
+
+  // Event Listeners
+  if (searchInput) {
+    searchInput.addEventListener('input', filterDestinations);
+  }
+
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', filterDestinations);
+  }
 });
-
-
-});
-
-

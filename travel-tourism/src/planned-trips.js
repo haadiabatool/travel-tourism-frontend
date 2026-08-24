@@ -1,27 +1,818 @@
 import "./style.css";
 
+import { destinations } from "./destination.js";
+
+
 // ==========================================
 // GET COMPLETE TRIPS
 // ==========================================
 
 let trips =
-JSON.parse(
-localStorage.getItem("natureNestTrips")
-) || [];
+    JSON.parse(
+        localStorage.getItem("natureNestTrips")
+    ) || [];
+
 
 // ==========================================
 // DOM
 // ==========================================
 
 const grid =
-document.getElementById(
-"plannedTripsGrid"
-);
+    document.getElementById(
+        "plannedTripsGrid"
+    );
 
 const empty =
-document.getElementById(
-"emptyPlannedTrips"
-);
+    document.getElementById(
+        "emptyPlannedTrips"
+    );
+
+
+// ==========================================
+// ADD TRIP ELEMENTS
+// ==========================================
+
+const addTripBtn =
+    document.getElementById(
+        "addTripBtn"
+    );
+
+const addTripModal =
+    document.getElementById(
+        "addTripModal"
+    );
+
+const closeModalBtn =
+    document.getElementById(
+        "closeModalBtn"
+    );
+
+const cancelAddTripBtn =
+    document.getElementById(
+        "cancelAddTripBtn"
+    );
+
+const addTripForm =
+    document.getElementById(
+        "addTripForm"
+    );
+
+const newTripName =
+    document.getElementById(
+        "newTripName"
+    );
+
+const newTripDestination =
+    document.getElementById(
+        "newTripDestination"
+    );
+
+const newStartDate =
+    document.getElementById(
+        "newStartDate"
+    );
+
+const newEndDate =
+    document.getElementById(
+        "newEndDate"
+    );
+
+const newTravelers =
+    document.getElementById(
+        "newTravelers"
+    );
+
+const newTripDescription =
+    document.getElementById(
+        "newTripDescription"
+    );
+
+
+// ==========================================
+// ERROR ELEMENTS
+// ==========================================
+
+const newTripNameError =
+    document.getElementById(
+        "newTripNameError"
+    );
+
+const newDestinationError =
+    document.getElementById(
+        "newDestinationError"
+    );
+
+const newStartDateError =
+    document.getElementById(
+        "newStartDateError"
+    );
+
+const newEndDateError =
+    document.getElementById(
+        "newEndDateError"
+    );
+
+const newTravelersError =
+    document.getElementById(
+        "newTravelersError"
+    );
+
+const newDescriptionError =
+    document.getElementById(
+        "newDescriptionError"
+    );
+
+
+// ==========================================
+// LOAD ALL 30 DESTINATIONS
+// ==========================================
+
+function loadDestinations() {
+
+    if (!newTripDestination) {
+        return;
+    }
+
+
+    newTripDestination.innerHTML = `
+        <option value="">
+            Select a destination
+        </option>
+    `;
+
+
+    Object.entries(destinations).forEach(
+        ([id, destination]) => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value = id;
+
+
+            option.textContent =
+                destination.title;
+
+
+            newTripDestination.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+loadDestinations();
+
+
+// ==========================================
+// OPEN ADD TRIP MODAL
+// ==========================================
+
+function openAddTripModal() {
+
+    if (!addTripModal) {
+        return;
+    }
+
+
+    addTripModal.classList.remove(
+        "hidden"
+    );
+
+    addTripModal.classList.add(
+        "flex"
+    );
+
+
+    document.body.classList.add(
+        "overflow-hidden"
+    );
+
+}
+
+
+// ==========================================
+// CLOSE ADD TRIP MODAL
+// ==========================================
+
+function closeAddTripModal() {
+
+    if (!addTripModal) {
+        return;
+    }
+
+
+    addTripModal.classList.add(
+        "hidden"
+    );
+
+    addTripModal.classList.remove(
+        "flex"
+    );
+
+
+    document.body.classList.remove(
+        "overflow-hidden"
+    );
+
+}
+
+
+// ==========================================
+// OPEN BUTTON
+// ==========================================
+
+if (addTripBtn) {
+
+    addTripBtn.addEventListener(
+        "click",
+        openAddTripModal
+    );
+
+}
+
+
+// ==========================================
+// CLOSE BUTTON
+// ==========================================
+
+if (closeModalBtn) {
+
+    closeModalBtn.addEventListener(
+        "click",
+        closeAddTripModal
+    );
+
+}
+
+
+// ==========================================
+// CANCEL BUTTON
+// ==========================================
+
+if (cancelAddTripBtn) {
+
+    cancelAddTripBtn.addEventListener(
+        "click",
+        closeAddTripModal
+    );
+
+}
+
+
+// ==========================================
+// CLOSE WHEN CLICKING OUTSIDE
+// ==========================================
+
+if (addTripModal) {
+
+    addTripModal.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target ===
+                addTripModal
+            ) {
+
+                closeAddTripModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// DATE SETTINGS
+// ==========================================
+
+const today =
+    new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+if (newStartDate) {
+
+    newStartDate.min =
+        today;
+
+}
+
+
+if (newEndDate) {
+
+    newEndDate.min =
+        today;
+
+}
+
+
+if (
+    newStartDate &&
+    newEndDate
+) {
+
+    newStartDate.addEventListener(
+        "change",
+        () => {
+
+            if (
+                newStartDate.value
+            ) {
+
+                newEndDate.min =
+                    newStartDate.value;
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// ERROR FUNCTIONS
+// ==========================================
+
+function showError(
+    element,
+    message
+) {
+
+    if (!element) {
+        return;
+    }
+
+
+    element.textContent =
+        message;
+
+
+    element.classList.remove(
+        "hidden"
+    );
+
+}
+
+
+function clearError(
+    element
+) {
+
+    if (!element) {
+        return;
+    }
+
+
+    element.textContent =
+        "";
+
+
+    element.classList.add(
+        "hidden"
+    );
+
+}
+
+
+// ==========================================
+// CLEAR ERRORS
+// ==========================================
+
+function clearAddTripErrors() {
+
+    clearError(
+        newTripNameError
+    );
+
+    clearError(
+        newDestinationError
+    );
+
+    clearError(
+        newStartDateError
+    );
+
+    clearError(
+        newEndDateError
+    );
+
+    clearError(
+        newTravelersError
+    );
+
+    clearError(
+        newDescriptionError
+    );
+
+}
+
+
+// ==========================================
+// VALIDATE ADD TRIP FORM
+// ==========================================
+
+function validateAddTripForm() {
+
+    clearAddTripErrors();
+
+
+    let isValid = true;
+
+
+    // ======================================
+    // TRIP NAME
+    // ======================================
+
+    const name =
+        newTripName.value.trim();
+
+
+    if (!name) {
+
+        showError(
+            newTripNameError,
+            "Please enter a trip name."
+        );
+
+        isValid = false;
+
+    }
+    else if (
+        name.length < 3
+    ) {
+
+        showError(
+            newTripNameError,
+            "Trip name must be at least 3 characters."
+        );
+
+        isValid = false;
+
+    }
+
+
+    // ======================================
+    // DESTINATION
+    // ======================================
+
+    const destinationId =
+        newTripDestination.value;
+
+
+    if (!destinationId) {
+
+        showError(
+            newDestinationError,
+            "Please select a destination."
+        );
+
+        isValid = false;
+
+    }
+
+
+    // ======================================
+    // START DATE
+    // ======================================
+
+    if (
+        !newStartDate.value
+    ) {
+
+        showError(
+            newStartDateError,
+            "Please select a starting date."
+        );
+
+        isValid = false;
+
+    }
+
+
+    // ======================================
+    // END DATE
+    // ======================================
+
+    if (
+        !newEndDate.value
+    ) {
+
+        showError(
+            newEndDateError,
+            "Please select an ending date."
+        );
+
+        isValid = false;
+
+    }
+
+
+    // ======================================
+    // DATE COMPARISON
+    // ======================================
+
+    if (
+        newStartDate.value &&
+        newEndDate.value
+    ) {
+
+        const start =
+            new Date(
+                newStartDate.value
+            );
+
+
+        const end =
+            new Date(
+                newEndDate.value
+            );
+
+
+        if (end < start) {
+
+            showError(
+                newEndDateError,
+                "Ending date cannot be before starting date."
+            );
+
+            isValid = false;
+
+        }
+
+    }
+
+
+    // ======================================
+    // TRAVELERS
+    // ======================================
+
+    const travelerCount =
+        Number(
+            newTravelers.value
+        );
+
+
+    if (
+        !newTravelers.value
+    ) {
+
+        showError(
+            newTravelersError,
+            "Please enter number of travelers."
+        );
+
+        isValid = false;
+
+    }
+    else if (
+        travelerCount < 1 ||
+        travelerCount > 50
+    ) {
+
+        showError(
+            newTravelersError,
+            "Travelers must be between 1 and 50."
+        );
+
+        isValid = false;
+
+    }
+
+
+    // ======================================
+    // DESCRIPTION
+    // ======================================
+
+    const description =
+        newTripDescription.value.trim();
+
+
+    if (!description) {
+
+        showError(
+            newDescriptionError,
+            "Please enter a trip description."
+        );
+
+        isValid = false;
+
+    }
+    else if (
+        description.length < 10
+    ) {
+
+        showError(
+            newDescriptionError,
+            "Description must be at least 10 characters."
+        );
+
+        isValid = false;
+
+    }
+
+
+    return isValid;
+
+}
+
+
+// ==========================================
+// CREATE NEW TRIP FROM PLANNED TRIPS
+// ==========================================
+
+if (addTripForm) {
+
+    addTripForm.addEventListener(
+        "submit",
+        (event) => {
+
+            event.preventDefault();
+
+
+            // ==================================
+            // VALIDATE
+            // ==================================
+
+            if (
+                !validateAddTripForm()
+            ) {
+
+                return;
+
+            }
+
+
+            // ==================================
+            // SELECTED DESTINATION
+            // ==================================
+
+            const destinationId =
+                newTripDestination.value;
+
+
+            const selectedDestination =
+                destinations[
+                    destinationId
+                ];
+
+
+            if (!selectedDestination) {
+
+                showError(
+                    newDestinationError,
+                    "Selected destination was not found."
+                );
+
+                return;
+
+            }
+
+
+            // ==================================
+            // CREATE TRIP OBJECT
+            // ==================================
+
+            const trip = {
+
+                id:
+                    Date.now().toString(),
+
+                tripName:
+                    newTripName
+                        .value
+                        .trim(),
+
+                destination:
+                    selectedDestination.title,
+
+                destinationId:
+                    destinationId,
+
+                startDate:
+                    newStartDate.value,
+
+                endDate:
+                    newEndDate.value,
+
+                travelers:
+                    Number(
+                        newTravelers.value
+                    ),
+
+                description:
+                    newTripDescription
+                        .value
+                        .trim(),
+
+                activities: [],
+
+                createdAt:
+                    new Date()
+                        .toISOString()
+
+            };
+
+
+            // ==================================
+            // ADD TO ARRAY
+            // ==================================
+
+            trips.push(
+                trip
+            );
+
+
+            // ==================================
+            // SAVE TO LOCAL STORAGE
+            // ==================================
+
+            localStorage.setItem(
+                "natureNestTrips",
+                JSON.stringify(
+                    trips
+                )
+            );
+
+
+            // ==================================
+            // SAVE DESTINATION
+            // ==================================
+
+            let plannedDestinations =
+                JSON.parse(
+                    localStorage.getItem(
+                        "plannedTrips"
+                    )
+                ) || [];
+
+
+            if (
+                !plannedDestinations.includes(
+                    destinationId
+                )
+            ) {
+
+                plannedDestinations.push(
+                    destinationId
+                );
+
+            }
+
+
+            localStorage.setItem(
+                "plannedTrips",
+                JSON.stringify(
+                    plannedDestinations
+                )
+            );
+
+
+            // ==================================
+            // RESET FORM
+            // ==================================
+
+            addTripForm.reset();
+
+
+            // ==================================
+            // CLOSE MODAL
+            // ==================================
+
+            closeAddTripModal();
+
+
+            // ==================================
+            // RENDER AGAIN
+            // ==================================
+
+            renderTrips();
+
+
+            // ==================================
+            // SUCCESS
+            // ==================================
+
+            alert(
+                "Trip created successfully!"
+            );
+
+        }
+    );
+
+}
+
 
 // ==========================================
 // CREATE COMPLETE TRIP CARD
@@ -444,6 +1235,7 @@ function createTripCard(trip) {
 
 }
 
+
 // ==========================================
 // RENDER TRIPS
 // ==========================================
@@ -458,7 +1250,9 @@ function renderTrips() {
     grid.innerHTML = "";
 
 
-    // No trips
+    // ======================================
+    // NO TRIPS
+    // ======================================
 
     if (trips.length === 0) {
 
@@ -467,6 +1261,7 @@ function renderTrips() {
         );
 
         return;
+
     }
 
 
@@ -475,128 +1270,159 @@ function renderTrips() {
     );
 
 
-    // Render latest trips first
+    // ======================================
+    // LATEST TRIPS FIRST
+    // ======================================
 
     trips
         .slice()
         .reverse()
-        .forEach((trip) => {
+        .forEach(
+            (trip) => {
 
-            grid.innerHTML +=
-                createTripCard(trip);
+                grid.innerHTML +=
+                    createTripCard(
+                        trip
+                    );
 
-        });
+            }
+        );
 
 }
+
 
 // ==========================================
 // VIEW TRIP
 // ==========================================
 
-window.viewTrip = function (tripId) {
+window.viewTrip =
+    function (tripId) {
 
-    const trip =
-        trips.find(
-            item =>
-                String(item.id) ===
-                String(tripId)
+        const trip =
+            trips.find(
+                item =>
+                    String(
+                        item.id
+                    ) ===
+                    String(
+                        tripId
+                    )
+            );
+
+
+        if (!trip) {
+
+            console.error(
+                "Trip not found:",
+                tripId
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "selectedTrip",
+            JSON.stringify(
+                trip
+            )
         );
 
-    if (!trip) {
 
-        console.error(
-            "Trip not found:",
-            tripId
-        );
+        window.location.href =
+            "trip-details.html";
 
-        return;
-    }
+    };
 
-    // Save selected trip
-    localStorage.setItem(
-        "selectedTrip",
-        JSON.stringify(trip)
-    );
-
-    // Open Trip Details page
-    window.location.href =
-        "trip-details.html";
-};
 
 // ==========================================
 // VIEW ITINERARY
 // ==========================================
 
-window.viewItinerary = function (tripId) {
+window.viewItinerary =
+    function (tripId) {
 
-    const trip =
-        trips.find(
-            item =>
-                String(item.id) ===
-                String(tripId)
+        const trip =
+            trips.find(
+                item =>
+                    String(
+                        item.id
+                    ) ===
+                    String(
+                        tripId
+                    )
+            );
+
+
+        if (!trip) {
+
+            console.error(
+                "Trip not found:",
+                tripId
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "selectedTrip",
+            JSON.stringify(
+                trip
+            )
         );
 
 
-    if (!trip) {
+        window.location.href =
+            "itinerary.html";
 
-        console.error(
-            "Trip not found:",
-            tripId
-        );
+    };
 
-        return;
-    }
-
-
-    // Save selected trip
-
-    localStorage.setItem(
-        "selectedTrip",
-        JSON.stringify(trip)
-    );
-
-
-    // Open itinerary page
-
-    window.location.href =
-        "itinerary.html";
-
-};
 
 // ==========================================
 // REMOVE TRIP
 // ==========================================
 
-window.removeTrip = function (tripId) {
+window.removeTrip =
+    function (tripId) {
 
-    const confirmRemove =
-        confirm(
-            "Are you sure you want to remove this trip?"
+        const confirmRemove =
+            confirm(
+                "Are you sure you want to remove this trip?"
+            );
+
+
+        if (!confirmRemove) {
+            return;
+        }
+
+
+        trips =
+            trips.filter(
+                trip =>
+                    String(
+                        trip.id
+                    ) !==
+                    String(
+                        tripId
+                    )
+            );
+
+
+        localStorage.setItem(
+            "natureNestTrips",
+            JSON.stringify(
+                trips
+            )
         );
 
 
-    if (!confirmRemove) {
-        return;
-    }
+        renderTrips();
 
+    };
 
-    trips =
-        trips.filter(
-            trip =>
-                String(trip.id) !==
-                String(tripId)
-        );
-
-
-    localStorage.setItem(
-        "natureNestTrips",
-        JSON.stringify(trips)
-    );
-
-
-    renderTrips();
-
-};
 
 // ==========================================
 // INITIALIZE
