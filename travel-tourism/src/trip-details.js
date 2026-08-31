@@ -1,33 +1,18 @@
 
 import "./style.css";
 
-
-// ==========================================
 // GET SELECTED TRIP
-// ==========================================
 
 const trip =
-    JSON.parse(
-        localStorage.getItem(
-            "selectedTrip"
-        )
-    );
+    JSON.parse(localStorage.getItem("selectedTrip"));
 
-    // ==========================================
 // GET ALL BOOKINGS
-// ==========================================
 
 const bookings =
-    JSON.parse(
-        localStorage.getItem(
-            "natureNestBookings"
-        )
-    ) || [];
+    JSON.parse(localStorage.getItem("natureNestBookings")) || [];
 
 
-// ==========================================
 // CHECK TRIP
-// ==========================================
 
 if (!trip) {
 
@@ -36,139 +21,84 @@ if (!trip) {
 
 }
 
-
-
 const selectedTripId =
     String(trip.id);
 
-// ==========================================
 // DOM ELEMENTS
-// ==========================================
 
 const tripTitle =
-    document.getElementById(
-        "tripTitle"
-    );
+    document.getElementById("tripTitle");
 
 const summaryTripName =
-    document.getElementById(
-        "summaryTripName"
-    );
+    document.getElementById("summaryTripName");
 
 const summaryDescription =
-    document.getElementById(
-        "summaryDescription"
-    );
+    document.getElementById("summaryDescription");
 
 const summaryDestination =
-    document.getElementById(
-        "summaryDestination"
-    );
+    document.getElementById("summaryDestination");
 
 const summaryDays =
-    document.getElementById(
-        "summaryDays"
-    );
+    document.getElementById("summaryDays");
 
 const summaryActivities =
-    document.getElementById(
-        "summaryActivities"
-    );
+    document.getElementById("summaryActivities");
 
 const summaryTravelers =
-    document.getElementById(
-        "summaryTravelers"
-    );
+    document.getElementById("summaryTravelers");
 
 const summaryStartDate =
-    document.getElementById(
-        "summaryStartDate"
-    );
+    document.getElementById("summaryStartDate");
 
 const summaryEndDate =
-    document.getElementById(
-        "summaryEndDate"
-    );
+    document.getElementById("summaryEndDate");
 
 const completeItinerary =
-    document.getElementById(
-        "completeItinerary"
-    );
+    document.getElementById("completeItinerary");
 
 const editTripBtn =
-    document.getElementById(
-        "editTripBtn"
-    );
+    document.getElementById("editTripBtn");
 
 const viewTravelServicesBtn =
-    document.getElementById(
-        "viewTravelServicesBtn"
-    );
+    document.getElementById("viewTravelServicesBtn");
 
 
-// ==========================================
 // EDIT TRIP DOM ELEMENTS
-// ==========================================
 
 const editTripSection =
-    document.getElementById(
-        "editTripSection"
-    );
+    document.getElementById("editTripSection");
 
 const editTripForm =
-    document.getElementById(
-        "editTripForm"
-    );
+    document.getElementById("editTripForm");
 
 const cancelEditBtn =
-    document.getElementById(
-        "cancelEditBtn"
-    );
+    document.getElementById("cancelEditBtn");
 
 const editTripName =
-    document.getElementById(
-        "editTripName"
-    );
+    document.getElementById("editTripName");
 
 const editTripDestination =
-    document.getElementById(
-        "editTripDestination"
-    );
+    document.getElementById("editTripDestination");
 
 const editStartDate =
-    document.getElementById(
-        "editStartDate"
-    );
+    document.getElementById("editStartDate");
 
 const editEndDate =
-    document.getElementById(
-        "editEndDate"
-    );
+    document.getElementById("editEndDate");
 
 const editTravelers =
-    document.getElementById(
-        "editTravelers"
-    );
+    document.getElementById("editTravelers");
 
 const editTripDescription =
-    document.getElementById(
-        "editTripDescription"
-    );
+    document.getElementById("editTripDescription");
 
 const editItineraryContainer =
-    document.getElementById(
-        "editItineraryContainer"
-    );
+    document.getElementById("editItineraryContainer");
 
 
-// ==========================================
 // CALCULATE TOTAL DAYS
-// ==========================================
 
-function calculateTripDays(
-    start,
-    end
-) {
+function calculateTripDays(start,end) {
 
     if (!start || !end) {
         return 0;
@@ -184,18 +114,12 @@ function calculateTripDays(
         endDate - startDate;
 
     return (
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        ) + 1
+        Math.floor(difference /(1000 * 60 * 60 * 24)) + 1
     );
-
 }
 
 
-// ==========================================
 // FORMAT DATE
-// ==========================================
 
 function formatDate(date) {
 
@@ -214,75 +138,49 @@ function formatDate(date) {
             year: "numeric"
         }
     );
-
 }
 
 
-// ==========================================
 // SHOW TRIP SUMMARY
-// ==========================================
 
 function showTripSummary() {
 
     const totalDays =
-        calculateTripDays(
-            trip.startDate,
-            trip.endDate
-        );
+        calculateTripDays(trip.startDate,trip.endDate);
 
     const activities =
         trip.activities || [];
 
-
     tripTitle.textContent =
-        trip.tripName ||
-        "Trip Details";
-
+        trip.tripName ||"Trip Details";
 
     summaryTripName.textContent =
-        trip.tripName ||
-        "My Trip";
-
+        trip.tripName ||"My Trip";
 
     summaryDescription.textContent =
-        trip.description ||
-        "No trip description added.";
-
+        trip.description ||"No trip description added.";
 
     summaryDestination.textContent =
-        trip.destination ||
-        "Destination";
-
+        trip.destination ||"Destination";
 
     summaryDays.textContent =
         `${totalDays} Day${totalDays === 1 ? "" : "s"}`;
 
-
     summaryActivities.textContent =
         `${activities.length} Activit${activities.length === 1 ? "y" : "ies"}`;
-
 
     summaryTravelers.textContent =
         `${trip.travelers || 1} Traveler${trip.travelers == 1 ? "" : "s"}`;
 
-
     summaryStartDate.textContent =
-        formatDate(
-            trip.startDate
-        );
-
+        formatDate(trip.startDate);
 
     summaryEndDate.textContent =
-        formatDate(
-            trip.endDate
-        );
-
+        formatDate(trip.endDate);
 }
 
 
-// ==========================================
 // COMPLETE ITINERARY
-// ==========================================
 
 function showCompleteItinerary() {
 
@@ -298,53 +196,24 @@ function showCompleteItinerary() {
         trip.activities || [];
 
 
-    // ======================================
     // NO ACTIVITIES
-    // ======================================
 
-    if (
-        activities.length === 0
-    ) {
+    if (activities.length === 0) {
 
         completeItinerary.innerHTML = `
 
-            <div
-                class="
-                    bg-white
-                    rounded-2xl
-                    border
-                    border-gray-100
-                    p-8
-                    text-center
-                    shadow-sm
-                "
-            >
+            <div class=" bg-white rounded-2xl border border-gray-100 p-8 text-center shadow-sm">
 
-                <div
-                    class="text-5xl mb-4"
-                >
+                <div class="text-5xl mb-4">
                     🗓️
                 </div>
 
-                <h3
-                    class="
-                        text-xl
-                        font-bold
-                        text-gray-800
-                        mb-2
-                    "
-                >
+                <h3 class="text-xl font-bold text-gray-800 mb-2">
                     No Activities Yet
                 </h3>
 
-                <p
-                    class="
-                        text-gray-500
-                    "
-                >
-                    Edit your trip and add
-                    activities to create
-                    your itinerary.
+                <p class=" text-gray-500 ">
+                    Edit your trip and add activities to create your itinerary.
                 </p>
 
             </div>
@@ -355,29 +224,23 @@ function showCompleteItinerary() {
     }
 
 
-    // ======================================
     // GROUP ACTIVITIES BY DAY
-    // ======================================
 
     const groupedActivities = {};
 
 
-    activities.forEach(
-        (activity) => {
+    activities.forEach((activity) => {
 
             const day =
                 activity.day || 1;
 
 
-            if (
-                !groupedActivities[day]
-            ) {
+            if (!groupedActivities[day]) {
 
                 groupedActivities[day] =
                     [];
 
             }
-
 
             groupedActivities[day]
                 .push(activity);
@@ -386,74 +249,35 @@ function showCompleteItinerary() {
     );
 
 
-    // =====================================================
-// RENDER TRIP BOOKINGS
-// =====================================================
-
-
-
-    // ======================================
     // CREATE DAY SECTIONS
-    // ======================================
 
-    Object.keys(
-        groupedActivities
-    )
-        .sort(
-            (a, b) =>
-                Number(a) -
-                Number(b)
+    Object.keys(groupedActivities)
+        .sort((a, b) =>
+                Number(a) -Number(b)
         )
-        .forEach(
-            (day) => {
+        .forEach((day) => {
 
                 const dayActivities =
                     groupedActivities[day];
 
 
                 const daySection =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
 
                 daySection.className =
-                    `
-                    bg-white
-                    rounded-3xl
-                    border
-                    border-gray-100
-                    shadow-sm
-                    overflow-hidden
-                `;
+                    ` bg-white rounded-3xl border border-gray-10 shadow-sm overflow-hidden `;
 
 
                 daySection.innerHTML = `
 
-                    <div
-                        class="
-                            bg-emerald-600
-                            text-white
-                            px-6
-                            py-4
-                        "
-                    >
+                    <div class=" bg-emerald-600 text-white px-6 py-4 ">
 
-                        <h3
-                            class="
-                                text-xl
-                                font-bold
-                            "
-                        >
+                        <h3 class=" text-xl font-bold ">
                             Day ${day}
                         </h3>
 
-                        <p
-                            class="
-                                text-sm
-                                text-emerald-100
-                            "
-                        >
+                        <p class=" text-sm text-emerald-100 ">
                             ${dayActivities.length}
                             Activit${dayActivities.length === 1 ? "y" : "ies"}
                         </p>
@@ -461,63 +285,25 @@ function showCompleteItinerary() {
                     </div>
 
 
-                    <div
-                        class="
-                            p-5
-                            space-y-4
-                        "
-                    >
+                    <div class=" p-5 space-y-4 ">
 
                         ${dayActivities
-                            .map(
-                                (activity) => {
+                            .map((activity) => {
 
                                     return `
 
-                                        <article
-                                            class="
-                                                border
-                                                border-gray-200
-                                                rounded-2xl
-                                                p-5
-                                                hover:shadow-md
-                                                transition
-                                            "
-                                        >
+                                        <article class=" border border-gray-200 rounded-2xl p-5 hover:shadow-md transition ">
 
-                                            <div
-                                                class="
-                                                    flex
-                                                    flex-col
-                                                    md:flex-row
-                                                    md:items-start
-                                                    md:justify-between
-                                                    gap-3
-                                                "
-                                            >
+                                            <div class=" flex flex-col md:flex-row md:items-start md:justify-between gap-3 ">
 
                                                 <div>
 
-                                                    <h4
-                                                        class="
-                                                            text-xl
-                                                            font-bold
-                                                            text-gray-800
-                                                        "
-                                                    >
-                                                        ${activity.name ||
-                                                        activity.title ||
-                                                        "Untitled Activity"}
+                                                    <h4 class=" text-xl font-bold text-gray-800 ">
+                                                        ${activity.name || activity.title ||"Untitled Activity"}
                                                     </h4>
 
 
-                                                    <p
-                                                        class="
-                                                            text-sm
-                                                            text-gray-500
-                                                            mt-1
-                                                        "
-                                                    >
+                                                    <p class=" text-sm text-gray-500 mt-1 ">
                                                         📍
                                                         ${activity.location ||
                                                         "Location not specified"}
@@ -526,18 +312,7 @@ function showCompleteItinerary() {
                                                 </div>
 
 
-                                                <span
-                                                    class="
-                                                        w-fit
-                                                        bg-emerald-100
-                                                        text-emerald-700
-                                                        px-3
-                                                        py-1
-                                                        rounded-full
-                                                        text-xs
-                                                        font-semibold
-                                                    "
-                                                >
+                                                <span class=" w-fit bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibol  ">
                                                     ${activity.category ||
                                                     "Activity"}
                                                 </span>
@@ -545,205 +320,106 @@ function showCompleteItinerary() {
                                             </div>
 
 
-                                            <div
-                                                class="
-                                                    mt-4
-                                                    flex
-                                                    items-center
-                                                    gap-2
-                                                    text-sm
-                                                    text-gray-600
-                                                "
-                                            >
+                                            <div class="mt-4 flex items-center gap-2 text-sm text-gray-600">
                                                 🕐
-                                                ${activity.time ||
-                                                "Time not specified"}
+                                                ${activity.time ||"Time not specified"}
                                             </div>
 
-
-                                            <p
-                                                class="
-                                                    mt-3
-                                                    text-gray-600
-                                                    leading-relaxed
-                                                "
-                                            >
-                                                ${activity.description ||
-                                                "No description added."}
+                                            <p class="mt-3 text-gray-600 leading-relaxed">
+                                                ${activity.description || "No description added."}
                                             </p>
 
                                         </article>
 
                                     `;
-
                                 }
                             )
-                            .join("")}
+                             .join("")}
 
                     </div>
 
                 `;
 
-
-                completeItinerary.appendChild(
-                    daySection
-                );
+                completeItinerary.appendChild(daySection);
 
             }
         );
-
 }
 
 function renderTripBookings() {
 
     const tripBookingsContainer =
-        document.getElementById(
-            "tripBookings"
-        );
+        document.getElementById("tripBookings");
 
     const noTripBookings =
-        document.getElementById(
-            "noTripBookings"
-        );
+        document.getElementById("noTripBookings");
 
     const tripBookings =
-    bookings.filter(
-        booking =>
-            String(booking.tripId) ===
-            String(trip.id)
-    );
+    bookings.filter(booking =>
+            String(booking.tripId) ===String(trip.id));
 
 
     if (!tripBookingsContainer) {
         return;
     }
 
-
     // Get all bookings
     const allBookings =
-        JSON.parse(
-            localStorage.getItem(
-                "natureNestBookings"
-            )
-        ) || [];
-
-
+        JSON.parse(localStorage.getItem("natureNestBookings")) || [];
+ 
 
     // Clear previous content
     tripBookingsContainer.innerHTML = "";
 
 
-    // =============================================
     // NO BOOKINGS
-    // =============================================
 
     if (tripBookings.length === 0) {
 
-        noTripBookings?.classList.remove(
-            "hidden"
-        );
+        noTripBookings?.classList.remove("hidden");
 
         return;
     }
 
 
-    noTripBookings?.classList.add(
-        "hidden"
-    );
+    noTripBookings?.classList.add("hidden");
 
 
-    // =============================================
     // RENDER BOOKINGS
-    // =============================================
 
     tripBookings.forEach(
         booking => {
 
             tripBookingsContainer.innerHTML += `
 
-                <article
-                    class="
-                        bg-white
-                        border
-                        border-gray-100
-                        rounded-2xl
-                        p-6
-                        shadow-sm
-                    "
-                >
+                <article class=" bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
 
-                    <div
-                        class="
-                            flex
-                            items-start
-                            justify-between
-                            gap-4
-                            mb-5
-                        "
-                    >
+                    <div class="flex items-start justify-between gap-4 mb-5 ">
 
                         <div>
 
-                            <p
-                                class="
-                                    text-sm
-                                    font-semibold
-                                    text-emerald-600
-                                "
-                            >
+                            <p class=" text-sm font-semibold text-emerald-600">
                                 ${booking.category}
                                 ${booking.category}
                             </p>
 
-                            <h3
-                                class="
-                                    text-xl
-                                    font-bold
-                                    text-gray-800
-                                    mt-1
-                                "
-                            >
+                            <h3 class="text-xl font-bold text-gray-800 mt-1 " >
                                 ${booking.service}
                             </h3>
 
-                            <p
-                                class="
-                                    text-sm
-                                    text-gray-500
-                                    mt-1
-                                "
-                            >
+                            <p class=" text-sm text-gray-500 mt-1">
                                 📍 ${booking.location}
                             </p>
 
                         </div>
 
-
-                        <span
-                            class="
-                                bg-yellow-100
-                                text-yellow-700
-                                px-3
-                                py-1
-                                rounded-full
-                                text-sm
-                                font-semibold
-                            "
-                        >
+                        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">
                             ${booking.status}
                         </span>
 
                     </div>
 
-
-                    <div
-                        class="
-                            grid
-                            grid-cols-2
-                            gap-4
-                            text-sm
-                        "
-                    >
+                    <div class=" grid grid-cols-2 gap-4 text-sm">
 
                         <div>
 
@@ -751,13 +427,7 @@ function renderTripBookings() {
                                 Booking Date
                             </p>
 
-                            <p
-                                class="
-                                    text-gray-700
-                                    font-semibold
-                                    mt-1
-                                "
-                            >
+                            <p class=" text-gray-700 font-semiboldmt-1 ">
                                 ${booking.date}
                             </p>
 
@@ -770,13 +440,7 @@ function renderTripBookings() {
                                 Travelers
                             </p>
 
-                            <p
-                                class="
-                                    text-gray-700
-                                    font-semibold
-                                    mt-1
-                                "
-                            >
+                            <p class=" text-gray-700 font-semibold mt-1">
                                 👥 ${booking.people}
                             </p>
 
@@ -785,17 +449,7 @@ function renderTripBookings() {
                     </div>
 
 
-                    <div
-                        class="
-                            mt-5
-                            pt-5
-                            border-t
-                            border-gray-100
-                            flex
-                            items-center
-                            justify-between
-                        "
-                    >
+                    <div class=" mt-5 pt-5 border-t border-gray-100 flex items-center justify-between ">
 
                         <div>
 
@@ -803,13 +457,7 @@ function renderTripBookings() {
                                 Booking ID
                             </p>
 
-                            <p
-                                class="
-                                    text-sm
-                                    font-semibold
-                                    text-gray-700
-                                "
-                            >
+                            <p class="text-sm font-semibold text-gray-700 " >
                                 ${booking.bookingId}
                             </p>
 
@@ -822,16 +470,8 @@ function renderTripBookings() {
                                 Total
                             </p>
 
-                            <p
-                                class="
-                                    text-xl
-                                    font-bold
-                                    text-emerald-600
-                                "
-                            >
-                                PKR ${Number(
-                                    booking.total
-                                ).toLocaleString()}
+                            <p class=" text-xl font-bold text-emerald-600 ">
+                                PKR ${Number(booking.total).toLocaleString()}
                             </p>
 
                         </div>
@@ -839,21 +479,13 @@ function renderTripBookings() {
                     </div>
 
                 </article>
-
             `;
-
         }
     );
-
 }
 
 
-
-
-
-    // ======================================
     // FILL MAIN TRIP INFORMATION
-    // ======================================
 
     if (editTripName) {
 
@@ -903,36 +535,21 @@ function renderTripBookings() {
     }
 
 
-    // ======================================
     // SHOW EDIT SECTION
-    // ======================================
 
-    editTripSection.classList.remove(
-        "hidden"
-    );
+    editTripSection.classList.remove("hidden");
 
-
-    // ======================================
     // RENDER ITINERARY
-    // ======================================
 
     renderEditItinerary();
 
 
-    // ======================================
     // SCROLL TO EDIT FORM
-    // ======================================
 
-    editTripSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    editTripSection.scrollIntoView({behavior: "smooth",block: "start"});
 
 
-
-// ==========================================
 // EDIT DAY-BY-DAY ITINERARY
-// ==========================================
 
 function renderEditItinerary() {
 
@@ -946,10 +563,7 @@ function renderEditItinerary() {
 
 
     const totalDays =
-        calculateTripDays(
-            editStartDate?.value,
-            editEndDate?.value
-        );
+        calculateTripDays(editStartDate?.value,editEndDate?.value);
 
 
     if (totalDays <= 0) {
@@ -958,8 +572,7 @@ function renderEditItinerary() {
 
             <p class="text-gray-500">
 
-                Please select valid start
-                and end dates.
+                Please select valid start and end dates.
 
             </p>
 
@@ -969,113 +582,49 @@ function renderEditItinerary() {
     }
 
 
-    for (
-        let day = 1;
-        day <= totalDays;
-        day++
-    ) {
+    for ( let day = 1; day <= totalDays; day++) {
 
         const activity =
             (trip.activities || []).find(
                 item =>
-                    Number(item.day) ===
-                    Number(day)
+                    Number(item.day) ===Number(day)
             );
-
 
         const dayCard =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         dayCard.className =
             "bg-gray-50 border border-gray-200 rounded-2xl p-5";
 
-
         dayCard.innerHTML = `
 
-            <div
-                class="
-                    flex
-                    items-center
-                    justify-between
-                    mb-5
-                "
-            >
+            <div class="flex items-center justify-between mb-5">
 
-                <h3
-                    class="
-                        text-xl
-                        font-bold
-                        text-gray-800
-                    "
-                >
+                <h3 class=" text-xl font-bold text-gray-800 ">
                     Day ${day}
                 </h3>
 
-
-                <span
-                    class="
-                        bg-emerald-100
-                        text-emerald-700
-                        px-3
-                        py-1
-                        rounded-full
-                        text-sm
-                        font-semibold
-                    "
-                >
+                <span class=" bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-semibold ">
                     Day ${day}
                 </span>
 
             </div>
 
 
-            <div
-                class="
-                    grid
-                    grid-cols-1
-                    md:grid-cols-2
-                    gap-4
-                "
-            >
+            <div class=" grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 <!-- ACTIVITY NAME -->
 
                 <div>
 
-                    <label
-                        class="
-                            block
-                            text-sm
-                            font-semibold
-                            text-gray-700
-                            mb-2
-                        "
-                    >
+                    <label class=" block text-sm font-semibold text-gray-700 mb-2 ">
                         Activity Name
                     </label>
 
 
-                    <input
-                        type="text"
-                        class="
-                            edit-itinerary-name
-                            w-full
-                            border
-                            border-gray-300
-                            rounded-xl
-                            px-4
-                            py-3
-                            outline-none
-                            focus:ring-2
-                            focus:ring-emerald-500
-                        "
-                        data-day="${day}"
-                        value="${activity?.name || activity?.activity || ""}"
-                        placeholder="e.g. Visit Altit Fort"
-                    >
+                    <input type="text" class=" edit-itinerary-name w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                        data-day="${day}" value="${activity?.name || activity?.activity || ""}" 
+                        placeholder="e.g. Visit Altit Fort">
 
                 </div>
 
@@ -1084,37 +633,13 @@ function renderEditItinerary() {
 
                 <div>
 
-                    <label
-                        class="
-                            block
-                            text-sm
-                            font-semibold
-                            text-gray-700
-                            mb-2
-                        "
-                    >
+                    <label class=" block text-sm font-semibold text-gray-700 mb-2 ">
                         Location
                     </label>
 
 
-                    <input
-                        type="text"
-                        class="
-                            edit-itinerary-location
-                            w-full
-                            border
-                            border-gray-300
-                            rounded-xl
-                            px-4
-                            py-3
-                            outline-none
-                            focus:ring-2
-                            focus:ring-emerald-500
-                        "
-                        data-day="${day}"
-                        value="${activity?.location || ""}"
-                        placeholder="e.g. Altit, Hunza"
-                    >
+                    <input type="text" class=" edit-itinerary-location w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500 "
+                        data-day="${day}" value="${activity?.location || ""}" placeholder="e.g. Altit, Hunza">
 
                 </div>
 
@@ -1123,36 +648,12 @@ function renderEditItinerary() {
 
                 <div>
 
-                    <label
-                        class="
-                            block
-                            text-sm
-                            font-semibold
-                            text-gray-700
-                            mb-2
-                        "
-                    >
+                    <label class=" block text-sm font-semibold text-gray-700 mb-2 ">
                         Time
                     </label>
 
-
-                    <input
-                        type="time"
-                        class="
-                            edit-itinerary-time
-                            w-full
-                            border
-                            border-gray-300
-                            rounded-xl
-                            px-4
-                            py-3
-                            outline-none
-                            focus:ring-2
-                            focus:ring-emerald-500
-                        "
-                        data-day="${day}"
-                        value="${activity?.time || ""}"
-                    >
+                    <input type="time" class=" edit-itinerary-time w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                        data-day="${day}" value="${activity?.time || ""}">
 
                 </div>
 
@@ -1161,84 +662,45 @@ function renderEditItinerary() {
 
                 <div>
 
-                    <label
-                        class="
-                            block
-                            text-sm
-                            font-semibold
-                            text-gray-700
-                            mb-2
-                        "
-                    >
+                    <label class=" block text-sm font-semibold text-gray-700 mb-2 ">
                         Category
                     </label>
 
 
-                    <select
-                        class="
-                            edit-itinerary-category
-                            w-full
-                            border
-                            border-gray-300
-                            rounded-xl
-                            px-4
-                            py-3
-                            outline-none
-                            focus:ring-2
-                            focus:ring-emerald-500
-                        "
-                        data-day="${day}"
-                    >
+                    <select class=" edit-itinerary-category w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                        data-day="${day}">
 
                         <option value="">
                             Select Category
                         </option>
 
 
-                        <option
-                            value="Sightseeing"
-                            ${activity?.category === "Sightseeing" ? "selected" : ""}
-                        >
+                        <option value="Sightseeing" ${activity?.category === "Sightseeing" ? "selected" : ""}>
                             Sightseeing
                         </option>
 
 
-                        <option
-                            value="Food"
-                            ${activity?.category === "Food" ? "selected" : ""}
-                        >
+                        <option value="Food" ${activity?.category === "Food" ? "selected" : ""} >
                             Food
                         </option>
 
 
-                        <option
-                            value="Adventure"
-                            ${activity?.category === "Adventure" ? "selected" : ""}
-                        >
+                        <option value="Adventure" ${activity?.category === "Adventure" ? "selected" : ""}>
                             Adventure
                         </option>
 
 
-                        <option
-                            value="Shopping"
-                            ${activity?.category === "Shopping" ? "selected" : ""}
-                        >
+                        <option value="Shopping" ${activity?.category === "Shopping" ? "selected" : ""} >
                             Shopping
                         </option>
 
 
-                        <option
-                            value="Culture"
-                            ${activity?.category === "Culture" ? "selected" : ""}
-                        >
+                        <option value="Culture" ${activity?.category === "Culture" ? "selected" : ""}>
                             Culture
                         </option>
 
 
-                        <option
-                            value="Entertainment"
-                            ${activity?.category === "Entertainment" ? "selected" : ""}
-                        >
+                        <option value="Entertainment" ${activity?.category === "Entertainment" ? "selected" : ""}>
                             Entertainment
                         </option>
 
@@ -1253,75 +715,41 @@ function renderEditItinerary() {
 
             <div class="mt-4">
 
-                <label
-                    class="
-                        block
-                        text-sm
-                        font-semibold
-                        text-gray-700
-                        mb-2
-                    "
-                >
+                <label class=" block text-sm font-semibold text-gray-700 mb-2">
                     Short Description
                 </label>
 
 
-                <textarea
-                    rows="3"
-                    class="
-                        edit-itinerary-description
-                        w-full
-                        border
-                        border-gray-300
-                        rounded-xl
-                        px-4
-                        py-3
-                        outline-none
-                        resize-none
-                        focus:ring-2
-                        focus:ring-emerald-500
-                    "
-                    data-day="${day}"
-                    placeholder="Describe your activity..."
-                >${activity?.description || ""}</textarea>
+                <textarea rows="3" class="edit-itinerary-description w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-emerald-500"
+                    data-day="${day}" placeholder="Describe your activity...">${activity?.description || ""}</textarea>
 
             </div>
 
         `;
 
-
         editItineraryContainer.appendChild(
             dayCard
         );
-
     }
-
 }
 
 
-// ==========================================
 // UPDATE ITINERARY WHEN DATES CHANGE
-// ==========================================
 
 if (editStartDate) {
 
-    editStartDate.addEventListener(
-        "change",
-        () => {
+    editStartDate.addEventListener("change",() => {
 
             renderEditItinerary();
 
         }
     );
-
 }
 
 
 if (editEndDate) {
 
-    editEndDate.addEventListener(
-        "change",
-        () => {
+    editEndDate.addEventListener("change",() => {
 
             renderEditItinerary();
 
@@ -1330,42 +758,26 @@ if (editEndDate) {
 
 }
 
-// ==========================================
 // VIEW TRAVEL SERVICES
-// ==========================================
 
 if (viewTravelServicesBtn) {
 
-    viewTravelServicesBtn.addEventListener(
-        "click",
-        () => {
+    viewTravelServicesBtn.addEventListener("click",() => {
 
             window.location.href =
-                `travel-services.html?destination=${encodeURIComponent(
-                    trip.destination
-                )}&tripId=${encodeURIComponent(
-                    trip.id
-                )}`;
+                `travel-services.html?destination=${encodeURIComponent(trip.destination)}&tripId=${encodeURIComponent(trip.id)}`;
 
         }
     );
-
 }
 
-// ==========================================
 // EDIT TRIP BUTTON
-// ==========================================
 
 if (editTripBtn) {
 
-    editTripBtn.addEventListener(
-        "click",
-        () => {
+    editTripBtn.addEventListener("click",() => {
 
-            localStorage.setItem(
-                "selectedTrip",
-                JSON.stringify(trip)
-            );
+            localStorage.setItem("selectedTrip",JSON.stringify(trip));
 
             window.location.href =
                 `itinerary.html?tripId=${trip.id}&edit=true`;
@@ -1375,23 +787,16 @@ if (editTripBtn) {
 
 }
 
-
-
-// ==========================================
 // BACK
-// ==========================================
 
 window.goBack = function () {
 
     window.location.href =
         "planned-trips.html";
-
 };
 
 
-// ==========================================
 // INITIALIZE
-// ==========================================
 
 showTripSummary();
 

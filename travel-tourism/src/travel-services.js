@@ -2,18 +2,15 @@ import "./style.css";
 
 import { services } from "./services-data.js";
 
-// ==========================================
 // GET SELECTED DESTINATION FROM PLANNED TRIP
-// ==========================================
 
-const urlParams = new URLSearchParams(window.location.search);
+const urlParams =   
+    new URLSearchParams(window.location.search);
 
-const selectedDestination = urlParams.get("destination");
+const selectedDestination =
+     urlParams.get("destination");
 
-// ==================================================
 // DOM ELEMENTS
-// ==================================================
-
 const servicesGrid =
     document.getElementById("servicesGrid");
 
@@ -33,16 +30,12 @@ const categoryButtons =
     document.querySelectorAll(".category-btn");
 
 
-// ==================================================
 // CURRENT FILTER
-// ==================================================
 
 let currentCategory = "all";
 
 
-// ==================================================
 // POPULATE DESTINATION FILTER
-// ==================================================
 
 function populateDestinations() {
 
@@ -53,15 +46,12 @@ function populateDestinations() {
 
     const destinations =
         [...new Set(
-            services.map(
-                service => service.destination
-            )
+            services.map(service => service.destination)
         )];
 
 
     destinations
-        .sort()
-        .forEach(destination => {
+        .sort().forEach(destination => {
 
             const option =
                 document.createElement("option");
@@ -72,100 +62,38 @@ function populateDestinations() {
             option.textContent =
                 destination;
 
-            destinationFilter.appendChild(
-                option
-            );
+            destinationFilter.appendChild(option);
 
         });
-
 }
 
 
-// ==================================================
 // CREATE SERVICE CARD
-// ==================================================
 
 function createServiceCard(service) {
 
     return `
 
-        <article
-            class="
-                bg-white
-                rounded-2xl
-                overflow-hidden
-                border
-                border-gray-100
-                shadow-sm
-                hover:shadow-xl
-                transition-all
-                duration-300
-            "
-        >
+        <article class=" bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
 
             <!-- IMAGE -->
 
-            <div
-                class="
-                    relative
-                    h-52
-                    overflow-hidden
-                    bg-gray-100
-                "
-            >
+            <div class=" relative h-52 overflow-hidden bg-gray-100 ">
 
-                <img
-                    src="${service.image}"
-                    alt="${service.name}"
-                    class="
-                        w-full
-                        h-full
-                        object-cover
-                        hover:scale-105
-                        transition-transform
-                        duration-500
-                    "
-                >
+                <img src="${service.image}" alt="${service.name}"
+                class=" w-full h-full object-cover hover:scale-105 transition-transform duration-500 ">
 
 
                 <!-- CATEGORY -->
 
-                <span
-                    class="
-                        absolute
-                        top-4
-                        left-4
-                        bg-white/90
-                        backdrop-blur-sm
-                        px-3
-                        py-1.5
-                        rounded-full
-                        text-xs
-                        font-bold
-                        text-emerald-700
-                    "
-                >
+                <span class=" absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-emerald-700">
                     ${getCategoryIcon(service.category)}
                     ${service.category}
                 </span>
 
-
                 <!-- RATING -->
 
-                <span
-                    class="
-                        absolute
-                        top-4
-                        right-4
-                        bg-black/60
-                        text-white
-                        px-3
-                        py-1.5
-                        rounded-full
-                        text-xs
-                        font-semibold
-                    "
-                >
+                <span class=" absolute top-4 right-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-xs font-semibold ">
                     ⭐ ${service.rating}
                 </span>
 
@@ -176,89 +104,44 @@ function createServiceCard(service) {
 
             <div class="p-5">
 
-
                 <!-- NAME -->
 
-                <h3
-                    class="
-                        text-xl
-                        font-bold
-                        text-gray-800
-                        mb-2
-                    "
-                >
+                <h3 class=" text-xl font-bold text-gray-800 mb-2 ">
                     ${service.name}
                 </h3>
 
 
                 <!-- LOCATION -->
 
-                <p
-                    class="
-                        text-sm
-                        text-gray-500
-                        mb-4
-                    "
-                >
+                <p class=" text-sm text-gray-500 mb-4 ">
                     📍 ${service.location}
                 </p>
 
 
                 <!-- DESCRIPTION -->
 
-                <p
-                    class="
-                        text-sm
-                        text-gray-600
-                        leading-relaxed
-                        mb-5
-                    "
-                >
+                <p class=" text-sm text-gray-600 leading-relaxed mb-5 ">
                     ${service.description}
                 </p>
 
 
                 <!-- PRICE -->
 
-                <div
-                    class="
-                        flex
-                        items-end
-                        justify-between
-                        mb-5
-                    "
-                >
+                <div class=" flex items-end justify-between mb-5 ">
 
                     <div>
 
-                        <p
-                            class="
-                                text-xs
-                                text-gray-400
-                                font-semibold
-                            "
-                        >
+                        <p class=" text-xs text-gray-400 font-semibold ">
                             Starting from
                         </p>
 
-                        <p
-                            class="
-                                text-2xl
-                                font-bold
-                                text-emerald-600
-                            "
-                        >
+                        <p class=" text-2xl font-bold text-emerald-600 ">
                             $${service.price}
                         </p>
 
                     </div>
 
-                    <p
-                        class="
-                            text-xs
-                            text-gray-400
-                        "
-                    >
+                    <p class=" text-xs text-gray-400 ">
                         ${service.priceUnit}
                     </p>
 
@@ -267,48 +150,16 @@ function createServiceCard(service) {
 
                 <!-- BUTTONS -->
 
-                <div
-                    class="
-                        flex
-                        gap-3
-                    "
-                >
+                <div class=" flex gap-3">
 
-                    <button
-                        type="button"
-                        onclick="viewService('${service.id}')"
-                        class="
-                            flex-1
-                            border
-                            border-emerald-600
-                            text-emerald-600
-                            hover:bg-emerald-50
-                            py-2.5
-                            rounded-xl
-                            font-semibold
-                            text-sm
-                            transition
-                        "
-                    >
+                    <button type="button" onclick="viewService('${service.id}')"
+                        class="flex-1 border border-emerald-600 text-emerald-600 hover:bg-emerald-50 py-2.5 rounded-xl font-semibold text-sm transition ">
                         View Details
                     </button>
 
 
-                    <button
-                        type="button"
-                        onclick="bookService('${service.id}')"
-                        class="
-                            flex-1
-                            bg-emerald-600
-                            hover:bg-emerald-700
-                            text-white
-                            py-2.5
-                            rounded-xl
-                            font-semibold
-                            text-sm
-                            transition
-                        "
-                    >
+                    <button type="button" onclick="bookService('${service.id}')"
+                        class=" flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl font-semibold text-sm transition ">
                         Book Now
                     </button>
 
@@ -319,14 +170,11 @@ function createServiceCard(service) {
         </article>
 
     `;
-
 }
 
 
-// ==================================================
 // CATEGORY ICON
-// ==================================================
-
+ 
 function getCategoryIcon(category) {
 
     const icons = {
@@ -349,24 +197,18 @@ function getCategoryIcon(category) {
 }
 
 
-// ==================================================
 // FILTER SERVICES
-// ==================================================
 
 function filterServices() {
 
     const searchValue =
         searchInput
-            ? searchInput.value
-                .trim()
-                .toLowerCase()
-            : "";
+            ? searchInput.value.trim().toLowerCase(): "";
 
 
     const destinationValue =
         destinationFilter
-            ? destinationFilter.value
-            : "all";
+            ? destinationFilter.value: "all";
 
 
     const filteredServices =
@@ -376,18 +218,12 @@ function filterServices() {
             // CATEGORY
 
             const categoryMatch =
-                currentCategory === "all" ||
-                service.category ===
-                    currentCategory;
-
+                currentCategory === "all" || service.category === currentCategory;
 
             // DESTINATION
 
             const destinationMatch =
-                destinationValue === "all" ||
-                service.destination ===
-                    destinationValue;
-
+                destinationValue === "all" || service.destination ===destinationValue; 
 
             // SEARCH
 
@@ -395,39 +231,26 @@ function filterServices() {
                 !searchValue ||
 
                 service.name
-                    .toLowerCase()
-                    .includes(searchValue) ||
+                    .toLowerCase().includes(searchValue) ||
 
                 service.location
-                    .toLowerCase()
-                    .includes(searchValue) ||
+                    .toLowerCase().includes(searchValue) ||
 
                 service.destination
-                    .toLowerCase()
-                    .includes(searchValue) ||
+                    .toLowerCase().includes(searchValue) ||
 
                 service.category
-                    .toLowerCase()
-                    .includes(searchValue);
+                    .toLowerCase().includes(searchValue);
 
-
-            return (
-                categoryMatch &&
-                destinationMatch &&
-                searchMatch
-            );
-
+            return (categoryMatch &&destinationMatch &&searchMatch);
         });
-
 
     renderServices(filteredServices);
 
 }
 
 
-// ==================================================
 // RENDER SERVICES
-// ==================================================
 
 function renderServices(serviceList) {
 
@@ -444,8 +267,7 @@ function renderServices(serviceList) {
         serviceCount.textContent =
             `${serviceList.length} ${
                 serviceList.length === 1
-                    ? "service"
-                    : "services"
+                    ? "service" : "services"
             }`;
 
     }
@@ -457,9 +279,7 @@ function renderServices(serviceList) {
 
         if (noServices) {
 
-            noServices.classList.remove(
-                "hidden"
-            );
+            noServices.classList.remove("hidden");
 
         }
 
@@ -469,9 +289,7 @@ function renderServices(serviceList) {
 
     if (noServices) {
 
-        noServices.classList.add(
-            "hidden"
-        );
+        noServices.classList.add("hidden");
 
     }
 
@@ -486,15 +304,11 @@ function renderServices(serviceList) {
 }
 
 
-// ==================================================
-// CATEGORY BUTTONS
-// ==================================================
+// CATEGORY BUTTONS 
 
 categoryButtons.forEach(button => {
 
-    button.addEventListener(
-        "click",
-        () => {
+    button.addEventListener("click",() => {
 
             currentCategory =
                 button.dataset.category;
@@ -502,83 +316,53 @@ categoryButtons.forEach(button => {
 
             // Remove active style
 
-            categoryButtons.forEach(
-                btn => {
+            categoryButtons.forEach(btn => {
 
-                    btn.classList.remove(
-                        "active-category"
-                    );
+                    btn.classList.remove("active-category");
 
                 }
             );
 
-
             // Add active style
 
-            button.classList.add(
-                "active-category"
-            );
-
+            button.classList.add("active-category");
 
             filterServices();
-
         }
     );
-
 });
 
 
-// ==================================================
 // SEARCH
-// ==================================================
 
 if (searchInput) {
 
-    searchInput.addEventListener(
-        "input",
-        filterServices
-    );
+    searchInput.addEventListener("input",filterServices);
 
 }
 
 
-// ==================================================
 // DESTINATION FILTER
-// ==================================================
 
 if (destinationFilter) {
 
-    destinationFilter.addEventListener(
-        "change",
-        filterServices
-    );
+    destinationFilter.addEventListener("change",filterServices);
 
 }
 
 
-// ==================================================
 // VIEW SERVICE
-// ==================================================
 
 window.viewService = function(serviceId) {
 
     const service =
-        services.find(
-            item =>
-                item.id === serviceId
-        );
-
+        services.find(item =>item.id === serviceId);
 
     if (!service) {
         return;
     }
 
-
-    localStorage.setItem(
-        "selectedService",
-        JSON.stringify(service)
-    );
-
+    localStorage.setItem("selectedService",JSON.stringify(service));
 
     window.location.href =
         "service-details.html";
@@ -586,33 +370,23 @@ window.viewService = function(serviceId) {
 };
 
 
-// ==================================================
 // BOOK SERVICE
-// ==================================================
 
 window.bookService = function(serviceId) {
 
     const service =
-        services.find(
-            item =>
-                item.id === serviceId
-        );
+        services.find(item =>item.id === serviceId);
 
     if (!service) {
         return;
     }
 
-    localStorage.setItem(
-        "selectedService",
-        JSON.stringify(service)
-    );
+    localStorage.setItem("selectedService",JSON.stringify(service));
 
 
     // URL se current trip ID lo
     const urlParams =
-        new URLSearchParams(
-            window.location.search
-        );
+        new URLSearchParams(window.location.search);
 
     const tripId =
         urlParams.get("tripId");
@@ -627,25 +401,18 @@ window.bookService = function(serviceId) {
 };
 
 
-// ==================================================
 // INITIALIZE
-// ==================================================
 
 populateDestinations();
 
-// ==========================================
 // AUTO FILTER DESTINATION FROM PLANNED TRIP
-// ==========================================
 
 if (selectedDestination && destinationFilter) {
 
     // Check karega ke URL wali destination dropdown mein موجود hai
     const destinationExists =
         [...destinationFilter.options]
-            .some(
-                option =>
-                    option.value === selectedDestination
-            );
+            .some(option =>option.value === selectedDestination);
 
 
     // Agar destination exists karti hai to automatically select karo
@@ -655,9 +422,7 @@ if (selectedDestination && destinationFilter) {
             selectedDestination;
 
     }
-
 }
-
 
 // Render services according to selected destination
 filterServices();

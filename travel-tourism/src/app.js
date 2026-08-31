@@ -1,28 +1,25 @@
 import { destinations } from "./destination.js";
 
 // Container
-const container = document.getElementById("destinationCards");
+const container = 
+    document.getElementById("destinationCards");
 
 // Generate Cards
 Object.entries(destinations).forEach(([id, place]) => {
 
     const card = `
 
-    <div
-    class="destination-card group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-500 flex flex-col"
+    <div class="destination-card group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-500 flex flex-col"
 
     data-search="${place.title.toLowerCase()} ${place.location.toLowerCase()} ${place.category.toLowerCase()} ${place.description.toLowerCase()}">
 
         <!-- Image -->
         <div class="relative overflow-hidden aspect-4/3">
 
-            <img
-            src="${place.image}"
-            alt="${place.title}"
+            <img src="${place.image}" alt="${place.title}"
             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
 
-            <div
-            class="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs uppercase tracking-wider">
+            <div class="absolute top-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs uppercase tracking-wider">
 
                 ${place.category}
 
@@ -45,8 +42,7 @@ Object.entries(destinations).forEach(([id, place]) => {
                 ${place.description}
             </p>
 
-            <button
-            onclick="window.location.href='explore-destination.html?id=${id}'"
+            <button onclick="window.location.href='explore-destination.html?id=${id}'"
 
             class="mt-6 bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white rounded-full py-3 transition font-semibold">
 
@@ -64,11 +60,12 @@ Object.entries(destinations).forEach(([id, place]) => {
 
 });
 
-// ----------------------
-// SEARCH
-// ----------------------
 
-const searchInput = document.getElementById("searchInput");
+// SEARCH
+
+
+const searchInput = 
+    document.getElementById("searchInput");
 
 if (searchInput) {
 
@@ -97,7 +94,4 @@ if (searchInput) {
     });
 
 }
-
-
-
 

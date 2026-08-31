@@ -2,181 +2,98 @@ import './style.css'
 import { destinations } from "./destination.js";
 
 
-// ==================================================
 // GET DATA FROM LOCAL STORAGE
-// ==================================================
 
 let profile =
-    JSON.parse(
-        localStorage.getItem("natureNestProfile")
-    ) || null;
-
+    JSON.parse(localStorage.getItem("natureNestProfile")) || null;
 
 let favorites =
-    JSON.parse(
-        localStorage.getItem("favorites")
-    ) || [];
-
+    JSON.parse(localStorage.getItem("favorites")) || [];
 
 let plannedTrips =
-    JSON.parse(
-        localStorage.getItem("plannedTrips")
-    ) || [];
-
+    JSON.parse(localStorage.getItem("plannedTrips")) || [];
 
 let savedDestinations =
-    JSON.parse(
-        localStorage.getItem("savedDestinations")
-    ) || [];
-
+    JSON.parse(localStorage.getItem("savedDestinations")) || [];
 
 let viewedDestinations =
-    JSON.parse(
-        localStorage.getItem("viewedDestinations")
-    ) || [];
+    JSON.parse(localStorage.getItem("viewedDestinations")) || [];
 
-
-// ==================================================
 // DOM - PROFILE
-// ==================================================
 
 const dashboardUserName =
-    document.getElementById(
-        "dashboardUserName"
-    );
+    document.getElementById("dashboardUserName");
 
 
-// ==================================================
 // DOM - COUNTS
-// ==================================================
 
 const dashboardFavoriteCount =
-    document.getElementById(
-        "dashboardFavoriteCount"
-    );
-
+    document.getElementById("dashboardFavoriteCount");
 
 const dashboardPlannedCount =
-    document.getElementById(
-        "dashboardPlannedCount"
-    );
-
+    document.getElementById("dashboardPlannedCount");
 
 const dashboardSavedCount =
-    document.getElementById(
-        "dashboardSavedCount"
-    );
+    document.getElementById("dashboardSavedCount");
 
 
-// ==================================================
 // DOM - DESTINATION GRIDS
-// ==================================================
 
 const viewedGrid =
-    document.getElementById(
-        "viewedDestinationsGrid"
-    );
-
+    document.getElementById("viewedDestinationsGrid");
 
 const favoriteGrid =
-    document.getElementById(
-        "favoriteDestinationsGrid"
-    );
-
+    document.getElementById("favoriteDestinationsGrid");
 
 const popularGrid =
-    document.getElementById(
-        "popularDestinationsGrid"
-    );
+    document.getElementById("popularDestinationsGrid");
 
 
-// ==================================================
 // DOM - EMPTY STATES
-// ==================================================
 
 const noViewed =
-    document.getElementById(
-        "noViewedDestinations"
-    );
-
+    document.getElementById("noViewedDestinations");
 
 const noFavorites =
-    document.getElementById(
-        "noFavoriteDestinations"
-    );
+    document.getElementById("noFavoriteDestinations");
 
 
-// ==================================================
 // REFRESH DATA FROM LOCAL STORAGE
-// ==================================================
 
 function refreshDashboardData() {
 
-    // ------------------------------------------
     // PROFILE
-    // ------------------------------------------
 
     profile =
-        JSON.parse(
-            localStorage.getItem(
-                "natureNestProfile"
-            )
-        ) || null;
+        JSON.parse(localStorage.getItem("natureNestProfile")) || null;
 
 
-    // ------------------------------------------
     // FAVORITES
-    // ------------------------------------------
 
     favorites =
-        JSON.parse(
-            localStorage.getItem(
-                "favorites"
-            )
-        ) || [];
+        JSON.parse(localStorage.getItem("favorites")) || [];
 
 
-    // ------------------------------------------
     // PLANNED TRIPS
-    // ------------------------------------------
 
     plannedTrips =
-    JSON.parse(
-        localStorage.getItem(
-            "natureNestTrips"
-        )
-    ) || [];
+    JSON.parse(localStorage.getItem("natureNestTrips")) || [];
 
 
-    // ------------------------------------------
     // SAVED DESTINATIONS
-    // ------------------------------------------
 
     savedDestinations =
-        JSON.parse(
-            localStorage.getItem(
-                "savedDestinations"
-            )
-        ) || [];
+        JSON.parse(localStorage.getItem("savedDestinations")) || [];
 
 
-    // ------------------------------------------
     // VIEWED DESTINATIONS
-    // ------------------------------------------
 
     viewedDestinations =
-        JSON.parse(
-            localStorage.getItem(
-                "viewedDestinations"
-            )
-        ) || [];
+        JSON.parse(localStorage.getItem("viewedDestinations")) || [];
 
 }
 
-
-// ==================================================
 // GET DESTINATION
-// ==================================================
 
 function getDestination(id) {
 
@@ -184,10 +101,7 @@ function getDestination(id) {
 
 }
 
-
-// ==================================================
 // PROFILE
-// ==================================================
 
 function renderProfile() {
 
@@ -211,15 +125,11 @@ function renderProfile() {
 }
 
 
-// ==================================================
 // COUNTS
-// ==================================================
 
 function renderCounts() {
 
-    // ------------------------------------------
     // FAVORITES
-    // ------------------------------------------
 
     if (dashboardFavoriteCount) {
 
@@ -229,9 +139,7 @@ function renderCounts() {
     }
 
 
-    // ------------------------------------------
     // PLANNED TRIPS
-    // ------------------------------------------
 
     if (dashboardPlannedCount) {
 
@@ -241,9 +149,7 @@ function renderCounts() {
     }
 
 
-    // ------------------------------------------
     // SAVED DESTINATIONS
-    // ------------------------------------------
 
     if (dashboardSavedCount) {
 
@@ -255,15 +161,9 @@ function renderCounts() {
 }
 
 
-// ==================================================
 // CREATE DESTINATION CARD
-// ==================================================
 
-function createDestinationCard(
-    destination,
-    id,
-    badge = ""
-) {
+function createDestinationCard(destination,id,badge = "") {
 
     if (!destination) {
 
@@ -271,74 +171,25 @@ function createDestinationCard(
 
     }
 
-
     return `
 
         <article
-            class="
-                bg-white
-                rounded-2xl
-                overflow-hidden
-                border
-                border-gray-100
-                shadow-sm
-                hover:shadow-xl
-                hover:-translate-y-1
-                transition-all
-                duration-300
-                flex
-                flex-col
-            "
-        >
+            class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
 
-            <!-- ================================= -->
             <!-- IMAGE -->
-            <!-- ================================= -->
 
             <div
-                class="
-                    relative
-                    h-56
-                    overflow-hidden
-                "
-            >
+                class=" relative h-56 overflow-hidden">
 
-                <img
-                    src="${destination.image || ""}"
-                    alt="${
-                        destination.title ||
-                        "Destination"
-                    }"
-                    class="
-                        w-full
-                        h-full
-                        object-cover
-                        hover:scale-105
-                        transition-transform
-                        duration-500
-                    "
-                >
+                <img src="${destination.image || ""}" alt="${destination.title ||"Destination"}"
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
 
 
                 ${
                     badge
                         ?
                         `
-                        <span
-                            class="
-                                absolute
-                                top-3
-                                left-3
-                                px-3
-                                py-1
-                                rounded-full
-                                bg-white/90
-                                backdrop-blur
-                                text-xs
-                                font-semibold
-                                text-gray-700
-                            "
-                        >
+                        <span class=" absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur text-xs font-semibold text-gray-700">
                             ${badge}
                         </span>
                         `
@@ -349,34 +200,15 @@ function createDestinationCard(
             </div>
 
 
-            <!-- ================================= -->
-            <!-- CONTENT -->
-            <!-- ================================= -->
+            <!-- CONTENT --> 
 
-            <div
-                class="
-                    p-5
-                    flex
-                    flex-col
-                    flex-1
-                "
-            >
+            <div class=" p-5 flex flex-col flex-1">
 
                 <!-- LOCATION -->
 
-                <p
-                    class="
-                        text-xs
-                        font-semibold
-                        text-emerald-600
-                        uppercase
-                        tracking-wide
-                        mb-1
-                    "
-                >
+                <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wide mb-1">
                     ${
-                        destination.location ||
-                        "Nature Destination"
+                        destination.location ||"Nature Destination"
                     }
                 </p>
 
@@ -384,16 +216,9 @@ function createDestinationCard(
                 <!-- TITLE -->
 
                 <h3
-                    class="
-                        text-xl
-                        font-bold
-                        text-gray-800
-                        mb-2
-                    "
-                >
+                    class="text-xl font-bold text-gray-800 mb-2">
                     ${
-                        destination.title ||
-                        "Untitled Destination"
+                        destination.title || "Untitled Destination"
                     }
                 </h3>
 
@@ -404,19 +229,7 @@ function createDestinationCard(
                     destination.category
                         ?
                         `
-                        <span
-                            class="
-                                w-fit
-                                bg-gray-100
-                                text-gray-600
-                                text-xs
-                                font-semibold
-                                px-3
-                                py-1
-                                rounded-full
-                                mb-3
-                            "
-                        >
+                        <span class=" w-fit bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
                             ${destination.category}
                         </span>
                         `
@@ -427,43 +240,17 @@ function createDestinationCard(
 
                 <!-- DESCRIPTION -->
 
-                <p
-                    class="
-                        text-sm
-                        text-gray-500
-                        leading-relaxed
-                        line-clamp-2
-                        mb-5
-                    "
-                >
+                <p class=" text-sm text-gray-500 leading-relaxed line-clamp-2 mb-5">
                     ${
-                        destination.description ||
-                        "Discover this beautiful destination."
+                        destination.description ||"Discover this beautiful destination."
                     }
                 </p>
 
 
                 <!-- BUTTON -->
 
-                <button
-                    type="button"
-                    onclick="
-                        window.location.href=
-                        'dynamic-destination.html?id=${encodeURIComponent(id)}'
-                    "
-                    class="
-                        mt-auto
-                        w-full
-                        bg-emerald-600
-                        hover:bg-emerald-700
-                        text-white
-                        py-2.5
-                        rounded-xl
-                        font-semibold
-                        text-sm
-                        transition
-                    "
-                >
+                <button type="button" onclick=" window.location.href='dynamic-destination.html?id=${encodeURIComponent(id)}'"
+                    class="mt-auto w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
                     Explore Destination
                 </button>
 
@@ -476,10 +263,8 @@ function createDestinationCard(
 }
 
 
-// ==================================================
 // VIEWED DESTINATIONS
-// ==================================================
-
+ 
 function renderViewedDestinations() {
 
     if (!viewedGrid) {
@@ -492,20 +277,13 @@ function renderViewedDestinations() {
     viewedGrid.innerHTML = "";
 
 
-    // ------------------------------------------
     // EMPTY STATE
-    // ------------------------------------------
 
-    if (
-        !Array.isArray(viewedDestinations) ||
-        viewedDestinations.length === 0
-    ) {
+    if (!Array.isArray(viewedDestinations) ||viewedDestinations.length === 0) {
 
         if (noViewed) {
 
-            noViewed.classList.remove(
-                "hidden"
-            );
+            noViewed.classList.remove("hidden");
 
         }
 
@@ -513,31 +291,22 @@ function renderViewedDestinations() {
 
     }
 
-
-    // ------------------------------------------
     // HIDE EMPTY STATE
-    // ------------------------------------------
 
     if (noViewed) {
 
-        noViewed.classList.add(
-            "hidden"
-        );
+        noViewed.classList.add("hidden");
 
     }
 
 
-    // ------------------------------------------
     // LATEST 3
-    // ------------------------------------------
 
     const latestViewed =
-        viewedDestinations
-            .slice(0, 3);
+        viewedDestinations.slice(0, 3);
 
 
-    latestViewed.forEach(
-        (id) => {
+    latestViewed.forEach((id) => {
 
             const destination =
                 getDestination(id);
@@ -551,11 +320,7 @@ function renderViewedDestinations() {
 
 
             viewedGrid.innerHTML +=
-                createDestinationCard(
-                    destination,
-                    id,
-                    "Recently Viewed"
-                );
+                createDestinationCard(destination,id,"Recently Viewed");
 
         }
     );
@@ -563,9 +328,7 @@ function renderViewedDestinations() {
 }
 
 
-// ==================================================
 // FAVORITE DESTINATIONS
-// ==================================================
 
 function renderFavoriteDestinations() {
 
@@ -579,20 +342,13 @@ function renderFavoriteDestinations() {
     favoriteGrid.innerHTML = "";
 
 
-    // ------------------------------------------
     // EMPTY STATE
-    // ------------------------------------------
 
-    if (
-        !Array.isArray(favorites) ||
-        favorites.length === 0
-    ) {
+    if (!Array.isArray(favorites) ||favorites.length === 0) {
 
         if (noFavorites) {
 
-            noFavorites.classList.remove(
-                "hidden"
-            );
+            noFavorites.classList.remove("hidden");
 
         }
 
@@ -601,29 +357,18 @@ function renderFavoriteDestinations() {
     }
 
 
-    // ------------------------------------------
     // HIDE EMPTY STATE
-    // ------------------------------------------
 
     if (noFavorites) {
 
-        noFavorites.classList.add(
-            "hidden"
-        );
+        noFavorites.classList.add("hidden");
 
     }
 
 
-    // ------------------------------------------
     // LATEST 3 FAVORITES
-    // ------------------------------------------
 
-    favorites
-        .slice()
-        .reverse()
-        .slice(0, 3)
-        .forEach(
-            (id) => {
+    favorites.slice().reverse().slice(0, 3).forEach((id) => {
 
                 const destination =
                     getDestination(id);
@@ -637,11 +382,7 @@ function renderFavoriteDestinations() {
 
 
                 favoriteGrid.innerHTML +=
-                    createDestinationCard(
-                        destination,
-                        id,
-                        "❤️ Favorite"
-                    );
+                    createDestinationCard(destination,id,"❤️ Favorite");
 
             }
         );
@@ -649,32 +390,17 @@ function renderFavoriteDestinations() {
 }
 
 
-// ==================================================
 // POPULAR DESTINATIONS
-// ==================================================
 
 function getPopularDestinations() {
-
-    /*
-        Popularity Score
-
-        Planned Trip  = +4
-        Favorite      = +3
-        Saved         = +2
-        Viewed        = +1
-    */
 
 
     const popularity = {};
 
 
-    // ------------------------------------------
     // INITIALIZE ALL DESTINATIONS
-    // ------------------------------------------
 
-    Object.keys(destinations)
-        .forEach(
-            (id) => {
+    Object.keys(destinations).forEach((id) => {
 
                 popularity[id] = 0;
 
@@ -682,16 +408,11 @@ function getPopularDestinations() {
         );
 
 
-    // ------------------------------------------
     // FAVORITES
-    // ------------------------------------------
 
-    favorites.forEach(
-        (id) => {
+    favorites.forEach((id) => {
 
-            if (
-                popularity[id] !== undefined
-            ) {
+            if (popularity[id] !== undefined) {
 
                 popularity[id] += 3;
 
@@ -701,16 +422,11 @@ function getPopularDestinations() {
     );
 
 
-    // ------------------------------------------
     // PLANNED TRIPS
-    // ------------------------------------------
 
-    plannedTrips.forEach(
-        (id) => {
+    plannedTrips.forEach((id) => {
 
-            if (
-                popularity[id] !== undefined
-            ) {
+            if (popularity[id] !== undefined) {
 
                 popularity[id] += 4;
 
@@ -720,16 +436,11 @@ function getPopularDestinations() {
     );
 
 
-    // ------------------------------------------
     // SAVED DESTINATIONS
-    // ------------------------------------------
 
-    savedDestinations.forEach(
-        (id) => {
+    savedDestinations.forEach((id) => {
 
-            if (
-                popularity[id] !== undefined
-            ) {
+            if (popularity[id] !== undefined) {
 
                 popularity[id] += 2;
 
@@ -739,16 +450,11 @@ function getPopularDestinations() {
     );
 
 
-    // ------------------------------------------
     // VIEWED DESTINATIONS
-    // ------------------------------------------
 
-    viewedDestinations.forEach(
-        (id) => {
+    viewedDestinations.forEach((id) => {
 
-            if (
-                popularity[id] !== undefined
-            ) {
+            if (popularity[id] !== undefined) {
 
                 popularity[id] += 1;
 
@@ -758,23 +464,14 @@ function getPopularDestinations() {
     );
 
 
-    // ------------------------------------------
     // SORT
-    // ------------------------------------------
 
-    return Object.keys(popularity)
-        .sort(
-            (a, b) =>
-                popularity[b] -
-                popularity[a]
-        );
+    return Object.keys(popularity).sort((a, b) =>popularity[b] -popularity[a]);
 
 }
 
 
-// ==================================================
 // RENDER POPULAR DESTINATIONS
-// ==================================================
 
 function renderPopularDestinations() {
 
@@ -788,21 +485,15 @@ function renderPopularDestinations() {
     popularGrid.innerHTML = "";
 
 
-    // ------------------------------------------
     // GET TOP 6
-    // ------------------------------------------
 
     const popular =
-        getPopularDestinations()
-            .slice(0, 6);
+        getPopularDestinations().slice(0, 6);
 
 
-    // ------------------------------------------
     // RENDER
-    // ------------------------------------------
 
-    popular.forEach(
-        (id) => {
+    popular.forEach((id) => {
 
             const destination =
                 getDestination(id);
@@ -816,11 +507,7 @@ function renderPopularDestinations() {
 
 
             popularGrid.innerHTML +=
-                createDestinationCard(
-                    destination,
-                    id,
-                    "🔥 Popular"
-                );
+                createDestinationCard(destination,id,"🔥 Popular");
 
         }
     );
@@ -828,18 +515,11 @@ function renderPopularDestinations() {
 }
 
 
-// ==================================================
 // OPTIONAL: REFRESH WHEN USER RETURNS TO TAB
-// ==================================================
 
-document.addEventListener(
-    "visibilitychange",
-    function () {
+document.addEventListener("visibilitychange",function () {
 
-        if (
-            document.visibilityState ===
-            "visible"
-        ) {
+        if (document.visibilityState ==="visible") {
 
             initializeDashboard();
 
@@ -849,58 +529,41 @@ document.addEventListener(
 );
 
 
-// ==================================================
 // INITIALIZE DASHBOARD
-// ==================================================
 
 function initializeDashboard() {
 
-    // ------------------------------------------
     // GET LATEST LOCAL STORAGE DATA
-    // ------------------------------------------
 
     refreshDashboardData();
 
-
-    // ------------------------------------------
     // PROFILE
-    // ------------------------------------------
 
     renderProfile();
 
 
-    // ------------------------------------------
     // COUNTS
-    // ------------------------------------------
 
     renderCounts();
 
 
-    // ------------------------------------------
     // VIEWED
-    // ------------------------------------------
 
     renderViewedDestinations();
 
 
-    // ------------------------------------------
     // FAVORITES
-    // ------------------------------------------
 
     renderFavoriteDestinations();
 
 
-    // ------------------------------------------
     // POPULAR
-    // ------------------------------------------
 
     renderPopularDestinations();
 
 }
 
 
-// ==================================================
 // START DASHBOARD
-// ==================================================
 
 initializeDashboard();

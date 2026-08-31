@@ -3,129 +3,79 @@ import "./style.css";
 import { destinations } from "./destination.js";
 
 
-// ==========================================
 // GET COMPLETE TRIPS
-// ==========================================
 
 let trips =
-    JSON.parse(
-        localStorage.getItem("natureNestTrips")
-    ) || [];
+    JSON.parse(localStorage.getItem("natureNestTrips")) || [];
 
 
-// ==========================================
 // DOM
-// ==========================================
 
 const grid =
-    document.getElementById(
-        "plannedTripsGrid"
-    );
+    document.getElementById("plannedTripsGrid");
 
 const empty =
-    document.getElementById(
-        "emptyPlannedTrips"
-    );
+    document.getElementById("emptyPlannedTrips");
 
 
-// ==========================================
 // ADD TRIP ELEMENTS
-// ==========================================
 
 const addTripBtn =
-    document.getElementById(
-        "addTripBtn"
-    );
+    document.getElementById("addTripBtn");
 
 const addTripModal =
-    document.getElementById(
-        "addTripModal"
-    );
+    document.getElementById("addTripModal");
 
 const closeModalBtn =
-    document.getElementById(
-        "closeModalBtn"
-    );
+    document.getElementById("closeModalBtn");
 
 const cancelAddTripBtn =
-    document.getElementById(
-        "cancelAddTripBtn"
-    );
+    document.getElementById("cancelAddTripBtn");
 
 const addTripForm =
-    document.getElementById(
-        "addTripForm"
-    );
+    document.getElementById("addTripForm");
 
 const newTripName =
-    document.getElementById(
-        "newTripName"
-    );
+    document.getElementById("newTripName");
 
 const newTripDestination =
-    document.getElementById(
-        "newTripDestination"
-    );
+    document.getElementById("newTripDestination");
 
 const newStartDate =
-    document.getElementById(
-        "newStartDate"
-    );
+    document.getElementById("newStartDate");
 
 const newEndDate =
-    document.getElementById(
-        "newEndDate"
-    );
+    document.getElementById("newEndDate");
 
 const newTravelers =
-    document.getElementById(
-        "newTravelers"
-    );
+    document.getElementById("newTravelers");
 
 const newTripDescription =
-    document.getElementById(
-        "newTripDescription"
-    );
+    document.getElementById("newTripDescription");
 
 
-// ==========================================
 // ERROR ELEMENTS
-// ==========================================
 
 const newTripNameError =
-    document.getElementById(
-        "newTripNameError"
-    );
+    document.getElementById("newTripNameError");
 
 const newDestinationError =
-    document.getElementById(
-        "newDestinationError"
-    );
+    document.getElementById( "newDestinationError");
 
 const newStartDateError =
-    document.getElementById(
-        "newStartDateError"
-    );
+    document.getElementById("newStartDateError");
 
 const newEndDateError =
-    document.getElementById(
-        "newEndDateError"
-    );
+    document.getElementById("newEndDateError");
 
 const newTravelersError =
-    document.getElementById(
-        "newTravelersError"
-    );
+    document.getElementById("newTravelersError");
 
 const newDescriptionError =
-    document.getElementById(
-        "newDescriptionError"
-    );
+    document.getElementById("newDescriptionError");
 
 
-// ==========================================
 // LOAD ALL 30 DESTINATIONS
-// ==========================================
 
 function loadDestinations() {
 
@@ -145,21 +95,14 @@ function loadDestinations() {
         ([id, destination]) => {
 
             const option =
-                document.createElement(
-                    "option"
-                );
-
+                document.createElement("option");
 
             option.value = id;
-
 
             option.textContent =
                 destination.title;
 
-
-            newTripDestination.appendChild(
-                option
-            );
+            newTripDestination.appendChild(option);
 
         }
     );
@@ -169,10 +112,7 @@ function loadDestinations() {
 
 loadDestinations();
 
-
-// ==========================================
 // OPEN ADD TRIP MODAL
-// ==========================================
 
 function openAddTripModal() {
 
@@ -180,26 +120,16 @@ function openAddTripModal() {
         return;
     }
 
+    addTripModal.classList.remove("hidden" );
 
-    addTripModal.classList.remove(
-        "hidden"
-    );
+    addTripModal.classList.add("flex");
 
-    addTripModal.classList.add(
-        "flex"
-    );
-
-
-    document.body.classList.add(
-        "overflow-hidden"
-    );
+    document.body.classList.add("overflow-hidden");
 
 }
 
 
-// ==========================================
 // CLOSE ADD TRIP MODAL
-// ==========================================
 
 function closeAddTripModal() {
 
@@ -207,79 +137,49 @@ function closeAddTripModal() {
         return;
     }
 
+    addTripModal.classList.add("hidden");
 
-    addTripModal.classList.add(
-        "hidden"
-    );
+    addTripModal.classList.remove("flex");
 
-    addTripModal.classList.remove(
-        "flex"
-    );
-
-
-    document.body.classList.remove(
-        "overflow-hidden"
-    );
+    document.body.classList.remove("overflow-hidden");
 
 }
 
 
-// ==========================================
 // OPEN BUTTON
-// ==========================================
 
 if (addTripBtn) {
 
-    addTripBtn.addEventListener(
-        "click",
-        openAddTripModal
-    );
+    addTripBtn.addEventListener("click",openAddTripModal);
 
 }
 
 
-// ==========================================
 // CLOSE BUTTON
-// ==========================================
 
 if (closeModalBtn) {
 
-    closeModalBtn.addEventListener(
-        "click",
-        closeAddTripModal
-    );
+    closeModalBtn.addEventListener("click",closeAddTripModal);
 
 }
 
 
-// ==========================================
 // CANCEL BUTTON
-// ==========================================
 
 if (cancelAddTripBtn) {
 
-    cancelAddTripBtn.addEventListener(
-        "click",
-        closeAddTripModal
-    );
+    cancelAddTripBtn.addEventListener("click",closeAddTripModal);
 
 }
 
 
-// ==========================================
 // CLOSE WHEN CLICKING OUTSIDE
-// ==========================================
 
 if (addTripModal) {
 
-    addTripModal.addEventListener(
-        "click",
-        (event) => {
+    addTripModal.addEventListener("click",(event) => {
 
-            if (
-                event.target ===
-                addTripModal
-            ) {
+            if (event.target ===addTripModal) {
 
                 closeAddTripModal();
 
@@ -291,14 +191,10 @@ if (addTripModal) {
 }
 
 
-// ==========================================
 // DATE SETTINGS
-// ==========================================
 
 const today =
-    new Date()
-        .toISOString()
-        .split("T")[0];
+    new Date().toISOString().split("T")[0];
 
 
 if (newStartDate) {
@@ -317,18 +213,11 @@ if (newEndDate) {
 }
 
 
-if (
-    newStartDate &&
-    newEndDate
-) {
+if (newStartDate &&newEndDate) {
 
-    newStartDate.addEventListener(
-        "change",
-        () => {
+    newStartDate.addEventListener("change",() => {
 
-            if (
-                newStartDate.value
-            ) {
+            if (newStartDate.value) {
 
                 newEndDate.min =
                     newStartDate.value;
@@ -341,99 +230,62 @@ if (
 }
 
 
-// ==========================================
 // ERROR FUNCTIONS
-// ==========================================
 
-function showError(
-    element,
-    message
-) {
+function showError(element,message) {
 
     if (!element) {
         return;
     }
-
 
     element.textContent =
         message;
 
-
-    element.classList.remove(
-        "hidden"
-    );
+    element.classList.remove("hidden");
 
 }
 
-
-function clearError(
-    element
-) {
+function clearError(element) {
 
     if (!element) {
         return;
     }
 
-
     element.textContent =
         "";
 
-
-    element.classList.add(
-        "hidden"
-    );
+    element.classList.add("hidden");
 
 }
 
-
-// ==========================================
 // CLEAR ERRORS
-// ==========================================
 
 function clearAddTripErrors() {
 
-    clearError(
-        newTripNameError
-    );
+    clearError(newTripNameError);
 
-    clearError(
-        newDestinationError
-    );
+    clearError(newDestinationError);
 
-    clearError(
-        newStartDateError
-    );
+    clearError(newStartDateError);
 
-    clearError(
-        newEndDateError
-    );
+    clearError(newEndDateError);
 
-    clearError(
-        newTravelersError
-    );
+    clearError(newTravelersError);
 
-    clearError(
-        newDescriptionError
-    );
+    clearError(newDescriptionError);
 
 }
 
 
-// ==========================================
 // VALIDATE ADD TRIP FORM
-// ==========================================
 
 function validateAddTripForm() {
 
     clearAddTripErrors();
 
-
     let isValid = true;
 
-
-    // ======================================
     // TRIP NAME
-    // ======================================
 
     const name =
         newTripName.value.trim();
@@ -441,31 +293,21 @@ function validateAddTripForm() {
 
     if (!name) {
 
-        showError(
-            newTripNameError,
-            "Please enter a trip name."
-        );
+        showError(newTripNameError,"Please enter a trip name.");
 
         isValid = false;
 
     }
-    else if (
-        name.length < 3
-    ) {
+    else if (name.length < 3) {
 
-        showError(
-            newTripNameError,
-            "Trip name must be at least 3 characters."
-        );
+        showError(newTripNameError,"Trip name must be at least 3 characters.");
 
         isValid = false;
 
     }
 
 
-    // ======================================
     // DESTINATION
-    // ======================================
 
     const destinationId =
         newTripDestination.value;
@@ -473,79 +315,48 @@ function validateAddTripForm() {
 
     if (!destinationId) {
 
-        showError(
-            newDestinationError,
-            "Please select a destination."
-        );
+        showError(newDestinationError,"Please select a destination.");
 
         isValid = false;
 
     }
 
 
-    // ======================================
     // START DATE
-    // ======================================
 
-    if (
-        !newStartDate.value
-    ) {
+    if (!newStartDate.value) {
 
-        showError(
-            newStartDateError,
-            "Please select a starting date."
-        );
+        showError(newStartDateError,"Please select a starting date.");
 
         isValid = false;
 
     }
 
-
-    // ======================================
     // END DATE
-    // ======================================
 
-    if (
-        !newEndDate.value
-    ) {
+    if (!newEndDate.value) {
 
-        showError(
-            newEndDateError,
-            "Please select an ending date."
-        );
+        showError(newEndDateError,"Please select an ending date.");
 
         isValid = false;
 
     }
 
-
-    // ======================================
     // DATE COMPARISON
-    // ======================================
 
-    if (
-        newStartDate.value &&
-        newEndDate.value
-    ) {
+    if (newStartDate.value &&newEndDate.value) {
 
         const start =
-            new Date(
-                newStartDate.value
-            );
+            new Date(newStartDate.value);
 
 
         const end =
-            new Date(
-                newEndDate.value
-            );
+            new Date(newEndDate.value);
 
 
         if (end < start) {
 
-            showError(
-                newEndDateError,
-                "Ending date cannot be before starting date."
-            );
+            showError(newEndDateError,"Ending date cannot be before starting date.");
 
             isValid = false;
 
@@ -553,47 +364,28 @@ function validateAddTripForm() {
 
     }
 
-
-    // ======================================
     // TRAVELERS
-    // ======================================
 
     const travelerCount =
-        Number(
-            newTravelers.value
-        );
+        Number(newTravelers.value);
 
 
-    if (
-        !newTravelers.value
-    ) {
+    if (!newTravelers.value) {
 
-        showError(
-            newTravelersError,
-            "Please enter number of travelers."
-        );
+        showError(newTravelersError,"Please enter number of travelers.");
 
         isValid = false;
 
     }
-    else if (
-        travelerCount < 1 ||
-        travelerCount > 50
-    ) {
+    else if (travelerCount < 1 ||travelerCount > 50) {
 
-        showError(
-            newTravelersError,
-            "Travelers must be between 1 and 50."
-        );
+        showError(newTravelersError,"Travelers must be between 1 and 50.");
 
         isValid = false;
 
     }
 
-
-    // ======================================
     // DESCRIPTION
-    // ======================================
 
     const description =
         newTripDescription.value.trim();
@@ -601,88 +393,60 @@ function validateAddTripForm() {
 
     if (!description) {
 
-        showError(
-            newDescriptionError,
-            "Please enter a trip description."
-        );
+        showError(newDescriptionError,"Please enter a trip description.");
 
         isValid = false;
 
     }
-    else if (
-        description.length < 10
-    ) {
+    else if (description.length < 10) {
 
-        showError(
-            newDescriptionError,
-            "Description must be at least 10 characters."
-        );
+        showError(newDescriptionError,"Description must be at least 10 characters.");
 
         isValid = false;
 
     }
-
 
     return isValid;
 
 }
 
 
-// ==========================================
 // CREATE NEW TRIP FROM PLANNED TRIPS
-// ==========================================
 
 if (addTripForm) {
 
-    addTripForm.addEventListener(
-        "submit",
-        (event) => {
+    addTripForm.addEventListener("submit",(event) => {
 
             event.preventDefault();
 
-
-            // ==================================
             // VALIDATE
-            // ==================================
 
-            if (
-                !validateAddTripForm()
-            ) {
+            if (!validateAddTripForm()) {
 
                 return;
 
             }
 
-
-            // ==================================
             // SELECTED DESTINATION
-            // ==================================
 
             const destinationId =
                 newTripDestination.value;
 
 
             const selectedDestination =
-                destinations[
-                    destinationId
-                ];
+                destinations[destinationId];
 
 
             if (!selectedDestination) {
 
-                showError(
-                    newDestinationError,
-                    "Selected destination was not found."
-                );
+                showError(newDestinationError,"Selected destination was not found.");
 
                 return;
 
             }
 
 
-            // ==================================
             // CREATE TRIP OBJECT
-            // ==================================
 
             const trip = {
 
@@ -690,9 +454,7 @@ if (addTripForm) {
                     Date.now().toString(),
 
                 tripName:
-                    newTripName
-                        .value
-                        .trim(),
+                    newTripName.value .trim(),
 
                 destination:
                     selectedDestination.title,
@@ -707,106 +469,59 @@ if (addTripForm) {
                     newEndDate.value,
 
                 travelers:
-                    Number(
-                        newTravelers.value
-                    ),
+                    Number(newTravelers.value),
 
                 description:
-                    newTripDescription
-                        .value
-                        .trim(),
+                    newTripDescription.value.trim(),
 
                 activities: [],
 
                 createdAt:
-                    new Date()
-                        .toISOString()
+                    new Date().toISOString()
 
             };
 
 
-            // ==================================
             // ADD TO ARRAY
-            // ==================================
 
-            trips.push(
-                trip
-            );
+            trips.push(trip);
 
-
-            // ==================================
             // SAVE TO LOCAL STORAGE
-            // ==================================
 
-            localStorage.setItem(
-                "natureNestTrips",
-                JSON.stringify(
-                    trips
-                )
-            );
+            localStorage.setItem("natureNestTrips",JSON.stringify(trips));
 
-
-            // ==================================
             // SAVE DESTINATION
-            // ==================================
 
             let plannedDestinations =
-                JSON.parse(
-                    localStorage.getItem(
-                        "plannedTrips"
-                    )
-                ) || [];
+                JSON.parse(localStorage.getItem("plannedTrips")) || [];
 
 
-            if (
-                !plannedDestinations.includes(
-                    destinationId
-                )
-            ) {
+            if (!plannedDestinations.includes(destinationId)) {
 
-                plannedDestinations.push(
-                    destinationId
-                );
+                plannedDestinations.push(destinationId);
 
             }
 
-
-            localStorage.setItem(
-                "plannedTrips",
-                JSON.stringify(
-                    plannedDestinations
-                )
-            );
+            localStorage.setItem("plannedTrips",JSON.stringify(plannedDestinations));
 
 
-            // ==================================
             // RESET FORM
-            // ==================================
 
             addTripForm.reset();
 
-
-            // ==================================
             // CLOSE MODAL
-            // ==================================
 
             closeAddTripModal();
 
 
-            // ==================================
             // RENDER AGAIN
-            // ==================================
 
             renderTrips();
 
 
-            // ==================================
             // SUCCESS
-            // ==================================
 
-            alert(
-                "Trip created successfully!"
-            );
+            alert("Trip created successfully!");
 
         }
     );
@@ -814,82 +529,34 @@ if (addTripForm) {
 }
 
 
-// ==========================================
 // CREATE COMPLETE TRIP CARD
-// ==========================================
 
 function createTripCard(trip) {
 
     return `
 
-    <article
-        class="
-            bg-white
-            rounded-2xl
-            overflow-hidden
-            border
-            border-gray-100
-            shadow-sm
-            hover:shadow-xl
-            transition-all
-            duration-300
-        "
-    >
+    <article class=" bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
 
         <!-- HEADER -->
 
-        <div
-            class="
-                bg-emerald-600
-                text-white
-                p-5
-            "
-        >
+        <div class=" bg-emerald-600 text-white p-5 ">
 
-            <div
-                class="
-                    flex
-                    items-start
-                    justify-between
-                    gap-3
-                "
-            >
+            <div class=" flex items-start justify-between gap-3 ">
 
                 <div>
 
-                    <p
-                        class="
-                            text-sm
-                            text-emerald-100
-                            mb-1
-                        "
-                    >
+                    <p class=" text-sm text-emerald-100 mb-1 " >
                         ✈️ Planned Trip
                     </p>
 
-                    <h2
-                        class="
-                            text-2xl
-                            font-bold
-                        "
-                    >
+                    <h2 class=" text-2xl font-bold">
                         ${trip.tripName || "My Trip"}
                     </h2>
 
                 </div>
 
 
-                <span
-                    class="
-                        bg-white/20
-                        px-3
-                        py-1
-                        rounded-full
-                        text-xs
-                        font-semibold
-                        whitespace-nowrap
-                    "
-                >
+                <span class=" bg-white/20 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ">
                     ${trip.travelers || 1}
                     Traveler${trip.travelers == 1 ? "" : "s"}
                 </span>
@@ -907,26 +574,11 @@ function createTripCard(trip) {
 
             <div class="mb-5">
 
-                <p
-                    class="
-                        text-xs
-                        uppercase
-                        tracking-wide
-                        font-semibold
-                        text-gray-400
-                        mb-1
-                    "
-                >
+                <p class=" text-xs uppercase tracking-wide font-semibold text-gray-400 mb-1 ">
                     Destination
                 </p>
 
-                <p
-                    class="
-                        text-lg
-                        font-bold
-                        text-gray-800
-                    "
-                >
+                <p class=" text-lg font-bold text-gray-800 ">
                     📍
                     ${trip.destination || "Destination"}
                 </p>
@@ -936,76 +588,29 @@ function createTripCard(trip) {
 
             <!-- DATES -->
 
-            <div
-                class="
-                    grid
-                    grid-cols-2
-                    gap-4
-                    mb-5
-                "
-            >
+            <div class=" grid grid-cols-2 gap-4 mb-5">
 
-                <div
-                    class="
-                        bg-gray-50
-                        rounded-xl
-                        p-3
-                    "
-                >
+                <div class=" bg-gray-50 rounded-xl p-3 ">
 
-                    <p
-                        class="
-                            text-xs
-                            text-gray-400
-                            font-semibold
-                            mb-1
-                        "
-                    >
+                    <p class=" text-xs text-gray-400 font-semibold mb-1 ">
                         Starting Date
                     </p>
 
-                    <p
-                        class="
-                            text-sm
-                            font-bold
-                            text-gray-700
-                        "
-                    >
-                        📅
-                        ${trip.startDate || "Not set"}
+                    <p class="text-sm font-bold text-gray-700">
+                        📅 ${trip.startDate || "Not set"}
                     </p>
 
                 </div>
 
 
-                <div
-                    class="
-                        bg-gray-50
-                        rounded-xl
-                        p-3
-                    "
-                >
+                <div class=" bg-gray-50 rounded-xl p-3">
 
-                    <p
-                        class="
-                            text-xs
-                            text-gray-400
-                            font-semibold
-                            mb-1
-                        "
-                    >
+                    <p class=" text-xs text-gray-400 font-semibold mb-1 ">
                         Ending Date
                     </p>
 
-                    <p
-                        class="
-                            text-sm
-                            font-bold
-                            text-gray-700
-                        "
-                    >
-                        📅
-                        ${trip.endDate || "Not set"}
+                    <p class=" text-sm font-bold text-gray-700 ">
+                        📅${trip.endDate || "Not set"}
                     </p>
 
                 </div>
@@ -1015,17 +620,7 @@ function createTripCard(trip) {
 
             <!-- TRAVELERS -->
 
-            <div
-                class="
-                    flex
-                    items-center
-                    gap-3
-                    mb-5
-                    p-3
-                    bg-emerald-50
-                    rounded-xl
-                "
-            >
+            <div class=" flex items-center gap-3 mb-5 p-3 bg-emerald-50 rounded-xl">
 
                 <span class="text-xl">
                     👥
@@ -1033,21 +628,11 @@ function createTripCard(trip) {
 
                 <div>
 
-                    <p
-                        class="
-                            text-xs
-                            text-gray-500
-                        "
-                    >
+                    <p class=" text-xs text-gray-500 ">
                         Number of Travelers
                     </p>
 
-                    <p
-                        class="
-                            font-bold
-                            text-emerald-700
-                        "
-                    >
+                    <p class=" font-bold text-emerald-700 " >
                         ${trip.travelers || 1}
                     </p>
 
@@ -1060,29 +645,13 @@ function createTripCard(trip) {
 
             <div class="mb-5">
 
-                <p
-                    class="
-                        text-xs
-                        uppercase
-                        tracking-wide
-                        font-semibold
-                        text-gray-400
-                        mb-2
-                    "
-                >
+                <p class=" text-xs uppercase tracking-wide font-semibold text-gray-400 mb-2 ">
                     Trip Description
                 </p>
 
-                <p
-                    class="
-                        text-sm
-                        text-gray-600
-                        leading-relaxed
-                    "
-                >
+                <p class=" text-sm text-gray-600 leading-relaxed ">
                     ${
-                        trip.description ||
-                        "No trip description added."
+                        trip.description ||"No trip description added."
                     }
                 </p>
 
@@ -1091,41 +660,15 @@ function createTripCard(trip) {
 
             <!-- ACTIVITIES -->
 
-            <div
-                class="
-                    mb-5
-                    bg-blue-50
-                    rounded-xl
-                    p-4
-                "
-            >
+            <div class=" mb-5 bg-blue-50 rounded-xl p-4">
 
-                <div
-                    class="
-                        flex
-                        items-center
-                        justify-between
-                        mb-2
-                    "
-                >
+                <div class=" flex items-center justify-between mb-2 ">
 
-                    <p
-                        class="
-                            text-sm
-                            font-bold
-                            text-gray-800
-                        "
-                    >
+                    <p class=" text-sm font-bold text-gray-800 " >
                         🗓️ Itinerary
                     </p>
 
-                    <span
-                        class="
-                            text-xs
-                            text-blue-600
-                            font-semibold
-                        "
-                    >
+                    <span class=" text-xs text-blue-600 font-semibold">
                         ${
                             trip.activities?.length || 0
                         }
@@ -1142,12 +685,7 @@ function createTripCard(trip) {
                     ?
 
                     `
-                        <p
-                            class="
-                                text-sm
-                                text-gray-600
-                            "
-                        >
+                        <p class="text-sm text-gray-600">
                             Your planned activities
                             are ready to view.
                         </p>
@@ -1156,12 +694,7 @@ function createTripCard(trip) {
                     :
 
                     `
-                        <p
-                            class="
-                                text-sm
-                                text-gray-500
-                            "
-                        >
+                        <p class="text-sm text-gray-500">
                             No activities added yet.
                         </p>
                     `
@@ -1172,56 +705,19 @@ function createTripCard(trip) {
 
             <!-- ACTIONS -->
 
-            <div
-                class="
-                    flex
-                    gap-3
-                "
-            >
+            <div class="flex gap-3">
 
                 <!-- VIEW TRIP -->
 
-                <button
-                    type="button"
-                    onclick="
-                        viewTrip('${trip.id}')
-                    "
-                    class="
-                        flex-1
-                        bg-emerald-600
-                        hover:bg-emerald-700
-                        text-white
-                        py-2.5
-                        rounded-xl
-                        font-semibold
-                        text-sm
-                        transition
-                    "
-                >
+                <button type="button" onclick="viewTrip('${trip.id}')"
+                    class=" flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
                     View Trip
                 </button>
 
-
                 <!-- REMOVE -->
 
-                <button
-                    type="button"
-                    onclick="
-                        removeTrip('${trip.id}')
-                    "
-                    class="
-                        px-4
-                        py-2.5
-                        rounded-xl
-                        bg-gray-100
-                        hover:bg-red-100
-                        text-gray-600
-                        hover:text-red-600
-                        font-semibold
-                        text-sm
-                        transition
-                    "
-                >
+                <button type="button" onclick="removeTrip('${trip.id}')"
+                    class=" px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-red-100 text-gray-600 hover:text-red-600 font-semibold text-sm transition">
                     Remove
                 </button>
 
@@ -1236,9 +732,7 @@ function createTripCard(trip) {
 }
 
 
-// ==========================================
 // RENDER TRIPS
-// ==========================================
 
 function renderTrips() {
 
@@ -1250,85 +744,47 @@ function renderTrips() {
     grid.innerHTML = "";
 
 
-    // ======================================
     // NO TRIPS
-    // ======================================
 
     if (trips.length === 0) {
 
-        empty.classList.remove(
-            "hidden"
-        );
+        empty.classList.remove("hidden");
 
         return;
 
     }
 
+    empty.classList.add("hidden");
 
-    empty.classList.add(
-        "hidden"
-    );
-
-
-    // ======================================
     // LATEST TRIPS FIRST
-    // ======================================
 
-    trips
-        .slice()
-        .reverse()
-        .forEach(
-            (trip) => {
+    trips.slice().reverse().forEach((trip) => {
 
                 grid.innerHTML +=
-                    createTripCard(
-                        trip
-                    );
-
+                    createTripCard(trip);
             }
         );
-
 }
 
-
-// ==========================================
 // VIEW TRIP
-// ==========================================
 
 window.viewTrip =
     function (tripId) {
 
-        const trip =
-            trips.find(
-                item =>
-                    String(
-                        item.id
-                    ) ===
-                    String(
-                        tripId
-                    )
+        const trip =trips.find(item =>
+                    String(item.id) ===String(tripId)
             );
 
 
         if (!trip) {
 
-            console.error(
-                "Trip not found:",
-                tripId
-            );
+            console.error("Trip not found:",tripId);
 
             return;
 
         }
 
-
-        localStorage.setItem(
-            "selectedTrip",
-            JSON.stringify(
-                trip
-            )
-        );
-
+        localStorage.setItem("selectedTrip",JSON.stringify(trip));
 
         window.location.href =
             "trip-details.html";
@@ -1336,44 +792,26 @@ window.viewTrip =
     };
 
 
-// ==========================================
 // VIEW ITINERARY
-// ==========================================
 
 window.viewItinerary =
     function (tripId) {
 
         const trip =
-            trips.find(
-                item =>
-                    String(
-                        item.id
-                    ) ===
-                    String(
-                        tripId
-                    )
+            trips.find(item =>
+                    String(item.id) ===String(tripId)
             );
 
 
         if (!trip) {
 
-            console.error(
-                "Trip not found:",
-                tripId
-            );
+            console.error("Trip not found:",tripId);
 
             return;
 
         }
 
-
-        localStorage.setItem(
-            "selectedTrip",
-            JSON.stringify(
-                trip
-            )
-        );
-
+        localStorage.setItem("selectedTrip",JSON.stringify(trip));
 
         window.location.href =
             "itinerary.html";
@@ -1381,17 +819,13 @@ window.viewItinerary =
     };
 
 
-// ==========================================
 // REMOVE TRIP
-// ==========================================
 
 window.removeTrip =
     function (tripId) {
 
         const confirmRemove =
-            confirm(
-                "Are you sure you want to remove this trip?"
-            );
+            confirm("Are you sure you want to remove this trip?");
 
 
         if (!confirmRemove) {
@@ -1400,32 +834,18 @@ window.removeTrip =
 
 
         trips =
-            trips.filter(
-                trip =>
-                    String(
-                        trip.id
-                    ) !==
-                    String(
-                        tripId
-                    )
+            trips.filter(trip =>
+                    String(trip.id) !== String(tripId)
             );
 
 
-        localStorage.setItem(
-            "natureNestTrips",
-            JSON.stringify(
-                trips
-            )
-        );
-
+        localStorage.setItem("natureNestTrips",JSON.stringify(trips));
 
         renderTrips();
 
     };
 
 
-// ==========================================
 // INITIALIZE
-// ==========================================
 
 renderTrips();

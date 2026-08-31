@@ -1,20 +1,18 @@
 import { destinations } from "./destination.js";
 
-// ==========================================
 // GET DESTINATION FROM URL
-// ==========================================
 
-const params = new URLSearchParams(window.location.search);
+const params =
+     new URLSearchParams(window.location.search);
 
-const destinationId = params.get("id");
+const destinationId =
+     params.get("id");
 
 const currentDestination =
     destinations[destinationId] || null;
 
 
-// ==========================================
 // GET ELEMENTS
-// ==========================================
 
 const bookTripBtn =
     document.getElementById("bookTripBtn");
@@ -32,9 +30,7 @@ const tripForm =
     document.getElementById("tripForm");
 
 
-// ==========================================
 // ITINERARY ELEMENTS
-// ==========================================
 
 const itinerarySection =
     document.getElementById("itinerarySection");
@@ -52,9 +48,7 @@ const saveItineraryBtn =
     document.getElementById("saveItineraryBtn");
 
 
-// ==========================================
 // FORM ELEMENTS
-// ==========================================
 
 const tripName =
     document.getElementById("tripName");
@@ -75,9 +69,7 @@ const tripDescription =
     document.getElementById("tripDescription");
 
 
-// ==========================================
 // ERROR ELEMENTS
-// ==========================================
 
 const tripNameError =
     document.getElementById("tripNameError");
@@ -98,9 +90,8 @@ const descriptionError =
     document.getElementById("descriptionError");
 
 
-// ==========================================
+
 // SET CURRENT DESTINATION
-// ==========================================
 
 if (currentDestination && tripDestination) {
 
@@ -110,9 +101,7 @@ if (currentDestination && tripDestination) {
 }
 
 
-// ==========================================
 // OPEN TRIP MODAL
-// ==========================================
 
 if (bookTripBtn && tripModal) {
 
@@ -129,9 +118,7 @@ if (bookTripBtn && tripModal) {
 }
 
 
-// ==========================================
 // CLOSE TRIP MODAL
-// ==========================================
 
 function closeTripForm() {
 
@@ -148,59 +135,40 @@ function closeTripForm() {
 }
 
 
-// ==========================================
 // CLOSE BUTTON
-// ==========================================
 
 if (closeTripModal) {
 
-    closeTripModal.addEventListener(
-        "click",
-        closeTripForm
-    );
+    closeTripModal.addEventListener("click",closeTripForm);
 
 }
 
 
-// ==========================================
 // CANCEL BUTTON
-// ==========================================
 
 if (cancelTripBtn) {
 
-    cancelTripBtn.addEventListener(
-        "click",
-        closeTripForm
-    );
-
+    cancelTripBtn.addEventListener("click",closeTripForm);
 }
 
 
-// ==========================================
 // CLOSE WHEN CLICKING OUTSIDE
-// ==========================================
 
 if (tripModal) {
 
-    tripModal.addEventListener(
-        "click",
-        (event) => {
+    tripModal.addEventListener("click",(event) => {
 
             if (event.target === tripModal) {
 
                 closeTripForm();
 
             }
-
         }
     );
-
 }
 
 
-// ==========================================
 // DATE MINIMUM
-// ==========================================
 
 const today =
     new Date().toISOString().split("T")[0];
@@ -218,15 +186,11 @@ if (endDate) {
 }
 
 
-// ==========================================
 // UPDATE END DATE MINIMUM
-// ==========================================
 
 if (startDate && endDate) {
 
-    startDate.addEventListener(
-        "change",
-        () => {
+    startDate.addEventListener("change",() => {
 
             if (startDate.value) {
 
@@ -234,16 +198,12 @@ if (startDate && endDate) {
                     startDate.value;
 
             }
-
         }
     );
-
 }
 
 
-// ==========================================
 // ERROR FUNCTIONS
-// ==========================================
 
 function showError(element, message) {
 
@@ -271,9 +231,7 @@ function clearError(element) {
 }
 
 
-// ==========================================
 // CLEAR ALL ERRORS
-// ==========================================
 
 function clearAllErrors() {
 
@@ -292,9 +250,7 @@ function clearAllErrors() {
 }
 
 
-// ==========================================
 // CALCULATE TRIP DAYS
-// ==========================================
 
 function calculateTripDays(start, end) {
 
@@ -308,19 +264,14 @@ function calculateTripDays(start, end) {
         endDateObj - startDateObj;
 
     const days =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        ) + 1;
+        Math.floor(difference /(1000 * 60 * 60 * 24)) + 1;
 
     return days;
 
 }
 
 
-// ==========================================
 // GENERATE DAY-BY-DAY ITINERARY
-// ==========================================
 
 function generateItinerary(trip) {
 
@@ -331,10 +282,7 @@ function generateItinerary(trip) {
     itineraryDays.innerHTML = "";
 
     const totalDays =
-        calculateTripDays(
-            trip.startDate,
-            trip.endDate
-        );
+        calculateTripDays(trip.startDate,trip.endDate);
 
     if (itineraryTitle) {
 
@@ -344,15 +292,9 @@ function generateItinerary(trip) {
     }
 
 
-    // ======================================
     // CREATE DAY CARDS
-    // ======================================
 
-    for (
-        let day = 1;
-        day <= totalDays;
-        day++
-    ) {
+    for ( let day = 1; day <= totalDays;day++) {
 
         const dayCard =
             document.createElement("div");
@@ -366,31 +308,13 @@ function generateItinerary(trip) {
 
             <!-- DAY HEADER -->
 
-            <div
-                class="flex items-center justify-between mb-5"
-            >
+            <div class="flex items-center justify-between mb-5">
 
-                <h3
-                    class="
-                        text-xl
-                        font-bold
-                        text-gray-800
-                    "
-                >
+                <h3 class=" text-xl font-bold text-gray-800">
                     Day ${day}
                 </h3>
 
-
-                <span
-                    class="
-                        text-sm
-                        bg-emerald-100
-                        text-emerald-700
-                        px-3
-                        py-1
-                        rounded-full
-                    "
-                >
+                <span class=" text-sm bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full ">
                     Day ${day}
                 </span>
 
@@ -401,35 +325,12 @@ function generateItinerary(trip) {
 
             <div class="mb-4">
 
-                <label
-                    class="
-                        block
-                        text-sm
-                        font-semibold
-                        text-gray-700
-                        mb-2
-                    "
-                >
+                <label class=" block text-sm font-semibold text-gray-700 mb-2">
                     Activity Name
                 </label>
 
-                <input
-                    type="text"
-                    placeholder="e.g. Visit Altit Fort"
-                    class="
-                        itinerary-activity
-                        w-full
-                        border
-                        border-gray-300
-                        rounded-xl
-                        px-4
-                        py-3
-                        outline-none
-                        focus:ring-2
-                        focus:ring-emerald-500
-                    "
-                    data-day="${day}"
-                >
+                <input type="text" placeholder="e.g. Visit Altit Fort" class=" itinerary-activity w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                    data-day="${day}">
 
             </div>
 
@@ -438,35 +339,12 @@ function generateItinerary(trip) {
 
             <div class="mb-4">
 
-                <label
-                    class="
-                        block
-                        text-sm
-                        font-semibold
-                        text-gray-700
-                        mb-2
-                    "
-                >
+                <label class=" block text-sm font-semibold text-gray-700 mb-2" >
                     Location
                 </label>
 
-                <input
-                    type="text"
-                    placeholder="e.g. Altit, Hunza"
-                    class="
-                        itinerary-location
-                        w-full
-                        border
-                        border-gray-300
-                        rounded-xl
-                        px-4
-                        py-3
-                        outline-none
-                        focus:ring-2
-                        focus:ring-emerald-500
-                    "
-                    data-day="${day}"
-                >
+                <input type="text" placeholder="e.g. Altit, Hunza" class=" itinerary-location w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500 "
+                    data-day="${day}">
 
             </div>
 
@@ -475,34 +353,12 @@ function generateItinerary(trip) {
 
             <div class="mb-4">
 
-                <label
-                    class="
-                        block
-                        text-sm
-                        font-semibold
-                        text-gray-700
-                        mb-2
-                    "
-                >
+                <label class=" block text-sm font-semibold text-gray-700 mb-2">
                     Time
                 </label>
 
-                <input
-                    type="time"
-                    class="
-                        itinerary-time
-                        w-full
-                        border
-                        border-gray-300
-                        rounded-xl
-                        px-4
-                        py-3
-                        outline-none
-                        focus:ring-2
-                        focus:ring-emerald-500
-                    "
-                    data-day="${day}"
-                >
+                <input type="time" class=" itinerary-time w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                    data-day="${day}">
 
             </div>
 
@@ -511,36 +367,13 @@ function generateItinerary(trip) {
 
             <div class="mb-4">
 
-                <label
-                    class="
-                        block
-                        text-sm
-                        font-semibold
-                        text-gray-700
-                        mb-2
-                    "
-                >
+                <label class=" block text-sm font-semibold text-gray-700 mb-2">
                     Short Description
                 </label>
 
-                <textarea
-                    rows="3"
-                    placeholder="Describe your activity..."
-                    class="
-                        itinerary-description
-                        w-full
-                        border
-                        border-gray-300
-                        rounded-xl
-                        px-4
-                        py-3
-                        outline-none
-                        resize-none
-                        focus:ring-2
-                        focus:ring-emerald-500
-                    "
-                    data-day="${day}"
-                ></textarea>
+                <textarea rows="3" placeholder="Describe your activity..."
+                    class=" itinerary-description w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-emerald-500 "
+                    data-day="${day}"></textarea>
 
             </div>
 
@@ -549,33 +382,12 @@ function generateItinerary(trip) {
 
             <div>
 
-                <label
-                    class="
-                        block
-                        text-sm
-                        font-semibold
-                        text-gray-700
-                        mb-2
-                    "
-                >
+                <label class=" block text-sm font-semibold text-gray-700 mb-2 ">
                     Category
                 </label>
 
-                <select
-                    class="
-                        itinerary-category
-                        w-full
-                        border
-                        border-gray-300
-                        rounded-xl
-                        px-4
-                        py-3
-                        outline-none
-                        focus:ring-2
-                        focus:ring-emerald-500
-                    "
-                    data-day="${day}"
-                >
+                <select class=" itinerary-category w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500"
+                    data-day="${day}">
 
                     <option value="">
                         Select Category
@@ -611,40 +423,26 @@ function generateItinerary(trip) {
 
         `;
 
-
-        itineraryDays.appendChild(
-            dayCard
-        );
-
+        itineraryDays.appendChild(dayCard);
     }
 
 
-    // ======================================
     // SHOW ITINERARY SECTION
-    // ======================================
 
     if (itinerarySection) {
 
-        itinerarySection.classList.remove(
-            "hidden"
-        );
+        itinerarySection.classList.remove("hidden");
 
-        itinerarySection.classList.add(
-            "flex"
-        );
+        itinerarySection.classList.add("flex");
 
     }
 
-    document.body.classList.add(
-        "overflow-hidden"
-    );
+    document.body.classList.add("overflow-hidden");
 
 }
 
 
-// ==========================================
 // CLOSE ITINERARY
-// ==========================================
 
 function closeItinerarySection() {
 
@@ -656,30 +454,21 @@ function closeItinerarySection() {
 
     itinerarySection.classList.remove("flex");
 
-    document.body.classList.remove(
-        "overflow-hidden"
-    );
+    document.body.classList.remove("overflow-hidden");
 
 }
 
 
-// ==========================================
 // CLOSE ITINERARY BUTTON
-// ==========================================
 
 if (closeItinerary) {
 
-    closeItinerary.addEventListener(
-        "click",
-        closeItinerarySection
-    );
+    closeItinerary.addEventListener("click",closeItinerarySection);
 
 }
 
 
-// ==========================================
 // FORM VALIDATION
-// ==========================================
 
 function validateTripForm() {
 
@@ -688,9 +477,7 @@ function validateTripForm() {
     let isValid = true;
 
 
-    // --------------------------------------
     // Trip Name
-    // --------------------------------------
 
     const name =
         tripName.value.trim();
@@ -698,29 +485,18 @@ function validateTripForm() {
 
     if (!name) {
 
-        showError(
-            tripNameError,
-            "Please enter a trip name."
-        );
+        showError(tripNameError,"Please enter a trip name.");
 
         isValid = false;
-
     }
     else if (name.length < 3) {
 
-        showError(
-            tripNameError,
-            "Trip name must be at least 3 characters."
-        );
+        showError(tripNameError,"Trip name must be at least 3 characters.");
 
         isValid = false;
-
     }
 
-
-    // --------------------------------------
     // Destination
-    // --------------------------------------
 
     const destination =
         tripDestination.value.trim();
@@ -728,56 +504,34 @@ function validateTripForm() {
 
     if (!destination) {
 
-        showError(
-            destinationError,
-            "Destination is required."
-        );
+        showError(destinationError,"Destination is required.");
 
         isValid = false;
-
     }
 
-
-    // --------------------------------------
     // Starting Date
-    // --------------------------------------
 
     if (!startDate.value) {
 
-        showError(
-            startDateError,
-            "Please select a starting date."
-        );
+        showError(startDateError,"Please select a starting date.");
 
         isValid = false;
-
     }
 
 
-    // --------------------------------------
     // Ending Date
-    // --------------------------------------
 
     if (!endDate.value) {
 
-        showError(
-            endDateError,
-            "Please select an ending date."
-        );
+        showError(endDateError,"Please select an ending date.");
 
         isValid = false;
-
     }
 
 
-    // --------------------------------------
     // Date Comparison
-    // --------------------------------------
 
-    if (
-        startDate.value &&
-        endDate.value
-    ) {
+    if (startDate.value &&endDate.value) {
 
         const start =
             new Date(startDate.value);
@@ -785,24 +539,16 @@ function validateTripForm() {
         const end =
             new Date(endDate.value);
 
-
         if (end < start) {
 
-            showError(
-                endDateError,
-                "Ending date cannot be before the starting date."
-            );
+            showError(endDateError,"Ending date cannot be before the starting date.");
 
             isValid = false;
-
         }
-
     }
 
 
-    // --------------------------------------
     // Travelers
-    // --------------------------------------
 
     const travelerCount =
         Number(travelers.value);
@@ -810,32 +556,19 @@ function validateTripForm() {
 
     if (!travelers.value) {
 
-        showError(
-            travelersError,
-            "Please enter the number of travelers."
-        );
+        showError(travelersError,"Please enter the number of travelers.");
 
         isValid = false;
 
     }
-    else if (
-        travelerCount < 1 ||
-        travelerCount > 50
-    ) {
+    else if (travelerCount < 1 ||travelerCount > 50) {
 
-        showError(
-            travelersError,
-            "Travelers must be between 1 and 50."
-        );
+        showError(travelersError,"Travelers must be between 1 and 50.");
 
         isValid = false;
-
     }
 
-
-    // --------------------------------------
     // Description
-    // --------------------------------------
 
     const description =
         tripDescription.value.trim();
@@ -843,50 +576,34 @@ function validateTripForm() {
 
     if (!description) {
 
-        showError(
-            descriptionError,
-            "Please enter a trip description."
-        );
+        showError(descriptionError,"Please enter a trip description.");
 
         isValid = false;
 
     }
     else if (description.length < 10) {
 
-        showError(
-            descriptionError,
-            "Description must be at least 10 characters."
-        );
+        showError(descriptionError,"Description must be at least 10 characters.");
 
         isValid = false;
 
     }
 
-
     return isValid;
-
 }
 
-
-// ==========================================
 // CREATE TRIP
-// ==========================================
 
 let currentTrip = null;
 
 
 if (tripForm) {
 
-    tripForm.addEventListener(
-        "submit",
-        (event) => {
+    tripForm.addEventListener("submit",(event) => {
 
             event.preventDefault();
 
-
-            // ==================================
             // VALIDATE FORM
-            // ==================================
 
             if (!validateTripForm()) {
 
@@ -895,9 +612,7 @@ if (tripForm) {
             }
 
 
-            // ==================================
             // CREATE TRIP OBJECT
-            // ==================================
 
             const newTrip = {
 
@@ -933,131 +648,75 @@ if (tripForm) {
             };
 
 
-            // ==================================
             // STORE CURRENT TRIP
-            // ==================================
 
             currentTrip = newTrip;
 
-
-            // ==================================
             // GET EXISTING TRIPS
-            // ==================================
 
             const trips =
-                JSON.parse(
-                    localStorage.getItem(
-                        "natureNestTrips"
-                    )
-                ) || [];
+                JSON.parse(localStorage.getItem("natureNestTrips")) || [];
 
 
             trips.push(newTrip);
 
-            localStorage.setItem(
-                "natureNestTrips",
-                JSON.stringify(
-                trips )
-            );
+            localStorage.setItem("natureNestTrips",JSON.stringify(trips ));
 
 
-            // ==================================
             // ADD DESTINATION TO PLANNED TRIPS
-            // ==================================
 
             let plannedTrips =
-                JSON.parse(
-                    localStorage.getItem(
-                        "plannedTrips"
-                    )
-                ) || [];
+                JSON.parse(localStorage.getItem("plannedTrips")) || [];
 
 
             // Avoid duplicate destination
 
-            if (
-                destinationId &&
-                !plannedTrips.includes(
-                    destinationId
-                )
-            ) {
+            if (destinationId &&!plannedTrips.includes(destinationId)) {
 
-                plannedTrips.push(
-                    destinationId
-                );
+                plannedTrips.push(destinationId);
 
             }
 
-
-            localStorage.setItem(
-                "plannedTrips",
-                JSON.stringify(
-                    plannedTrips
-                )
-            );
+            localStorage.setItem("plannedTrips",JSON.stringify(plannedTrips));
 
 
-            // ==================================
             // SUCCESS
-            // ==================================
 
-            alert(
-                "Trip created successfully!"
-            );
+            alert("Trip created successfully!");
 
 
-            // ==================================
             // GENERATE ITINERARY
-            // ==================================
 
-            generateItinerary(
-                newTrip
-            );
+            generateItinerary(newTrip);
 
 
-            // ==================================
             // RESET FORM
-            // ==================================
 
             tripForm.reset();
 
 
             // Restore destination
 
-            if (
-                currentDestination &&
-                tripDestination
-            ) {
+            if (currentDestination &&tripDestination) {
 
                 tripDestination.value =
                     currentDestination.title;
 
             }
 
-
-            // ==================================
             // CLOSE TRIP FORM
-            // ==================================
 
             closeTripForm();
 
-
-            console.log(
-                "Created Trip:",
-                newTrip
-            );
-
+            console.log("Created Trip:",newTrip);
         }
     );
-
 }
 
 
 if (saveItineraryBtn) {
 
-    saveItineraryBtn.addEventListener(
-        "click",
-        () => {
+    saveItineraryBtn.addEventListener("click",() => {
 
             if (!currentTrip) {
                 return;
@@ -1067,78 +726,52 @@ if (saveItineraryBtn) {
             const activities = [];
 
 
-            // ==================================
             // GET ALL ITINERARY FIELDS
-            // ==================================
 
             const activityInputs =
-                document.querySelectorAll(
-                    ".itinerary-activity"
-                );
+                document.querySelectorAll(".itinerary-activity");
 
             const locationInputs =
-                document.querySelectorAll(
-                    ".itinerary-location"
-                );
+                document.querySelectorAll(".itinerary-location");
 
             const timeInputs =
-                document.querySelectorAll(
-                    ".itinerary-time"
-                );
+                document.querySelectorAll(".itinerary-time");
 
             const descriptionInputs =
-                document.querySelectorAll(
-                    ".itinerary-description"
-                );
+                document.querySelectorAll(".itinerary-description");
 
             const categoryInputs =
-                document.querySelectorAll(
-                    ".itinerary-category"
-                );
+                document.querySelectorAll(".itinerary-category");
 
 
-            // ==================================
             // SAVE EACH DAY
-            // ==================================
 
             activityInputs.forEach(
                 (input, index) => {
 
                     const day =
-                        Number(
-                            input.dataset.day
-                        );
+                        Number(input.dataset.day);
 
 
                     const location =
                         locationInputs[index]
                             ? locationInputs[index]
-                                .value
-                                .trim()
-                            : "";
+                                .value.trim(): "";
 
 
                     const time =
                         timeInputs[index]
-                            ? timeInputs[index]
-                                .value
-                            : "";
+                            ? timeInputs[index].value: "";
 
 
                     const description =
                         descriptionInputs[index]
                             ? descriptionInputs[index]
-                                .value
-                                .trim()
-                            : "";
-
+                                .value.trim(): "";
 
                     const category =
                         categoryInputs[index]
-                            ? categoryInputs[index]
-                                .value
-                            : "";
-
+                            ? categoryInputs[index].value: "";
 
                     activities.push({
 
@@ -1158,48 +791,33 @@ if (saveItineraryBtn) {
 
                         category:
                             category
-
                     });
-
                 }
             );
 
 
-            // ==================================
             // UPDATE CURRENT TRIP
-            // ==================================
 
             currentTrip.activities =
                 activities;
 
 
-            // ==================================
             // GET SAVED TRIPS
-            // ==================================
 
             const trips =
-                JSON.parse(
-                    localStorage.getItem(
-                        "natureNestTrips"
-                    )
-                ) || [];
+                JSON.parse(localStorage.getItem("natureNestTrips")) || [];
 
 
-            // ==================================
             // FIND CURRENT TRIP
-            // ==================================
 
             const tripIndex =
-                trips.findIndex(
-                    trip =>
+                trips.findIndex( trip =>
                         String(trip.id) ===
                         String(currentTrip.id)
                 );
 
 
-            // ==================================
             // UPDATE TRIP
-            // ==================================
 
             if (tripIndex !== -1) {
 
@@ -1209,40 +827,20 @@ if (saveItineraryBtn) {
             }
 
 
-            // ==================================
             // SAVE UPDATED TRIPS
-            // ==================================
 
-            localStorage.setItem(
-                "natureNestTrips",
-                JSON.stringify(
-                    trips
-                )
-            );
+            localStorage.setItem("natureNestTrips",JSON.stringify(trips));
 
 
-            // ==================================
             // SUCCESS
-            // ==================================
 
-            alert(
-                "Itinerary saved successfully!"
-            );
+            alert("Itinerary saved successfully!");
 
-
-            // ==================================
             // CLOSE ITINERARY
-            // ==================================
 
             closeItinerarySection();
 
-
-            console.log(
-                "Saved itinerary:",
-                currentTrip
-            );
-
+            console.log("Saved itinerary:",currentTrip);
         }
     );
-
 }

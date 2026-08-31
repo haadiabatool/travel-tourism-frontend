@@ -129,8 +129,6 @@
   </header>
 
 
-
-
   <!-- Destination filtering button -->
   <section class="py-5 bg-white">
     <div class="max-w-7xl mx-auto px-6">
@@ -182,9 +180,7 @@
         </div>
       </div>
 
-
       <!-- Beaches Section -->
-
       <!-- Beach heading -->
       <div class="destination beach max-w-7xl mx-auto px-4 mt-5 mb-6">
         <h2
@@ -507,7 +503,6 @@
       </section>
 
       <!-- Mountains Section -->
-
       <!-- Mountains Heading -->
       <div class="destination mountain max-w-7xl mx-auto px-4 mt-1 mb-6">
         <h2
@@ -1127,7 +1122,6 @@
         </div>
       </section>
 
-
       <!-- Adventure places section -->
       <!-- Adventure places heading -->
       <div class="destination adventure max-w-7xl mx-auto px-4 mt-1 mb-6">
@@ -1439,7 +1433,6 @@
         </div>
       </section>
 
-
       <!-- Cultural places section -->
       <div class="destination cultural max-w-7xl mx-auto px-4 mt-1 mb-6">
         <h2
@@ -1749,7 +1742,6 @@
 
         </div>
       </section>
-
 
       <!-- Nature & Wildlife -->
       <div class="destination wildlife max-w-7xl mx-auto px-4 mt-1 mb-6">
@@ -2368,7 +2360,8 @@
       </section>
 
       <!-- About Us Section Wrapper-->
-      <section id="about-section" class="w-full bg-neutral-50 py-20 px-4 flex items-center justify-center scroll-mt-6">
+      <section id="about-section"
+        class="w-full bg-neutral-50 rounded-2xl py-20 px-4 flex items-center justify-center scroll-mt-6">
 
         <!-- Main Elegant Card -->
         <div
@@ -2433,7 +2426,7 @@
 
 
       <!-- Contact Us Section Wrapper (Smooth Scroll + Dynamic Grid) -->
-      <section id="contact-section" class="w-full bg-neutral-100 py-20 px-4 md:px-6 scroll-mt-6">
+      <section id="contact-section" class="w-full bg-neutral-100 rounded-2xl py-20 px-4 md:px-6 scroll-mt-6">
         <div class="max-w-6xl mx-auto">
 
           <!-- Section Heading -->
@@ -2561,9 +2554,135 @@
         </div>
       </section>
 
+      <!-- ================= REVIEW & RATING SECTION ================= -->
+
+      <section id="review-section" class="w-full bg-white py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+
+          <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-neutral-800">
+              Share Your Experience
+            </h2>
+
+            <p class="text-neutral-500 mt-2">
+              Rate a destination or service and share your review.
+            </p>
+          </div>
+
+
+          <!-- Select Type -->
+          <div class="mb-5">
+
+            <label class="block mb-2 font-semibold text-neutral-700">
+              What do you want to review?
+            </label>
+
+            <select id="reviewType" aria-label="select type destination"
+              class="w-full border border-neutral-300 rounded-xl px-4 py-3 outline-none focus:border-emerald-500">
+
+              <option value="">
+                Select type
+              </option>
+
+              <option value="destination">
+                Destination
+              </option>
+
+              <option value="service">
+                Service
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- Select Destination / Service -->
+
+          <div class="mb-5">
+
+            <label class="block mb-2 font-semibold text-neutral-700">
+              Select Destination / Service
+            </label>
+
+            <select id="reviewItem" disabled aria-label="select type "
+              class="w-full border border-neutral-300 rounded-xl px-4 py-3 outline-none focus:border-emerald-500">
+
+              <option value="">
+                First select type
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- Rating -->
+
+          <div class="mb-5">
+
+            <label class="block mb-2 font-semibold text-neutral-700">
+              Your Rating
+            </label>
+
+            <div id="starRating" class="flex gap-2 text-4xl cursor-pointer">
+
+              <button type="button" data-rating="1">☆</button>
+              <button type="button" data-rating="2">☆</button>
+              <button type="button" data-rating="3">☆</button>
+              <button type="button" data-rating="4">☆</button>
+              <button type="button" data-rating="5">☆</button>
+
+            </div>
+
+            <p id="ratingText" class="text-sm text-neutral-500 mt-2">
+              Select your rating
+            </p>
+
+          </div>
+
+          <!-- NAME -->
+
+<div class="mb-5">
+
+  <label class="block mb-2 font-semibold text-neutral-700">
+    Your Name
+  </label>
+
+  <input id="reviewerName" type="text" required placeholder="Enter your name"
+    class="w-full border border-neutral-300 rounded-xl px-4 py-3 outline-none focus:border-emerald-500">
+
+</div>
+
+          <!-- Review -->
+          <div class="mb-6">
+
+            <label class="block mb-2 font-semibold text-neutral-700">
+              Your Review
+            </label>
+
+            <textarea id="reviewText" rows="5" placeholder="Write your experience..."
+              class="w-full border border-neutral-300 rounded-xl px-4 py-3 outline-none resize-none focus:border-emerald-500"></textarea>
+
+          </div>
+
+          <!-- Submit -->
+
+          <button id="submitReview" type="button"
+            class="w-full bg-emerald-600 text-white py-3 rounded-xl font-semibold hover:bg-emerald-700 transition">
+              Submit Review
+          </button>
+
+          <!-- Message -->
+
+          <p id="reviewMessage" class="text-center mt-4 font-medium"></p>
+
+        </div>
+      </section>
+
+
 
       <script type="module" src="/src/main.js"></script>
       <script type="module" src="/src/dynamic-destination.js"></script>
+      <script type="module" src="/src/review.js"></script>
 </body>
 
 </html>

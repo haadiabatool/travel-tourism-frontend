@@ -1,57 +1,33 @@
 import './style.css'
 import { destinations } from "./destination.js";
 
-// ==================================================
+
 // PROFILE DATA
-// ==================================================
-
 let profile =
-    JSON.parse(
-        localStorage.getItem("natureNestProfile")
-    ) || null;
+    JSON.parse(localStorage.getItem("natureNestProfile")) || null;
 
 
-// ==================================================
 // FAVORITES
-// ==================================================
-
 let favorites =
-    JSON.parse(
-        localStorage.getItem("favorites")
-    ) || [];
+    JSON.parse(localStorage.getItem("favorites")) || [];
 
 
-// ==================================================
 // PLANNED TRIPS
-// ==================================================
-
 let plannedTrips =
-    JSON.parse(
-        localStorage.getItem("plannedTrips")
-    ) || [];
+    JSON.parse(localStorage.getItem("plannedTrips")) || [];
 
-
-// ==================================================
 // SAVED DESTINATIONS
-// ==================================================
-
 let savedDestinations =
-    JSON.parse(
-        localStorage.getItem("savedDestinations")
-    ) || [];
+    JSON.parse(localStorage.getItem("savedDestinations")) || [];
 
 
-// ==================================================
 // DEFAULT PROFILE IMAGE
-// ==================================================
 
 const DEFAULT_PROFILE_IMAGE =
     "/src/assets/profile/default-profile.jpg";
 
 
-// ==================================================
 // DOM - PROFILE SETUP
-// ==================================================
 
 const profileSetup =
     document.getElementById("profileSetup");
@@ -93,9 +69,7 @@ const deleteProfileBtn =
     document.getElementById("deleteProfileBtn");
 
 
-// ==================================================
 // DOM - COUNTS
-// ==================================================
 
 const favoriteCount =
     document.getElementById("favoriteCount");
@@ -107,35 +81,23 @@ const saveCount =
     document.getElementById("saveCount");
 
 
-// ==================================================
 // GET LATEST STORAGE DATA
-// ==================================================
 
 function loadLatestStorageData() {
 
     favorites =
-        JSON.parse(
-            localStorage.getItem("favorites")
-        ) || [];
-
+        JSON.parse(localStorage.getItem("favorites")) || [];
 
     plannedTrips =
-        JSON.parse(
-            localStorage.getItem("plannedTrips")
-        ) || [];
-
+        JSON.parse(localStorage.getItem("plannedTrips") ) || [];
 
     savedDestinations =
-        JSON.parse(
-            localStorage.getItem("savedDestinations")
-        ) || [];
+        JSON.parse(localStorage.getItem("savedDestinations")) || [];
 
 }
 
 
-// ==================================================
 // UPDATE COUNTS
-// ==================================================
 
 function updateDestinationCounts() {
 
@@ -143,10 +105,7 @@ function updateDestinationCounts() {
 
     loadLatestStorageData();
 
-
-    // ----------------------------------------------
-    // FAVORITES COUNT
-    // ----------------------------------------------
+     // FAVORITES COUNT
 
     if (favoriteCount) {
 
@@ -155,10 +114,7 @@ function updateDestinationCounts() {
 
     }
 
-
-    // ----------------------------------------------
     // PLANNED TRIPS COUNT
-    // ----------------------------------------------
 
     if (plannedCount) {
 
@@ -168,9 +124,7 @@ function updateDestinationCounts() {
     }
 
 
-    // ----------------------------------------------
     // SAVED DESTINATIONS COUNT
-    // ----------------------------------------------
 
     if (saveCount) {
 
@@ -182,15 +136,11 @@ function updateDestinationCounts() {
 }
 
 
-// ==================================================
 // SHOW PROFILE
-// ==================================================
 
 function showProfile() {
 
-    // ----------------------------------------------
     // IF PROFILE DOES NOT EXIST
-    // ----------------------------------------------
 
     if (!profile) {
 
@@ -201,144 +151,103 @@ function showProfile() {
     }
 
 
-    // ----------------------------------------------
     // HIDE SETUP FORM
-    // ----------------------------------------------
 
     if (profileSetup) {
 
-        profileSetup.classList.add(
-            "hidden"
-        );
+        profileSetup.classList.add("hidden");
 
     }
 
 
-    // ----------------------------------------------
     // SHOW PROFILE DISPLAY
-    // ----------------------------------------------
 
     if (profileDisplay) {
 
-        profileDisplay.classList.remove(
-            "hidden"
-        );
+        profileDisplay.classList.remove("hidden");
 
     }
 
 
-    // ----------------------------------------------
     // PROFILE NAME
-    // ----------------------------------------------
 
     if (profileName) {
 
         profileName.textContent =
-            profile.name ||
-            "Nature Explorer";
+            profile.name ||"Nature Explorer";
 
     }
 
 
-    // ----------------------------------------------
     // PROFILE BIO
-    // ----------------------------------------------
 
     if (profileBio) {
 
         profileBio.textContent =
-            profile.bio ||
-            "Travel lover and nature explorer.";
+            profile.bio ||"Travel lover and nature explorer.";
 
     }
 
 
-    // ----------------------------------------------
     // PROFILE IMAGE
-    // ----------------------------------------------
 
     if (profileImage) {
 
         profileImage.src =
-            profile.image ||
-            DEFAULT_PROFILE_IMAGE;
+            profile.image ||DEFAULT_PROFILE_IMAGE;
 
         profileImage.alt =
-            profile.name
-                ? `${profile.name}'s profile picture`
-                : "Profile picture";
+            profile.name? `${profile.name}'s profile picture`: "Profile picture";
 
     }
 
-
-    // ----------------------------------------------
     // UPDATE COUNTS
-    // ----------------------------------------------
 
     updateDestinationCounts();
 
 }
 
 
-// ==================================================
 // SHOW PROFILE SETUP
-// ==================================================
 
 function showProfileSetup() {
 
-    // ----------------------------------------------
     // HIDE PROFILE DISPLAY
-    // ----------------------------------------------
 
     if (profileDisplay) {
 
-        profileDisplay.classList.add(
-            "hidden"
-        );
+        profileDisplay.classList.add("hidden");
 
     }
 
 
-    // ----------------------------------------------
     // SHOW SETUP FORM
-    // ----------------------------------------------
 
     if (profileSetup) {
 
-        profileSetup.classList.remove(
-            "hidden"
-        );
+        profileSetup.classList.remove("hidden");
 
     }
 
 
-    // ----------------------------------------------
     // FORM TITLE
-    // ----------------------------------------------
 
     if (profileFormTitle) {
 
-        profileFormTitle.textContent =
-            "Create Your Profile";
+        profileFormTitle.textContent ="Create Your Profile";
 
     }
 
 
-    // ----------------------------------------------
     // BUTTON TEXT
-    // ----------------------------------------------
 
     if (saveProfileBtn) {
 
-        saveProfileBtn.textContent =
-            "Save Profile";
+        saveProfileBtn.textContent ="Save Profile";
 
     }
 
-
-    // ----------------------------------------------
     // CLEAR NAME
-    // ----------------------------------------------
 
     if (nameInput) {
 
@@ -347,9 +256,7 @@ function showProfileSetup() {
     }
 
 
-    // ----------------------------------------------
     // CLEAR BIO
-    // ----------------------------------------------
 
     if (bioInput) {
 
@@ -358,9 +265,7 @@ function showProfileSetup() {
     }
 
 
-    // ----------------------------------------------
     // CLEAR IMAGE INPUT
-    // ----------------------------------------------
 
     if (profileImageInput) {
 
@@ -368,31 +273,22 @@ function showProfileSetup() {
 
     }
 
-
-    // ----------------------------------------------
     // HIDE CANCEL BUTTON
-    // ----------------------------------------------
 
     if (cancelEditBtn) {
 
-        cancelEditBtn.classList.add(
-            "hidden"
-        );
+        cancelEditBtn.classList.add("hidden");
 
     }
 
 }
 
 
-// ==================================================
 // SHOW EDIT PROFILE
-// ==================================================
 
 function showEditProfile() {
 
-    // ----------------------------------------------
     // IF PROFILE DOES NOT EXIST
-    // ----------------------------------------------
 
     if (!profile) {
 
@@ -403,71 +299,50 @@ function showEditProfile() {
     }
 
 
-    // ----------------------------------------------
     // SHOW FORM
-    // ----------------------------------------------
 
     if (profileSetup) {
 
-        profileSetup.classList.remove(
-            "hidden"
-        );
+        profileSetup.classList.remove("hidden");
 
     }
 
-
-    // ----------------------------------------------
     // HIDE PROFILE DISPLAY
-    // ----------------------------------------------
 
     if (profileDisplay) {
 
-        profileDisplay.classList.add(
-            "hidden"
-        );
+        profileDisplay.classList.add("hidden" );
 
     }
 
-
-    // ----------------------------------------------
     // FORM TITLE
-    // ----------------------------------------------
 
     if (profileFormTitle) {
 
-        profileFormTitle.textContent =
-            "Edit Your Profile";
+        profileFormTitle.textContent = "Edit Your Profile";
 
     }
 
 
-    // ----------------------------------------------
     // BUTTON TEXT
-    // ----------------------------------------------
 
     if (saveProfileBtn) {
 
-        saveProfileBtn.textContent =
-            "Save Changes";
+        saveProfileBtn.textContent ="Save Changes";
 
     }
 
 
-    // ----------------------------------------------
     // LOAD CURRENT NAME
-    // ----------------------------------------------
 
     if (nameInput) {
 
-        nameInput.value =
-            profile.name || "";
+        nameInput.value =profile.name || "";
 
     }
 
 
-    // ----------------------------------------------
     // LOAD CURRENT BIO
-    // ----------------------------------------------
 
     if (bioInput) {
 
@@ -477,9 +352,7 @@ function showEditProfile() {
     }
 
 
-    // ----------------------------------------------
     // IMAGE INPUT
-    // ----------------------------------------------
 
     // Browser security does not allow
     // setting an existing file input value.
@@ -491,114 +364,72 @@ function showEditProfile() {
     }
 
 
-    // ----------------------------------------------
     // SHOW CANCEL
-    // ----------------------------------------------
 
     if (cancelEditBtn) {
 
-        cancelEditBtn.classList.remove(
-            "hidden"
-        );
+        cancelEditBtn.classList.remove("hidden");
 
     }
 
 }
 
 
-// ==================================================
 // SAVE PROFILE
-// ==================================================
 
-function saveProfile(
-    name,
-    bio,
-    image
-) {
+function saveProfile(name,bio,image) {
 
     profile = {
 
         name: name,
 
         bio:
-            bio ||
-            "Travel lover and nature explorer.",
+            bio ||"Travel lover and nature explorer.",
 
         image:
-            image ||
-            DEFAULT_PROFILE_IMAGE
+            image ||DEFAULT_PROFILE_IMAGE
 
     };
 
 
-    // ----------------------------------------------
     // SAVE TO LOCAL STORAGE
-    // ----------------------------------------------
 
-    localStorage.setItem(
-        "natureNestProfile",
-        JSON.stringify(profile)
-    );
+    localStorage.setItem("natureNestProfile",JSON.stringify(profile));
 
 
-    // ----------------------------------------------
     // SHOW PROFILE
-    // ----------------------------------------------
 
     showProfile();
 
 
-    // ----------------------------------------------
     // SUCCESS MESSAGE
-    // ----------------------------------------------
 
-    alert(
-        "Profile saved successfully!"
-    );
+    alert("Profile saved successfully!");
 
 }
 
 
-// ==================================================
 // SAVE PROFILE BUTTON
-// ==================================================
 
 if (saveProfileBtn) {
 
-    saveProfileBtn.addEventListener(
-        "click",
-        function () {
+    saveProfileBtn.addEventListener("click",function () {
 
-            // --------------------------------------
             // GET NAME
-            // --------------------------------------
 
             const name =
-                nameInput
-                    ? nameInput.value.trim()
-                    : "";
+                nameInput? nameInput.value.trim(): "";
 
-
-            // --------------------------------------
             // GET BIO
-            // --------------------------------------
-
             const bio =
-                bioInput
-                    ? bioInput.value.trim()
-                    : "";
+                bioInput? bioInput.value.trim(): "";
 
 
-            // --------------------------------------
             // NAME REQUIRED
-            // --------------------------------------
 
             if (!name) {
 
-                alert(
-                    "Please enter your name."
-                );
-
+                alert("Please enter your name.");
 
                 if (nameInput) {
 
@@ -606,23 +437,16 @@ if (saveProfileBtn) {
 
                 }
 
-
                 return;
 
             }
 
-
-            // --------------------------------------
             // GET SELECTED IMAGE
-            // --------------------------------------
 
             const file =
                 profileImageInput?.files?.[0];
 
-
-            // --------------------------------------
             // NEW IMAGE SELECTED
-            // --------------------------------------
 
             if (file) {
 
@@ -630,36 +454,24 @@ if (saveProfileBtn) {
                     new FileReader();
 
 
-                reader.onload =
-                    function (event) {
+                reader.onload =function (event) {
 
-                        saveProfile(
-                            name,
-                            bio,
-                            event.target.result
-                        );
+                        saveProfile(name,bio,event.target.result);
 
                     };
 
 
-                reader.onerror =
-                    function () {
+                reader.onerror =function () {
 
-                        alert(
-                            "Unable to read the selected image."
-                        );
+                        alert("Unable to read the selected image.");
 
                     };
-
 
                 reader.readAsDataURL(file);
 
             }
 
-
-            // --------------------------------------
             // NO NEW IMAGE
-            // --------------------------------------
 
             else {
 
@@ -667,152 +479,94 @@ if (saveProfileBtn) {
                 // keep old image.
 
                 const image =
-                    profile?.image ||
-                    DEFAULT_PROFILE_IMAGE;
+                    profile?.image ||DEFAULT_PROFILE_IMAGE;
 
-
-                saveProfile(
-                    name,
-                    bio,
-                    image
-                );
-
+                saveProfile(name,bio,image);
             }
-
         }
     );
-
 }
 
 
-// ==================================================
 // EDIT PROFILE BUTTON
-// ==================================================
 
 if (editProfileBtn) {
 
-    editProfileBtn.addEventListener(
-        "click",
-        function () {
+    editProfileBtn.addEventListener("click",function () {
 
             showEditProfile();
 
         }
     );
-
 }
 
 
-// ==================================================
 // CANCEL EDIT
-// ==================================================
 
 if (cancelEditBtn) {
 
-    cancelEditBtn.addEventListener(
-        "click",
-        function () {
+    cancelEditBtn.addEventListener("click",function () {
 
             if (profile) {
 
                 showProfile();
-
             }
 
             else {
 
                 showProfileSetup();
-
             }
-
         }
     );
-
 }
 
 
-// ==================================================
 // DELETE PROFILE
-// ==================================================
 
 if (deleteProfileBtn) {
 
-    deleteProfileBtn.addEventListener(
-        "click",
-        function () {
+    deleteProfileBtn.addEventListener("click",function () {
 
-            // --------------------------------------
             // CHECK PROFILE
-            // --------------------------------------
 
             if (!profile) {
 
-                alert(
-                    "No profile exists to delete."
-                );
-
+                alert("No profile exists to delete.");
                 return;
-
             }
 
-
-            // --------------------------------------
             // CONFIRM
-            // --------------------------------------
 
             const confirmDelete =
-                confirm(
-                    "Are you sure you want to delete your profile? This action cannot be undone."
-                );
-
+                confirm("Are you sure you want to delete your profile? This action cannot be undone.");
 
             if (!confirmDelete) {
 
                 return;
-
             }
 
-
-            // --------------------------------------
             // DELETE PROFILE ONLY
-            // --------------------------------------
 
-            localStorage.removeItem(
-                "natureNestProfile"
-            );
+            localStorage.removeItem("natureNestProfile");
 
-
-            // --------------------------------------
             // RESET PROFILE
-            // --------------------------------------
 
             profile = null;
 
-
-            // --------------------------------------
             // SHOW CREATE PROFILE
-            // --------------------------------------
 
             showProfileSetup();
 
 
-            // --------------------------------------
             // SUCCESS MESSAGE
-            // --------------------------------------
 
-            alert(
-                "Your profile has been deleted successfully."
-            );
-
+            alert("Your profile has been deleted successfully.");
         }
     );
-
 }
 
 
-// ==================================================
 // OPEN FAVORITES PAGE
-// ==================================================
 
 if (favoriteCount) {
 
@@ -826,37 +580,28 @@ if (favoriteCount) {
             "pointer";
 
 
-        favoriteCard.addEventListener(
-            "click",
-            function () {
+        favoriteCard.addEventListener("click",function () {
 
                 // Update latest count
 
                 loadLatestStorageData();
 
-
                 // Open separate page
 
                 window.location.href =
                     "favorites.html";
-
             }
         );
-
     }
-
 }
 
 
-// ==================================================
 // OPEN PLANNED TRIPS PAGE
-// ==================================================
 
 if (plannedCount) {
 
     const plannedCard =
         plannedCount.closest("div");
-
 
     if (plannedCard) {
 
@@ -864,9 +609,7 @@ if (plannedCount) {
             "pointer";
 
 
-        plannedCard.addEventListener(
-            "click",
-            function () {
+        plannedCard.addEventListener("click",function () {
 
                 // Update latest count
 
@@ -877,24 +620,18 @@ if (plannedCount) {
 
                 window.location.href =
                     "planned-trips.html";
-
             }
         );
-
     }
-
 }
 
 
-// ==================================================
 // OPEN SAVED DESTINATIONS PAGE
-// ==================================================
 
 if (saveCount) {
 
     const savedCard =
         saveCount.closest("div");
-
 
     if (savedCard) {
 
@@ -902,52 +639,36 @@ if (saveCount) {
             "pointer";
 
 
-        savedCard.addEventListener(
-            "click",
-            function () {
+        savedCard.addEventListener("click",function () {
 
                 // Update latest count
 
                 loadLatestStorageData();
 
-
                 // Open separate page
 
                 window.location.href =
                     "saved.html";
-
             }
         );
-
     }
-
 }
 
 
-// ==================================================
 // UPDATE COUNTS WHEN PAGE BECOMES VISIBLE
-// ==================================================
 
-document.addEventListener(
-    "visibilitychange",
-    function () {
+document.addEventListener("visibilitychange",function () {
 
-        if (
-            document.visibilityState ===
-            "visible"
-        ) {
+        if (document.visibilityState ==="visible") {
 
             updateDestinationCounts();
 
         }
-
     }
 );
 
 
-// ==================================================
 // INITIAL LOAD
-// ==================================================
 
 if (profile) {
 

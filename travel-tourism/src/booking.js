@@ -1,242 +1,146 @@
 import "./style.css";
 
 
-// =====================================================
 // GET SELECTED SERVICE
-// =====================================================
 
 const selectedService =
-    JSON.parse(
-        localStorage.getItem("selectedService")
-    );
+    JSON.parse(localStorage.getItem("selectedService"));
 
 
-// =====================================================
 // GET SELECTED TRIP ID FROM URL
-// =====================================================
 
 const urlParams =
-    new URLSearchParams(
-        window.location.search
-    );
+    new URLSearchParams(window.location.search);
 
 const selectedTripId =
     urlParams.get("tripId");
 
-console.log(
-    "Selected Trip ID:",
-    selectedTripId
-);
-
-
-// =====================================================
 // DOM ELEMENTS
-// =====================================================
 
 const bookingForm =
-    document.getElementById(
-        "bookingForm"
-    );
+    document.getElementById("bookingForm");
 
 const bookingSummarySection =
-    document.getElementById(
-        "bookingSummarySection"
-    );
+    document.getElementById("bookingSummarySection");
 
 const bookingSummary =
-    document.getElementById(
-        "bookingSummary"
-    );
+    document.getElementById("bookingSummary");
 
 const confirmationSection =
-    document.getElementById(
-        "confirmationSection"
-    );
+    document.getElementById("confirmationSection");
 
 
-// =====================================================
 // SELECTED SERVICE ELEMENTS
-// =====================================================
 
 const selectedServiceImage =
-    document.getElementById(
-        "selectedServiceImage"
-    );
+    document.getElementById("selectedServiceImage");
 
 const selectedServiceName =
-    document.getElementById(
-        "selectedServiceName"
-    );
+    document.getElementById("selectedServiceName");
 
 const selectedServiceLocation =
-    document.getElementById(
-        "selectedServiceLocation"
-    );
+    document.getElementById("selectedServiceLocation");
 
 const selectedServiceCategory =
-    document.getElementById(
-        "selectedServiceCategory"
-    );
+    document.getElementById("selectedServiceCategory");
 
 const selectedServicePrice =
-    document.getElementById(
-        "selectedServicePrice"
-    );
+    document.getElementById("selectedServicePrice");
 
 const bookingService =
-    document.getElementById(
-        "bookingService"
-    );
+    document.getElementById("bookingService");
 
 const estimatedTotal =
-    document.getElementById(
-        "estimatedTotal"
-    );
+    document.getElementById("estimatedTotal");
 
 
-// =====================================================
 // FORM INPUTS
-// =====================================================
 
 const fullName =
-    document.getElementById(
-        "fullName"
-    );
+    document.getElementById("fullName");
 
 const email =
-    document.getElementById(
-        "email"
-    );
+    document.getElementById("email");
 
 const phone =
-    document.getElementById(
-        "phone"
-    );
+    document.getElementById("phone");
 
 const bookingDate =
-    document.getElementById(
-        "bookingDate"
-    );
+    document.getElementById("bookingDate");
 
 const numberOfPeople =
-    document.getElementById(
-        "numberOfPeople"
-    );
+    document.getElementById("numberOfPeople");
 
 const specialRequest =
-    document.getElementById(
-        "specialRequest"
-    );
+    document.getElementById("specialRequest");
 
 
-// =====================================================
 // ERROR ELEMENTS
-// =====================================================
 
 const fullNameError =
-    document.getElementById(
-        "fullNameError"
-    );
+    document.getElementById("fullNameError");
 
 const emailError =
-    document.getElementById(
-        "emailError"
-    );
+    document.getElementById("emailError");
 
 const phoneError =
-    document.getElementById(
-        "phoneError"
-    );
+    document.getElementById("phoneError");
 
 const bookingDateError =
-    document.getElementById(
-        "bookingDateError"
-    );
+    document.getElementById("bookingDateError");
 
 const peopleError =
-    document.getElementById(
-        "peopleError"
-    );
+    document.getElementById("peopleError");
 
 
-// =====================================================
 // OTHER BUTTONS
-// =====================================================
 
 const backBtn =
-    document.getElementById(
-        "backBtn"
-    );
+    document.getElementById("backBtn");
 
 const confirmBookingBtn =
-    document.getElementById(
-        "confirmBookingBtn"
-    );
+    document.getElementById("confirmBookingBtn");
 
 const doneBtn =
-    document.getElementById(
-        "doneBtn"
-    );
+    document.getElementById("doneBtn");
 
 
-// =====================================================
 // SERVICE NOT FOUND
-// =====================================================
 
 if (!selectedService) {
 
-    alert(
-        "No service selected."
-    );
+    alert("No service selected.");
 
     window.location.href =
         "travel-services.html";
-
 }
 
 
-// =====================================================
 // SERVICE NAME
-// =====================================================
 
 const serviceName =
-    selectedService?.name ||
-    selectedService?.serviceName ||
-    "Travel Service";
+    selectedService?.name ||selectedService?.serviceName ||"Travel Service";
 
 
-// =====================================================
 // SERVICE LOCATION
-// =====================================================
 
 const serviceLocation =
-    selectedService?.location ||
-    selectedService?.destination ||
-    "Pakistan";
+    selectedService?.location ||selectedService?.destination ||"Pakistan";
 
 
-// =====================================================
 // SERVICE CATEGORY
-// =====================================================
 
 const serviceCategory =
-    selectedService?.category ||
-    "Travel Service";
+    selectedService?.category ||"Travel Service";
 
 
-// =====================================================
 // SERVICE PRICE
-// =====================================================
 
 let servicePrice =
-    Number(
-        selectedService?.price
-    ) || 0;
+    Number(selectedService?.price) || 0;
 
 
-// =====================================================
 // FORMAT PRICE
-// =====================================================
 
 function formatPrice(amount) {
 
@@ -245,9 +149,7 @@ function formatPrice(amount) {
 }
 
 
-// =====================================================
 // DISPLAY SELECTED SERVICE
-// =====================================================
 
 function displaySelectedService() {
 
@@ -258,15 +160,12 @@ function displaySelectedService() {
     }
 
 
-    // =============================================
     // IMAGE
-    // =============================================
 
     if (selectedServiceImage) {
 
         selectedServiceImage.src =
-            selectedService.image ||
-            "/src/assets/default-service.jpg";
+            selectedService.image ||"/src/assets/default-service.jpg";
 
         selectedServiceImage.alt =
             serviceName;
@@ -274,9 +173,7 @@ function displaySelectedService() {
     }
 
 
-    // =============================================
     // NAME
-    // =============================================
 
     if (selectedServiceName) {
 
@@ -286,9 +183,7 @@ function displaySelectedService() {
     }
 
 
-    // =============================================
     // LOCATION
-    // =============================================
 
     if (selectedServiceLocation) {
 
@@ -298,9 +193,7 @@ function displaySelectedService() {
     }
 
 
-    // =============================================
     // CATEGORY
-    // =============================================
 
     if (selectedServiceCategory) {
 
@@ -310,9 +203,7 @@ function displaySelectedService() {
     }
 
 
-    // =============================================
     // PRICE
-    // =============================================
 
     if (selectedServicePrice) {
 
@@ -322,9 +213,7 @@ function displaySelectedService() {
     }
 
 
-    // =============================================
     // FORM SERVICE
-    // =============================================
 
     if (bookingService) {
 
@@ -336,39 +225,29 @@ function displaySelectedService() {
 }
 
 
-// =====================================================
 // TODAY DATE
-// =====================================================
 
 const today =
-    new Date()
-        .toISOString()
-        .split("T")[0];
+    new Date().toISOString().split("T")[0];
 
 
 if (bookingDate) {
 
-    bookingDate.min =
-        today;
+    bookingDate.min =today;
 
 }
 
 
-// =====================================================
 // CALCULATE TOTAL
-// =====================================================
 
 function calculateTotal() {
 
     const people =
-        Number(
-            numberOfPeople?.value
-        ) || 1;
+        Number(numberOfPeople?.value) || 1;
 
 
     const total =
-        servicePrice *
-        people;
+        servicePrice *people;
 
 
     if (estimatedTotal) {
@@ -378,34 +257,23 @@ function calculateTotal() {
 
     }
 
-
     return total;
 
 }
 
 
-// =====================================================
 // PEOPLE CHANGE
-// =====================================================
 
 if (numberOfPeople) {
 
-    numberOfPeople.addEventListener(
-        "input",
-        calculateTotal
-    );
+    numberOfPeople.addEventListener("input",calculateTotal);
 
 }
 
 
-// =====================================================
 // ERROR FUNCTIONS
-// =====================================================
 
-function showError(
-    element,
-    message
-) {
+function showError(element,message) {
 
     if (!element) {
 
@@ -413,14 +281,11 @@ function showError(
 
     }
 
-
     element.textContent =
         message;
 
 
-    element.classList.remove(
-        "hidden"
-    );
+    element.classList.remove("hidden");
 
 }
 
@@ -430,83 +295,52 @@ function clearError(element) {
     if (!element) {
 
         return;
-
     }
 
+    element.textContent ="";
 
-    element.textContent =
-        "";
-
-    element.classList.add(
-        "hidden"
-    );
+    element.classList.add("hidden");
 
 }
 
-
-// =====================================================
 // CLEAR ALL ERRORS
-// =====================================================
 
 function clearAllErrors() {
 
-    clearError(
-        fullNameError
-    );
+    clearError(fullNameError);
 
-    clearError(
-        emailError
-    );
+    clearError(emailError);
 
-    clearError(
-        phoneError
-    );
+    clearError(phoneError);
 
-    clearError(
-        bookingDateError
-    );
+    clearError(bookingDateError);
 
-    clearError(
-        peopleError
-    );
+    clearError(peopleError);
 
 }
 
 
-// =====================================================
 // VALIDATE EMAIL
-// =====================================================
 
 function isValidEmail(value) {
 
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(value);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 }
 
-
-// =====================================================
 // VALIDATE PHONE
-// =====================================================
 
 function isValidPhone(value) {
 
     const cleaned =
-        value.replace(
-            /[\s-]/g,
-            ""
-        );
+        value.replace(/[\s-]/g,"");
 
 
-    return /^(\+92|03)\d{9}$/
-        .test(cleaned);
-
+    return /^(\+92|03)\d{9}$/.test(cleaned);
 }
 
 
-// =====================================================
 // VALIDATE FORM
-// =====================================================
 
 function validateForm() {
 
@@ -514,10 +348,7 @@ function validateForm() {
 
     let isValid = true;
 
-
-    // =============================================
     // FULL NAME
-    // =============================================
 
     const name =
         fullName.value.trim();
@@ -525,31 +356,20 @@ function validateForm() {
 
     if (!name) {
 
-        showError(
-            fullNameError,
-            "Please enter your full name."
-        );
+        showError(fullNameError,"Please enter your full name.");
 
         isValid = false;
 
     }
-    else if (
-        name.length < 3
-    ) {
+    else if (name.length < 3) {
 
-        showError(
-            fullNameError,
-            "Name must be at least 3 characters."
-        );
+        showError(fullNameError,"Name must be at least 3 characters.");
 
         isValid = false;
 
     }
 
-
-    // =============================================
     // EMAIL
-    // =============================================
 
     const emailValue =
         email.value.trim();
@@ -557,31 +377,20 @@ function validateForm() {
 
     if (!emailValue) {
 
-        showError(
-            emailError,
-            "Please enter your email address."
-        );
+        showError(emailError,"Please enter your email address.");
 
         isValid = false;
 
     }
-    else if (
-        !isValidEmail(emailValue)
-    ) {
+    else if (!isValidEmail(emailValue)) {
 
-        showError(
-            emailError,
-            "Please enter a valid email address."
-        );
+        showError(emailError,"Please enter a valid email address.");
 
         isValid = false;
 
     }
 
-
-    // =============================================
     // PHONE
-    // =============================================
 
     const phoneValue =
         phone.value.trim();
@@ -589,103 +398,65 @@ function validateForm() {
 
     if (!phoneValue) {
 
-        showError(
-            phoneError,
-            "Please enter your phone number."
-        );
+        showError(phoneError,"Please enter your phone number.");
 
         isValid = false;
 
     }
-    else if (
-        !isValidPhone(phoneValue)
-    ) {
+    else if (!isValidPhone(phoneValue)) {
 
-        showError(
-            phoneError,
-            "Please enter a valid Pakistani phone number."
-        );
+        showError(phoneError,"Please enter a valid Pakistani phone number.");
 
         isValid = false;
 
     }
 
 
-    // =============================================
     // BOOKING DATE
-    // =============================================
 
     if (!bookingDate.value) {
 
-        showError(
-            bookingDateError,
-            "Please select a booking date."
-        );
+        showError(bookingDateError,"Please select a booking date.");
 
         isValid = false;
 
     }
-    else if (
-        bookingDate.value < today
-    ) {
+    else if (bookingDate.value < today) {
 
-        showError(
-            bookingDateError,
-            "Booking date cannot be in the past."
-        );
+        showError(bookingDateError,"Booking date cannot be in the past.");
 
         isValid = false;
 
     }
 
-
-    // =============================================
     // PEOPLE
-    // =============================================
 
     const people =
-        Number(
-            numberOfPeople.value
-        );
+        Number(numberOfPeople.value);
 
 
     if (!numberOfPeople.value) {
 
-        showError(
-            peopleError,
-            "Please enter the number of people."
-        );
+        showError(peopleError,"Please enter the number of people.");
 
         isValid = false;
 
     }
-    else if (
-        people < 1 ||
-        people > 50
-    ) {
+    else if (people < 1 ||people > 50) {
 
-        showError(
-            peopleError,
-            "Number of people must be between 1 and 50."
-        );
+        showError(peopleError,"Number of people must be between 1 and 50.");
 
         isValid = false;
 
     }
-
 
     return isValid;
-
 }
 
 
-// =====================================================
 // CREATE BOOKING SUMMARY
-// =====================================================
 
-function createBookingSummary(
-    booking
-) {
+function createBookingSummary(booking) {
 
     if (!bookingSummary) {
 
@@ -693,17 +464,9 @@ function createBookingSummary(
 
     }
 
-
     bookingSummary.innerHTML = `
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-            border-b
-            border-gray-100
-            pb-4
-        ">
+        <div class=" flex justify-between gap-4 border-b border-gray-100 pb-4">
 
             <span class="text-gray-500">
                 Customer Name
@@ -716,14 +479,7 @@ function createBookingSummary(
         </div>
 
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-            border-b
-            border-gray-100
-            pb-4
-        ">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
 
             <span class="text-gray-500">
                 Selected Service
@@ -736,14 +492,7 @@ function createBookingSummary(
         </div>
 
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-            border-b
-            border-gray-100
-            pb-4
-        ">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
 
             <span class="text-gray-500">
                 Booking Date
@@ -756,14 +505,7 @@ function createBookingSummary(
         </div>
 
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-            border-b
-            border-gray-100
-            pb-4
-        ">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
 
             <span class="text-gray-500">
                 Number of People
@@ -776,14 +518,7 @@ function createBookingSummary(
         </div>
 
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-            border-b
-            border-gray-100
-            pb-4
-        ">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
 
             <span class="text-gray-500">
                 Price Per Person
@@ -796,75 +531,41 @@ function createBookingSummary(
         </div>
 
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-            border-b
-            border-gray-100
-            pb-4
-        ">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
 
             <span class="text-gray-500">
                 Total Amount
             </span>
 
-            <strong class="
-                text-emerald-700
-                text-xl
-            ">
+            <strong class="text-emerald-700 text-xl">
                 ${formatPrice(booking.total)}
             </strong>
 
         </div>
 
 
-        <div class="
-            flex
-            justify-between
-            gap-4
-        ">
+        <div class="flex justify-between gap-4">
 
             <span class="text-gray-500">
                 Booking Status
             </span>
 
-            <span class="
-                bg-yellow-100
-                text-yellow-700
-                px-3
-                py-1
-                rounded-full
-                text-sm
-                font-semibold
-            ">
+            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-semibold">
                 Pending
             </span>
 
         </div>
 
-
         ${
             booking.specialRequest
                 ? `
-                    <div class="
-                        bg-gray-50
-                        rounded-xl
-                        p-4
-                        mt-4
-                    ">
+                    <div class="bg-gray-50 rounded-xl p-4 mt-4">
 
-                        <p class="
-                            text-sm
-                            text-gray-500
-                            mb-1
-                        ">
+                        <p class=" text-sm text-gray-500 mb-1">
                             Special Request
                         </p>
 
-                        <p class="
-                            text-gray-700
-                        ">
+                        <p class="text-gray-700">
                             ${booking.specialRequest}
                         </p>
 
@@ -878,25 +579,18 @@ function createBookingSummary(
 }
 
 
-// =====================================================
 // FORM SUBMIT
-// =====================================================
 
 let currentBooking = null;
 
 
 if (bookingForm) {
 
-    bookingForm.addEventListener(
-        "submit",
-        (event) => {
+    bookingForm.addEventListener("submit",(event) => {
 
             event.preventDefault();
 
-
-            // =========================================
             // VALIDATION
-            // =========================================
 
             if (!validateForm()) {
 
@@ -904,24 +598,17 @@ if (bookingForm) {
 
             }
 
-
-            // =========================================
             // CALCULATE TOTAL
-            // =========================================
 
             const people =
-                Number(
-                    numberOfPeople.value
-                );
+                Number(numberOfPeople.value);
 
 
             const total =
                 calculateTotal();
 
 
-            // =========================================
             // CREATE BOOKING OBJECT
-            // =========================================
 
             currentBooking = {
 
@@ -929,12 +616,7 @@ if (bookingForm) {
                     Date.now().toString(),
 
                 bookingId:
-                    "TRV-" +
-                    Math.floor(
-                        10000 +
-                        Math.random() *
-                        90000
-                    ),
+                    "TRV-" +Math.floor(10000 +Math.random() *90000),
 
                 tripId:
                     selectedTripId,
@@ -952,8 +634,7 @@ if (bookingForm) {
                     serviceName,
 
                 serviceId:
-                    selectedService.id ||
-                    "",
+                    selectedService.id ||"",
 
                 category:
                     serviceCategory,
@@ -984,32 +665,16 @@ if (bookingForm) {
 
             };
 
-
-            // =========================================
             // SHOW SUMMARY
-            // =========================================
 
-            createBookingSummary(
-                currentBooking
-            );
+            createBookingSummary(currentBooking);
 
 
-            bookingForm.parentElement
-                .classList.add(
-                    "hidden"
-                );
+            bookingForm.parentElement.classList.add("hidden");
 
+            bookingSummarySection.classList.remove("hidden");
 
-            bookingSummarySection
-                .classList.remove(
-                    "hidden"
-                );
-
-
-            bookingSummarySection
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+            bookingSummarySection.scrollIntoView({behavior: "smooth"});
 
         }
     );
@@ -1017,15 +682,11 @@ if (bookingForm) {
 }
 
 
-// =====================================================
 // CONFIRM BOOKING
-// =====================================================
 
 if (confirmBookingBtn) {
 
-    confirmBookingBtn.addEventListener(
-        "click",
-        () => {
+    confirmBookingBtn.addEventListener("click",() => {
 
             if (!currentBooking) {
 
@@ -1033,68 +694,34 @@ if (confirmBookingBtn) {
 
             }
 
-
-            // =========================================
             // GET EXISTING BOOKINGS
-            // =========================================
-
+                    
             const bookings =
-                JSON.parse(
-                    localStorage.getItem(
-                        "natureNestBookings"
-                    )
-                ) || [];
+                JSON.parse(localStorage.getItem("natureNestBookings")) || [];
 
 
-            // =========================================
             // SAVE BOOKING
-            // =========================================
 
-            bookings.push(
-                currentBooking
-            );
+            bookings.push(currentBooking);
 
-
-            localStorage.setItem(
-                "natureNestBookings",
-                JSON.stringify(
-                    bookings
-                )
-            );
+            localStorage.setItem("natureNestBookings",JSON.stringify(bookings));
 
 
-            // =========================================
             // SAVE SELECTED SERVICE BOOKING
-            // =========================================
 
-            localStorage.setItem(
-                "lastBooking",
-                JSON.stringify(
-                    currentBooking
-                )
-            );
+            localStorage.setItem("lastBooking",JSON.stringify(currentBooking));
 
 
-            // =========================================
             // SHOW CONFIRMATION
-            // =========================================
 
-            bookingSummarySection
-                .classList.add(
-                    "hidden"
-                );
+            bookingSummarySection.classList.add("hidden");
 
 
-            confirmationSection
-                .classList.remove(
-                    "hidden"
-                );
+            confirmationSection.classList.remove("hidden");
 
 
             const bookingId =
-                document.getElementById(
-                    "bookingId"
-                );
+                document.getElementById("bookingId");
 
 
             if (bookingId) {
@@ -1104,11 +731,7 @@ if (confirmBookingBtn) {
 
             }
 
-
-            confirmationSection
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+            confirmationSection.scrollIntoView({behavior: "smooth"});
 
         }
     );
@@ -1116,15 +739,11 @@ if (confirmBookingBtn) {
 }
 
 
-// =====================================================
 // BACK BUTTON
-// =====================================================
 
 if (backBtn) {
 
-    backBtn.addEventListener(
-        "click",
-        () => {
+    backBtn.addEventListener("click",() => {
 
             window.location.href =
                 "service-details.html";
@@ -1135,15 +754,11 @@ if (backBtn) {
 }
 
 
-// =====================================================
 // DONE BUTTON
-// =====================================================
 
 if (doneBtn) {
 
-    doneBtn.addEventListener(
-        "click",
-        () => {
+    doneBtn.addEventListener("click",() => {
 
             window.location.href =
                 "travel-services.html";
@@ -1153,10 +768,7 @@ if (doneBtn) {
 
 }
 
-
-// =====================================================
 // INITIALIZE
-// =====================================================
 
 displaySelectedService();
 
