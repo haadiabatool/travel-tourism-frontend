@@ -23,9 +23,22 @@
       class="absolute top-0 left-0 right-0 w-full z-50 px-6 py-4 md:py-6 flex items-center justify-between max-w-7xl mx-auto">
 
       <!-- Brand name -->
-      <div class="absolute top-2 left-4 md:top-6 md:left-6 px-4 py-1">
+      <div class="absolute flex flex-row top-2 left-4 md:top-6 md:left-6 px-4 py-1">
         <p class="font-extrabold text-2xl sm:text-2xl md:text-2xl lg:text-2xl text-white drop-shadow-md tracking-wide">
           NatureNest.</p>
+
+          <!-- Mobile Hamburger Menu Button (Sirf mobile/tablet par dikhega) -->
+      <button id="menu-btn" class="md:hidden text-white focus:outline-none z-50 p-1" aria-label="Toggle Menu">
+        <!-- Icon when menu is closed (3 Lines) -->
+        <svg id="menu-icon-closed" xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor" class="w-6 h-6 block ">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <!-- Icon when menu is open (X Close Mark) -->
+        <svg id="menu-icon-open" xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor" class="w-6 h-6 hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
       </div>
 
 
@@ -48,37 +61,30 @@
 
       </div>
 
-
-      <!-- Mobile Hamburger Menu Button (Sirf mobile/tablet par dikhega) -->
-      <button id="menu-btn" class="md:hidden text-white focus:outline-none z-50 p-1" aria-label="Toggle Menu">
-        <!-- Icon when menu is closed (3 Lines) -->
-        <svg id="menu-icon-closed" xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2"
-          stroke="currentColor" class="w-6 h-6 block">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-        <!-- Icon when menu is open (X Close Mark) -->
-        <svg id="menu-icon-open" xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2"
-          stroke="currentColor" class="w-6 h-6 hidden">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-        </svg>
       </button>
     </nav>
 
     <!-- Mobile Overlay Navigation Screen -->
     <div id="mobile-menu"
-      class="absolute inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 transform -translate-y-full opacity-0 md:hidden">
+      class="absolute inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-4 transition-all duration-300 transform -translate-y-full opacity-0 md:hidden">
       <a href="#home-section"
         class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Home</a>
-      <a href="#about-section"
-        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">About
-        Us</a>
-      <a href="#contact-section"
-        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Contact
-        Us</a>
+
       <a href="profile.html"
-        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Profile</a>
+        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Profile
+        Us</a>
+
       <a href="dashboard.html"
         class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Dashboard</a>
+
+      <a href="planned-trips.html"
+        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">PlannedTrips</a>
+
+      <a href="travel-services.html"
+        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">TravelServices</a>
+
+        <a href="#contact-section"
+        class="mobile-link font-sans font-semibold text-xl text-white tracking-wide hover:text-emerald-400 transition-colors">Contact US</a>
 
     </div>
 
