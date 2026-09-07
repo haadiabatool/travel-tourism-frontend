@@ -2,9 +2,11 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>travel-tourism</title>
+  
 </head>
 
 <body>
@@ -135,8 +137,239 @@
   </header>
 
 
+  <!-- Floating Assistance Button (Fixed at Bottom-Right) -->
+<div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+
+  <!-- Optional Tooltip / Message -->
+  <div class="hidden sm:block bg-white text-gray-800 text-xs font-semibold px-4 py-2 rounded-full shadow-lg border border-gray-100 animate-bounce">
+    Need help? Chat with us!
+  </div>
+
+  <!-- Assistant Floating Button -->
+  <button onclick="toggleAssistant()" 
+          aria-label="Need Assistance"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-emerald-300">
+    
+    <!-- Chat Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.75.75 0 0 1-.816-.983 4.5 4.5 0 0 0 .633-2.148A8.825 8.825 0 0 1 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+    
+    </svg>
+  </button>
+
+</div>
+ <!-- ASSISTANT CHAT MODAL -->
+<div id="assistantModal" class="hidden fixed bottom-24 right-6 z-50 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-300">
+    
+    <!-- Chatbot Header -->
+    <div class="bg-emerald-600 text-white p-4 flex items-center justify-between">
+
+        <div class="flex items-center gap-2">
+
+            <span class="text-xl">🤖</span>
+
+            <div>
+                <h3 class="font-bold text-sm">
+                    NatureNest AI Assistant
+                </h3>
+
+                <p class="text-[10px] text-emerald-100">
+                  Online • Ask me anything
+                </p>
+
+            </div>
+        </div>
+
+        <button id="closeAssistantBtn" onclick="toggleAssistant()" class="text-white hover:text-gray-200 font-bold text-xl leading-none">&times;</button>
+
+    </div>
+
+    <!-- Chat Body -->
+    <div class="p-4 h-105 flex flex-col justify-between bg-gray-50/50">
+        
+        <!-- Messages Area -->
+        <div id="chatHistory" class="space-y-3 overflow-y-auto pr-1 text-xs flex-1 mb-3">
+
+            <div class="bg-white text-gray-800 p-3 rounded-2xl rounded-tl-none border border-gray-100 shadow-sm leading-relaxed">
+                👋 Hello! Welcome to NatureNest. Select any question below to get recommendations and travel help:
+            </div>
+
+        </div>
+
+        <!-- Predefined Questions Section -->
+        <div class="pt-2 border-t border-gray-200/80 bg-white -mx-4 -mb-4 p-4 rounded-b-3xl">
+
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">
+              Tap a question to ask:
+            </p>
+            
+            <div class="flex flex-col gap-1.5 max-h-36 overflow-y-auto pr-1">
+
+                <button onclick="askAssistant('Where should I travel?')" class="text-left bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-3 py-2 rounded-xl text-xs font-semibold border border-emerald-200/60 transition flex items-center gap-2">
+                    
+                  <span>📍</span> Where should I travel?
+
+                </button>
+                
+                <button onclick="askAssistant('What can I do there?')" class="text-left bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-3 py-2 rounded-xl text-xs font-semibold border border-emerald-200/60 transition flex items-center gap-2">
+                    
+                  <span>🧗</span> What can I do there?
+
+                </button>
+
+                <button onclick="askAssistant('What should I choose for a low budget?')" class="text-left bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-3 py-2 rounded-xl text-xs font-semibold border border-emerald-200/60 transition flex items-center gap-2">
+                    
+                  <span>💵</span> What should I choose for a low budget?
+
+                </button>
+
+                <button onclick="askAssistant('Which destination is suitable for families?')" class="text-left bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-3 py-2 rounded-xl text-xs font-semibold border border-emerald-200/60 transition flex items-center gap-2">
+                    
+                  <span>👨‍👩‍👧‍👦</span> Which destination is suitable for families?
+
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- POPUP TRAVEL PREFERENCE FORM (Appears after 10 seconds) -->
+<div id="travelPreferenceModal" class="hidden fixed inset-0 z-100 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 transition-opacity duration-300">
+    
+    <!-- Modal Card Box -->
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden relative transform transition-all scale-100 border border-gray-100">
+        
+        <!-- Header with Title and Close (Cross) Button -->
+        <div class="bg-emerald-600 text-white p-5 flex items-center justify-between">
+
+            <div>
+
+                <h3 class="text-lg font-bold">
+                  Plan Your Dream Trip ✨
+                </h3>
+
+                <p class="text-xs text-emerald-100">
+                  Tell us your preferences for tailored recommendations
+                </p>
+
+            </div>
+            
+            <!-- Cross Button (x) -->
+            <button onclick="closePreferenceModal()" aria-label="Close" class="w-8 h-8 flex items-center justify-center rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xl transition">
+                &times;
+            </button>
+        </div>
+
+        <!-- Form Body -->
+        <form id="travelPreferenceForm" onsubmit="handlePreferenceSubmit(event)" class="p-6 space-y-4">
+            
+            <!-- 1. Budget & Travel Type (2-Column Grid) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Budget -->
+                <div>
+
+                    <label class="block text-xs font-bold text-gray-700 mb-1">
+                      Budget Range
+                    </label>
+
+                    <select aria-label="Category" id="prefBudget" required class="w-full border border-gray-200 rounded-xl p-2.5 text-xs text-gray-800 outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50">
+                        <option value="Budget">Low (Budget Friendly)</option>
+
+                        <option value="Medium" selected>Medium (Standard)</option>
+
+                        <option value="Luxury">High (Luxury / Premium)</option>
+
+                    </select>
+                </div>
+
+                <!-- Travel Type -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Travel Type</label>
+
+                    <select aria-label="type" id="prefType" required class="w-full border border-gray-200 rounded-xl p-2.5 text-xs text-gray-800 outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50">
+                        <option value="Adventure">Adventure</option>
+
+                        <option value="Relaxation">Relaxation</option>
+
+                        <option value="Family">Family</option>
+
+                        <option value="Cultural">Cultural</option>
+
+                        <option value="Luxury">Luxury</option>
+
+                        <option value="Budget">Budget</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <!-- 2. Trip Duration & Travelers Count (2-Column Grid) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Duration -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Trip Duration (Days)</label>
+
+                    <input placeholder="duration" type="number" id="prefDuration" min="1" max="30" value="5" required class="w-full border border-gray-200 rounded-xl p-2.5 text-xs text-gray-800 outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50">
+
+                </div> 
+
+                <!-- Number of Travelers -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">Number of Travelers</label>
+
+                    <input placeholder="traveler" type="number" id="prefTravelers" min="1" max="20" value="2" required class="w-full border border-gray-200 rounded-xl p-2.5 text-xs text-gray-800 outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50">
+
+                </div>
+            </div>
+
+            <!-- 3. Preferred Destination Category -->
+            <div>
+
+                <label class="block text-xs font-bold text-gray-700 mb-1">
+                    Preferred Destination Category
+                </label>
+
+                <select aria-label="prefcategory" id="prefCategory" required class="w-full border border-gray-200 rounded-xl p-2.5 text-xs text-gray-800 outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50">
+
+                    <option value="Mountains">Mountains & Valleys</option>
+
+                    <option value="Beaches">Beaches & Coastal</option>
+
+                    <option value="Historical">Historical & Heritage</option>
+
+                    <option value="Desert">Desert Safari</option>
+
+                    <option value="Nature">Nature & Wildlife</option>
+
+                </select>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-2 flex items-center gap-3">
+
+                <!-- Back / Cancel Button -->
+                <button type="button" onclick="closePreferenceModal()" class="w-1/3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold py-3 rounded-xl transition">
+                    Back
+                </button>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl shadow-lg hover:shadow-emerald-200 transition">
+                    Find Recommended Places
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
   <!-- Destination filtering button -->
   <section class="py-5 bg-white">
+
     <div class="max-w-7xl mx-auto px-6">
 
       <!-- Section Heading -->
@@ -146,9 +379,8 @@
 
       <!-- Search & Filter Bar Row Container -->
       <div class="bg-gray-50 rounded-2xl border border-gray-200 shadow-sm p-5 mb-6">
+
         <div class="flex flex-col md:flex-row gap-4">
-
-
 
           <!-- Search Input Bar -->
           <div class="flex-1">
@@ -160,2230 +392,146 @@
             <input id="searchInput" type="text" placeholder="Search destination..."
               class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500">
 
-
           </div>
-
 
           <!-- Category Select Dropdown -->
           <div class="md:w-64">
+
             <label for="destinationFilter" class="block text-sm font-semibold text-gray-700 mb-2">
               Destination
             </label>
 
             <select id="categoryFilter" aria-label="Filter by category"
               class="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-50">
+
               <option value="all">All Categories</option>
+
               <option value="beach">Beaches</option>
+
               <option value="mountain">Mountains</option>
+
               <option value="historical">Historical</option>
+
               <option value="adventure">Adventure</option>
+
               <option value="cultural">Cultural</option>
+
               <option value="wildlife">Nature & Wildlife</option>
+
               <option value="popular-destination">Popular Destination</option>
+
             </select>
           </div>
 
         </div>
       </div>
-
-      <!-- Beaches Section -->
-      <!-- Beach heading -->
-      <div class="destination beach max-w-7xl mx-auto px-4 mt-5 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Beaches
-        </h2>
       </div>
-      <section
-        class="destination beach max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+    </section>
+    
 
-        <!--Place 1  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Clifton Beach" data-location="karachi">
+      <!-- 2. Beaches Section -->
+    <div class="destination beaches max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/Beaches/clifton-beach-karachi.jpg" alt="clifton-beach-karachi"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Beaches
+      </h2>
 
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Clifton Beach</span>
-            </div>
+    </div>
+    <section id="beaches-container" class="destination beaches max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
-          </div>
+      <!-- 3. Mountains Section -->
+    <div class="destination mountains max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan,Karachi, Sindh</span>
-          </div>
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Mountains
+      </h2>
 
+    </div>
+    <section id="mountains-container" class="destination mountains max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
+      <!-- 4. Historical Places Section -->
+    <div class="destination historical max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-          <!-- Short Description  -->
-          <div class="flex-1 mb-2">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">One
-              of
-              Pakistan's most popular beaches, Clifton Beach offers
-              scenic sunsets, camel rides, horse riding, and a lively coastal atmosphere.</p>
-          </div>
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Historical Places
+      </h2>
 
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
+    </div>
+    <section id="historical-container" class="destination historical max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=clifton-beach'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+      <!-- 5. Adventure Section -->
+    <div class="destination adventure max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-              <!-- <a href="explore-destination.html?id=1"> -->
-              <span class="relative z-10">Explore Destination</span>
-              <!-- </a> -->
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Adventure
+      </h2>
 
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
+    </div>
+    <section id="adventure-container" class="destination adventure max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
-        </div>
+      <!-- 6. Culture Section -->
+    <div class="destination cultural max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="grace bay" data-location="Turks and Caicos">
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Culture
+      </h2>
 
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\Beaches\grace-bay-beach.jpg" alt="grace-bay-beach"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+    </div>
 
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Grace Bay Beach</span>
-            </div>
-          </div>
+    <section id="cultural-container" class="destination cultural max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
+      <!-- 7. Nature & Wildlife Section -->
+    <div class="destination wildlife max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Turks and Caicos Islands</span>
-          </div>
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Nature & Wildlife
+      </h2>
 
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Grace
-              Bay
-              Beach features powder-soft white sand and calm, crystal-clear waters. It is consistently
-              ranked among the world's best beaches for relaxation, swimming, and snorkeling.</p>
-          </div>
+    </div>
 
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
+    <section id="wildlife-container" class="destination wildlife max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=grace-bay-beach'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
+     <!-- 1. Popular Destinations Section -->
+    <div class="destination popular-destination max-w-7xl mx-auto px-4 mt-1 mb-6">
 
-              <span class="relative z-10">Explore Destination</span>
+      <h2 class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
+        Popular Destinations
+      </h2>
 
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="kund malir" data-location="Balochistan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/Beaches/kund-malir.jpg" alt="kund-malir"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Kund Malir</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Hingol Park, Balochistan</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Kund
-              Malir
-              Beach is one of Pakistan's most beautiful coastal destinations, offering golden sand,
-              turquoise waters, dramatic mountains, and an untouched natural landscape along the Makran Coastal Highway.
-            </p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=kund-malir'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Navagio Beach" data-location="Greece">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/Beaches/Navagio Beach.jpg" alt="Navagio Beach"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Navagio Beach</span>
-            </div>
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Zakynthos Island, Greece</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Navagio Beach,
-              also known as Shipwreck Beach, is one of Greece's most iconic coastal destinations. Surrounded by towering
-              limestone cliffs and crystal-clear turquoise waters,
-              it is famous for the historic shipwreck resting on its white sandy shore, offering breathtaking scenery
-              and an
-              unforgettable beach experience.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=navagio-beach'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Whitehaven Beach" data-location="Australia">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/Beaches/whitehaven-beach.jpg" alt="clifton-beach-karachi"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Whitehaven Beach</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Whitsunday, Australia</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Whitehaven
-              Beach is world-famous for its pure white silica sand and crystal-clear turquoise waters. Surrounded by the
-              Great Barrier Reef,
-              it offers a peaceful tropical escape with breathtaking coastal views.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=whitehaven-beach'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Mountains Section -->
-      <!-- Mountains Heading -->
-      <div class="destination mountain max-w-7xl mx-auto px-4 mt-1 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Mountains
-        </h2>
-      </div>
-
-      <section
-        class="destination mountain max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-
-        <!--Place 1  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Fairy Medows" data-location="Gilgit Baltistan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/mountains/fairy-meadows-pakistan.jpg" alt="fairy-meadows"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Fairy Meadows</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan,Gilgit-Baltistan</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              lush green
-              alpine
-              meadow offering spectacular views of Nanga Parbat, making it one of Pakistan's most scenic destinations.
-            </p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=fairy-meadows'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="mount fauji" data-location="japan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\mountains\mount-fuji.jpg" alt="mount-fuji."
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Mount Fuji</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Japan,Honshu Island</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Japan's
-              tallest mountain is an iconic symbol
-              known for its perfectly shaped volcanic peak and scenic surroundings.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=mount-fuji'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Rakaposhi" data-location="Pakistan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/mountains/rakaposhi.jpg" alt="rakaposhi"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Rakaposhi</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan,Nagar Valley</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              majestic
-              snow-covered mountain admired for its stunning beauty, trekking routes, and panoramic valley views.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=rakaposhi'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Swiss Alps" data-location="Switzerland">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/mountains/swiss-alps.jpg" alt="swiss-alps"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Swiss Alps</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Switzerland,Southern</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Snow-covered
-              peaks, charming villages,
-              and breathtaking alpine scenery make the Swiss Alps a dream destination.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=swiss-alps'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Rocky mountain" data-location="Canada">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/mountains/rocky-mountains.jpg" alt="rocky-mountains"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Rocky Mountains</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Canada,British Columbia</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              paradise of
-              glaciers, turquoise lakes, wildlife, and spectacular mountain landscapes.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=rocky-mountains'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Historical places section -->
-      <!-- Historical Places heading-->
-      <div class="destination historical max-w-7xl mx-auto px-4 mt-1 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Historical
-        </h2>
-      </div>
-
-      <section
-        class="destination historical max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-
-        <!--Place 1  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Colosseum" data-location="Italy">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/historical places/colosseum.jpg" alt="colosseum"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Colosseum</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Italy,Rome</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">One
-              of the
-              world's greatest historical landmarks, representing the glory of the Roman Empire.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=colosseum'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Lahore Fort" data-location="Lahore">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\historical places\lahore-fort.jpg" alt="lahore-fort."
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Lahore Fort</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan,Lahore, Punjab</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              UNESCO World
-              Heritage Site showcasing magnificent Mughal architecture and centuries of Pakistan's rich history.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=lahore-fort'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Mohenjo daro" data-location="Sindh">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/historical places/mohenjo-daro.jpg" alt="mohenjo-daro"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Mohenjo-daro</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan, Larkana, Sindh</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">One
-              of the
-              world's oldest civilizations, featuring remarkable archaeological ruins dating back over 4,500 years.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=mohenjo-daro'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Michu Picchu" data-location="peru">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/historical places/machu-picchu.jpg" alt="machu-picchu"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Machu Picchu</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Peru,Cusco Region</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              breathtaking
-              Incan citadel nestled high in the Andes Mountains, surrounded by lush green peaks.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=machu-picchu'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Petra" data-location="Jordan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/historical places/petra-jordan.jpg" alt="petra-jordan"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Petra</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Jordan, Ma'an Governorate</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">An
-              ancient
-              rock-carved city and UNESCO World Heritage Site showcasing extraordinary architecture.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=petra'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Adventure places section -->
-      <!-- Adventure places heading -->
-      <div class="destination adventure max-w-7xl mx-auto px-4 mt-1 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Adventure
-        </h2>
-      </div>
-
-      <section
-        class="destination adventure max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-
-        <!--Place 1  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Deosai National" data-location="Skardu">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/adventure/deosai.jpg" alt="deosai"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Deosai National</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Skardu, Gilgit-Baltistan</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Known
-              as the
-              "Land of Giants," Deosai offers jeep safaris, camping, hiking, and breathtaking high-altitude landscapes.
-            </p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=deosai-national-park'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Interlaken" data-location="Switzerland">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\adventure\interlaken-paragliding.jpg" alt="interlaken-paragliding"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Interlaken</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Switzerland,Bernese</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              spectacular
-              destination offering paragliding, hiking, canyoning, and unforgettable mountain adventures.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=interlaken'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Moab" data-location="Utah">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/adventure/moab-utah.jpg" alt="moab-utah"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Moab</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">USA, Utah</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Famous for
-              off-road adventures, hiking trails, desert landscapes, and stunning red rock formations.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=moab'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Queenstown" data-location="Newzealand">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/adventure/queenstown-new-zealand.jpg" alt="Queenstown"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Queenstown</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">New Zealand,South Island</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">The
-              world's
-              adventure capital offering bungee jumping, skydiving, skiing, and jet boating.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=queenstown'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Queenstown bungee" data-location="Canada">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/adventure/queenstown-bungee-jump.jpg" alt="rocky-mountains"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Queenstown Bungee</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Canada, British Columbia</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">The
-              Canadian
-              This UNESCO World Heritage region offers world-class hiking, skiing, camping, and breathtaking scenic
-              drives
-              through Banff and Jasper National Parks.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=bungee'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Cultural places section -->
-      <div class="destination cultural max-w-7xl mx-auto px-4 mt-1 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Culture
-        </h2>
-      </div>
-
-      <section
-        class="destination cultural max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-
-        <!--Place 1  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Hunza Valley" data-location="Gilgit balitistan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/cultural destination/hunza.jpg" alt="Hunza Valley"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Hunza Valley</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan,Gilgit-Baltistan</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              culturally
-              rich valley known for its welcoming people, ancient forts, traditional festivals, and breathtaking
-              landscapes.
-            </p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=hunza-valley'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Istanbul" data-location="Turkey">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\cultural destination\istanbul.jpg" alt="Istanbul"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Istanbul</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Türkiye,Istanbul Province</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              unique city
-              where Europe meets Asia, famous for its mosques, bazaars, and rich cultural heritage.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">3.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=istanbul'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="marrakech" data-location="Morocco">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/cultural destination/marrakech.jpg" alt="Marrakech"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Marrakech</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Morocco,Marrakech Region</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              colorful
-              city filled with bustling souks, magnificent palaces, and vibrant Moroccan culture.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=marrakech'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="kalash valley" data-location="Chiteral">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/cultural destination/kalash-valley.jpg" alt="Kalash Valley"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Kalash Valley</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan, Chitral, Khyber</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Home
-              to the
-              unique Kalash community, famous for its colorful traditions, festivals, and distinctive cultural heritage.
-            </p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=kalash-valley'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Kyoto" data-location="japan">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/cultural destination/kyoto.jpg" alt="Kyoto"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Kyoto</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Japan,Kyoto Prefecture</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Home
-              to
-              ancient temples, traditional tea houses, bamboo forests, and beautiful Japanese gardens.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=kyoto'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Nature & Wildlife -->
-      <div class="destination wildlife max-w-7xl mx-auto px-4 mt-1 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Nature & Wildlife
-        </h2>
-      </div>
-
-      <section
-        class="destination wildlife max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-
-        <!--Place 1  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Galápagos Islands" data-location="Pacific">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/nature & wild life/galapagos-islands.jpg" alt="Galápagos Islands"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Galápagos Islands</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pacific,coast of Ecuador</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Discover the
-              extraordinary Galápagos Islands, home to giant tortoises, marine iguanas, blue-footed boobies, sea lions,
-              and
-              untouched volcanic landscapes. A paradise for wildlife enthusiasts and nature explorers.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=galapagos-islands'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Serengeti National" data-location="Tanzania">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\nature & wild life\serengeti.jpg" alt="Serengeti National"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Serengeti National</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Tanzania, Mara Region</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              World-famous
-              for the Great Migration and incredible wildlife including lions, elephants, and zebras.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=serengeti-national-park'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Katmai National" data-location="USA">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/nature & wild life/katmai-national-park.jpg" alt="Katmai National"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Katmai National</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">USA, Alaska Peninsula</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Katmai
-              National Park is a spectacular wilderness famous for its brown bears catching salmon at Brooks Falls.
-              Featuring volcanic landscapes, pristine rivers, abundant wildlife, and untouched natural beauty,
-              it is one of the world's top destinations for wildlife photography and outdoor adventure.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=katmai-national-park'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Kruger National" data-location="South Africa">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/nature & wild life/kruger-national-park.jpg" alt="Kruger National Park"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Kruger National Park</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">South Africa,Mpumalanga</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">One
-              of
-              Africa's premier safari destinations, home to the famous Big Five and diverse ecosystems.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=kruger-national-park'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80"
-          data-name="Masai Mara" data-location="Kenya">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/nature & wild life/masai-mara.jpg" alt="Masai Mara"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Masai Mara</span>
-            </div>
-
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Narok,Southwestern Kenya</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Experience
-              Africa's iconic safari destination featuring lions, elephants, cheetahs, giraffes, zebras, and the
-              spectacular
-              Great Wildebeest Migration across golden grasslands.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=masai-mara'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Popular destination section -->
-      <div class="destination popular-destination max-w-7xl mx-auto px-4 mt-1 mb-6">
-        <h2
-          class="font-sans font-extrabold text-xl sm:text-2xl text-neutral-800 tracking-wide uppercase border-b-2 border-emerald-500 pb-2 inline-block">
-          Popular Destination
-        </h2>
-      </div>
-
-      <section
-        class="destination popular-destination max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
-
-        <!-- Place 1 -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/nature & wild life/masai-mara.jpg" alt="Masai Mara"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Masai Mara</span>
-            </div>
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Narok, Southwestern Kenya</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Experience
-              Africa's iconic safari destination featuring lions, elephants, cheetahs, giraffes, zebras, and the
-              spectacular
-              Great Wildebeest Migration across golden grasslands.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=masai-mara'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 2  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\cultural destination\istanbul.jpg" alt="Istanbul"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Istanbul</span>
-            </div>
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Türkiye,Istanbul Province</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">A
-              unique city
-              where Europe meets Asia, famous for its mosques, bazaars, and rich cultural heritage.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★</span>
-            <span class="text-gray-400">★★</span>
-            <span class="text-orange-400">3.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=istanbul'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 3  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="/src/assets/adventure/deosai.jpg" alt="deosai"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Deosai National</span>
-            </div>
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Pakistan,Gilgit-Baltistan</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Known
-              as the
-              "Land of Giants," Deosai offers jeep safaris, camping, hiking, and breathtaking high-altitude landscapes.
-            </p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=deosai-national-park'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 4 -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\mountains\mount-fuji.jpg" alt="mount-fuji."
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Mount Fuji</span>
-            </div>
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Japan,Honshu Island</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
-              Japan's
-              tallest mountain is an iconic symbol
-              known for its perfectly shaped volcanic peak and scenic surroundings.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.5</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=mount-fuji'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-        <!--Place 5  -->
-        <div
-          class="destination-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full border border-neutral-100/80">
-
-          <!-- Place image -->
-          <div class="relative overflow-hidden aspect-4/3">
-            <img src="\src\assets\Beaches\grace-bay-beach.jpg" alt="grace-bay-beach"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-
-            <!-- Destination Name-->
-            <div
-              class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Grace Bay Beach</span>
-            </div>
-          </div>
-
-
-          <!-- Country Name -->
-          <div class="px-4 pt-2 text-neutral-500 text-xs font-semibold uppercase tracking-wider mb-2">
-            <span class="text-emerald-700">Turks and Caicos Islands</span>
-          </div>
-
-          <!-- Short Description  -->
-          <div class="flex-1 mb-4">
-            <p class="px-4 font-sans font-normal text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">Grace
-              Bay
-              Beach features powder-soft white sand and calm, crystal-clear waters. It is consistently
-              ranked among the world's best beaches for relaxation, swimming, and snorkeling.</p>
-          </div>
-
-          <!-- Rating -->
-          <div class="px-4 flex flex-row items-center relative mb-2">
-            <p class="font-sans font-normal text-neutral-600">Rating:</p>
-            <span class="text-orange-400">★★★★</span>
-            <span class="text-gray-400">★</span>
-            <span class="text-orange-400">4.0</span>
-          </div>
-
-          <!-- Explore Destination Button -->
-          <div class="mt-auto flex justify-center  pb-3">
-            <button onclick="window.location.href='explore-destination.html?id=grace-bay-beach'"
-              class="relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-4xl text-xs sm:text-sm font-sans font-semibold tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-100/50 overflow-hidden transition-all duration-300 ease-out active:scale-95 shadow-sm hover:shadow hover:bg-emerald-600 hover:text-white hover:border-emerald-600 group/btn">
-              <!-- Background shimmer overlay effect for uniqueness -->
-              <span
-                class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-out group-hover/btn:translate-x-full"></span>
-
-              <span class="relative z-10">Explore Destination</span>
-
-              <!-- Arrow Icon with fluid transition -->
-              <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
-                class="w-3.5 h-3.5 relative z-10 transition-all duration-300 ease-out group-hover/btn:translate-x-1 group-hover/btn:scale-110">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </button>
-          </div>
-
-        </div>
-
-      </section>
+    </div>
+    <section id="popular-container" class="destination popular-destination max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+      <!-- Dynamically rendered by index.js -->
+    </section>
 
       <!-- About Us Section Wrapper-->
       <section id="about-section"
         class="w-full bg-neutral-50 rounded-2xl py-20 px-4 flex items-center justify-center scroll-mt-6">
 
         <!-- Main Elegant Card -->
-        <div
-          class="max-w-3xl w-full bg-white rounded-3xl shadow-xl border border-neutral-100 p-8 md:p-12 text-center relative overflow-hidden group hover:shadow-3xl transition-all duration-500">
+        <div class="max-w-3xl w-full bg-white rounded-3xl shadow-xl border border-neutral-100 p-8 md:p-12 text-center relative overflow-hidden group hover:shadow-3xl transition-all duration-500">
 
           <!-- Decorative Subtle Background Pattern/Glow -->
-          <div
-            class="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500">
+          <div  class="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500">
           </div>
-          <div
-            class="absolute -bottom-24 -left-24 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500">
+
+          <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-all duration-500">
           </div>
 
           <!-- Small Premium Badge -->
-          <div
-            class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
+          <div class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">
+
             <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
               class="w-3.5 h-3.5 animate-pulse">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -2394,19 +542,16 @@
           </div>
 
           <!-- 1. Heading -->
-          <h2
-            class="font-sans font-extrabold text-2xl sm:text-3xl md:text-4xl text-neutral-800 tracking-tight mb-6 leading-tight">
+          <h2 class="font-sans font-extrabold text-2xl sm:text-3xl md:text-4xl text-neutral-800 tracking-tight mb-6 leading-tight">
             Explore the Beauty of Our World
           </h2>
 
           <!-- Divider Line -->
-          <div
-            class="w-16 h-1 bg-emerald-500 mx-auto rounded-full mb-8 transform group-hover:w-24 transition-all duration-300">
+          <div class="w-16 h-1 bg-emerald-500 mx-auto rounded-full mb-8 transform group-hover:w-24 transition-all duration-300">
           </div>
 
           <!-- 2. Main Content Paragraph -->
-          <p
-            class="font-sans font-normal text-sm sm:text-base md:text-lg text-neutral-600 leading-relaxed max-w-2xl mx-auto drop-shadow-xs">
+          <p class="font-sans font-normal text-sm sm:text-base md:text-lg text-neutral-600 leading-relaxed max-w-2xl mx-auto drop-shadow-xs">
             <span class="font-semibold text-emerald-700">NatureNest</span> is designed for travelers who seek
             extraordinary experiences. We carefully showcase breathtaking natural wonders,
             iconic tourist destinations, peaceful beaches, majestic mountain ranges, historical treasures, cultural
@@ -2416,14 +561,19 @@
           </p>
 
           <!-- Interactive Subtle Footer Detail inside Card -->
-          <div
-            class="mt-8 pt-6 border-t border-neutral-100 flex items-center justify-center gap-6 text-neutral-400 text-xs">
+          <div class="mt-8 pt-6 border-t border-neutral-100 flex items-center justify-center gap-6 text-neutral-400 text-xs">
             <div class="flex items-center gap-1">
+
               <span class="font-bold text-neutral-700">50+</span> Destinations
+
             </div>
+
             <div class="w-1 h-1 bg-neutral-300 rounded-full"></div>
+
             <div class="flex items-center gap-1">
+
               <span class="font-bold text-neutral-700">24/7</span> Inspiration
+
             </div>
           </div>
 
@@ -2560,7 +710,7 @@
         </div>
       </section>
 
-      <!-- ================= REVIEW & RATING SECTION ================= -->
+      <!--  REVIEW & RATING SECTION  -->
 
       <section id="review-section" class="w-full bg-white py-16 px-4">
         <div class="max-w-3xl mx-auto">
@@ -2684,11 +834,14 @@
         </div>
       </section>
 
-
-
       <script type="module" src="/src/main.js"></script>
       <script type="module" src="/src/dynamic-destination.js"></script>
       <script type="module" src="/src/review.js"></script>
+      <script type="module" src="/src/index.js"></script>
+      <script type="module" src="/src/destination-data.js"></script>
+      <script type="module" src="/src/assistant-logic.js"></script>
+      <script type="module" src="/src/app.js"></script>
+
 </body>
 
 </html>

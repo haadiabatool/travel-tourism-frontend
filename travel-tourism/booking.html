@@ -39,7 +39,7 @@
     <main class="max-w-6xl mx-auto px-6 py-8">
 
         <!-- BOOKING CONTAINER -->
-        <section class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8">
+        <section id="formSection" class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8">
 
             <!-- HEADING -->
             <div class="mb-8">
@@ -215,17 +215,53 @@
 
         </section>
 
-        <!-- BOOKING SUMMARY -->
+        <!-- BOOKING SUMMARY SECTION (ADDED FIX) -->
         <section id="bookingSummarySection" class="hidden bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8 mt-8">
-            
-            <div class="mb-8">
-                
+
+            <div class="mb-6">
+
                 <p class="text-sm font-semibold text-emerald-600 uppercase tracking-wide">
-                    Booking Summary
-                
+                    Review Details
                 </p>
+
+                <h2 class="text-3xl font-bold text-gray-800">
+                    Booking Summary
+                </h2>
+
             </div>
-            
+
+            <!-- Dynamic content injected here -->
+            <div id="bookingSummary" class="space-y-4"></div>
+
+            <div class="mt-8 flex gap-4">
+
+                <button id="confirmBookingBtn" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-xl font-semibold transition cursor-pointer">
+                    Confirm & Proceed
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- CONFIRMATION SECTION (ADDED FIX) -->
+        <section id="confirmationSection" class="hidden bg-white rounded-3xl shadow-sm border border-gray-100 p-8 text-center mt-8">
+
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                ✓
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+                Booking Confirmed!
+            </h2>
+
+            <p class="text-gray-500 mb-6">
+                Your booking ID is: <strong id="bookingId" class="text-emerald-700"></strong>
+            </p>
+
+            <button id="doneBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-xl font-semibold transition cursor-pointer">
+                Back to Services
+            </button>
+
         </section>
 
     </main>

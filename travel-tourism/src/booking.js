@@ -1,146 +1,121 @@
 import "./style.css";
 
-
 // GET SELECTED SERVICE
-
 const selectedService =
-    JSON.parse(localStorage.getItem("selectedService"));
-
+     JSON.parse(localStorage.getItem("selectedService"));
 
 // GET SELECTED TRIP ID FROM URL
-
-const urlParams =
+const urlParams = 
     new URLSearchParams(window.location.search);
 
-const selectedTripId =
+const selectedTripId = 
     urlParams.get("tripId");
 
 // DOM ELEMENTS
+const formSection = 
+    document.getElementById("formSection");
 
-const bookingForm =
+const bookingForm = 
     document.getElementById("bookingForm");
 
-const bookingSummarySection =
+const bookingSummarySection = 
     document.getElementById("bookingSummarySection");
 
-const bookingSummary =
+const bookingSummary = 
     document.getElementById("bookingSummary");
 
-const confirmationSection =
+const confirmationSection = 
     document.getElementById("confirmationSection");
 
-
 // SELECTED SERVICE ELEMENTS
-
-const selectedServiceImage =
+const selectedServiceImage = 
     document.getElementById("selectedServiceImage");
 
-const selectedServiceName =
+const selectedServiceName = 
     document.getElementById("selectedServiceName");
 
-const selectedServiceLocation =
+const selectedServiceLocation = 
     document.getElementById("selectedServiceLocation");
 
-const selectedServiceCategory =
+const selectedServiceCategory = 
     document.getElementById("selectedServiceCategory");
 
-const selectedServicePrice =
+const selectedServicePrice = 
     document.getElementById("selectedServicePrice");
 
-const bookingService =
+const bookingService = 
     document.getElementById("bookingService");
 
-const estimatedTotal =
+const estimatedTotal = 
     document.getElementById("estimatedTotal");
 
-
 // FORM INPUTS
-
-const fullName =
+const fullName = 
     document.getElementById("fullName");
 
-const email =
+const email = 
     document.getElementById("email");
 
-const phone =
+const phone = 
     document.getElementById("phone");
 
-const bookingDate =
+const bookingDate = 
     document.getElementById("bookingDate");
 
-const numberOfPeople =
+const numberOfPeople = 
     document.getElementById("numberOfPeople");
 
-const specialRequest =
+const specialRequest = 
     document.getElementById("specialRequest");
 
-
 // ERROR ELEMENTS
-
-const fullNameError =
+const fullNameError = 
     document.getElementById("fullNameError");
 
-const emailError =
+const emailError = 
     document.getElementById("emailError");
 
-const phoneError =
+const phoneError = 
     document.getElementById("phoneError");
 
-const bookingDateError =
+const bookingDateError = 
     document.getElementById("bookingDateError");
 
-const peopleError =
+const peopleError = 
     document.getElementById("peopleError");
 
-
 // OTHER BUTTONS
-
-const backBtn =
+const backBtn = 
     document.getElementById("backBtn");
 
-const confirmBookingBtn =
+const confirmBookingBtn = 
     document.getElementById("confirmBookingBtn");
 
-const doneBtn =
+const doneBtn = 
     document.getElementById("doneBtn");
 
 
 // SERVICE NOT FOUND
-
 if (!selectedService) {
 
     alert("No service selected.");
 
-    window.location.href =
-        "travel-services.html";
+    window.location.href = "travel-services.html";
+
 }
 
+const serviceName = 
+    selectedService?.name || selectedService?.serviceName || "Travel Service";
 
-// SERVICE NAME
+const serviceLocation = 
+    selectedService?.location || selectedService?.destination || "Pakistan";
 
-const serviceName =
-    selectedService?.name ||selectedService?.serviceName ||"Travel Service";
+const serviceCategory = 
+    selectedService?.category || "Travel Service";
 
-
-// SERVICE LOCATION
-
-const serviceLocation =
-    selectedService?.location ||selectedService?.destination ||"Pakistan";
-
-
-// SERVICE CATEGORY
-
-const serviceCategory =
-    selectedService?.category ||"Travel Service";
-
-
-// SERVICE PRICE
-
-let servicePrice =
+let servicePrice = 
     Number(selectedService?.price) || 0;
 
-
-// FORMAT PRICE
 
 function formatPrice(amount) {
 
@@ -148,162 +123,68 @@ function formatPrice(amount) {
 
 }
 
-
-// DISPLAY SELECTED SERVICE
-
 function displaySelectedService() {
 
-    if (!selectedService) {
-
-        return;
-
-    }
-
-
-    // IMAGE
+    if (!selectedService) return;
 
     if (selectedServiceImage) {
 
-        selectedServiceImage.src =
-            selectedService.image ||"/src/assets/default-service.jpg";
+        selectedServiceImage.src = 
+            selectedService.image || "/src/assets/default-service.jpg";
 
-        selectedServiceImage.alt =
-            serviceName;
-
-    }
-
-
-    // NAME
-
-    if (selectedServiceName) {
-
-        selectedServiceName.textContent =
-            serviceName;
+        selectedServiceImage.alt = serviceName;
 
     }
 
+    if (selectedServiceName) selectedServiceName.textContent = serviceName;
 
-    // LOCATION
+    if (selectedServiceLocation) selectedServiceLocation.textContent = `📍 ${serviceLocation}`;
 
-    if (selectedServiceLocation) {
+    if (selectedServiceCategory) selectedServiceCategory.textContent = serviceCategory;
 
-        selectedServiceLocation.textContent =
-            `📍 ${serviceLocation}`;
+    if (selectedServicePrice) selectedServicePrice.textContent = formatPrice(servicePrice);
 
-    }
-
-
-    // CATEGORY
-
-    if (selectedServiceCategory) {
-
-        selectedServiceCategory.textContent =
-            serviceCategory;
-
-    }
-
-
-    // PRICE
-
-    if (selectedServicePrice) {
-
-        selectedServicePrice.textContent =
-            formatPrice(servicePrice);
-
-    }
-
-
-    // FORM SERVICE
-
-    if (bookingService) {
-
-        bookingService.value =
-            serviceName;
-
-    }
-
+    if (bookingService) bookingService.value = serviceName;
 }
 
+const today = new Date().toISOString().split("T")[0];
 
-// TODAY DATE
-
-const today =
-    new Date().toISOString().split("T")[0];
-
-
-if (bookingDate) {
-
-    bookingDate.min =today;
-
-}
-
-
-// CALCULATE TOTAL
+if (bookingDate) bookingDate.min = today;
 
 function calculateTotal() {
 
-    const people =
+    const people = 
         Number(numberOfPeople?.value) || 1;
 
-
     const total =
-        servicePrice *people;
+         servicePrice * people;
 
-
-    if (estimatedTotal) {
-
-        estimatedTotal.textContent =
-            formatPrice(total);
-
-    }
+    if (estimatedTotal) estimatedTotal.textContent = formatPrice(total);
 
     return total;
-
 }
 
+if (numberOfPeople) numberOfPeople.addEventListener("input", calculateTotal);
 
-// PEOPLE CHANGE
+function showError(element, message) {
 
-if (numberOfPeople) {
+    if (!element) return;
 
-    numberOfPeople.addEventListener("input",calculateTotal);
-
-}
-
-
-// ERROR FUNCTIONS
-
-function showError(element,message) {
-
-    if (!element) {
-
-        return;
-
-    }
-
-    element.textContent =
-        message;
-
+    element.textContent = message;
 
     element.classList.remove("hidden");
 
 }
 
-
 function clearError(element) {
 
-    if (!element) {
+    if (!element) return;
 
-        return;
-    }
-
-    element.textContent ="";
+    element.textContent = "";
 
     element.classList.add("hidden");
 
 }
-
-// CLEAR ALL ERRORS
 
 function clearAllErrors() {
 
@@ -319,28 +200,19 @@ function clearAllErrors() {
 
 }
 
-
-// VALIDATE EMAIL
-
 function isValidEmail(value) {
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 }
 
-// VALIDATE PHONE
-
 function isValidPhone(value) {
 
-    const cleaned =
-        value.replace(/[\s-]/g,"");
-
+    const cleaned = value.replace(/[\s-]/g, "");
 
     return /^(\+92|03)\d{9}$/.test(cleaned);
+
 }
-
-
-// VALIDATE FORM
 
 function validateForm() {
 
@@ -348,103 +220,78 @@ function validateForm() {
 
     let isValid = true;
 
-    // FULL NAME
-
-    const name =
-        fullName.value.trim();
-
+    const name = fullName.value.trim();
 
     if (!name) {
 
-        showError(fullNameError,"Please enter your full name.");
+        showError(fullNameError, "Please enter your full name.");
 
         isValid = false;
 
-    }
-    else if (name.length < 3) {
+    } else if (name.length < 3) {
 
-        showError(fullNameError,"Name must be at least 3 characters.");
+        showError(fullNameError, "Name must be at least 3 characters.");
 
         isValid = false;
-
     }
 
-    // EMAIL
-
-    const emailValue =
-        email.value.trim();
-
+    const emailValue = email.value.trim();
 
     if (!emailValue) {
 
-        showError(emailError,"Please enter your email address.");
+        showError(emailError, "Please enter your email address.");
+
+        isValid = false;
+
+    } else if (!isValidEmail(emailValue)) {
+
+        showError(emailError, "Please enter a valid email address.");
 
         isValid = false;
 
     }
-    else if (!isValidEmail(emailValue)) {
 
-        showError(emailError,"Please enter a valid email address.");
-
-        isValid = false;
-
-    }
-
-    // PHONE
-
-    const phoneValue =
-        phone.value.trim();
-
+    const phoneValue = phone.value.trim();
 
     if (!phoneValue) {
 
-        showError(phoneError,"Please enter your phone number.");
+        showError(phoneError, "Please enter your phone number.");
+
+        isValid = false;
+
+    } else if (!isValidPhone(phoneValue)) {
+
+        showError(phoneError, "Please enter a valid Pakistani phone number.");
 
         isValid = false;
 
     }
-    else if (!isValidPhone(phoneValue)) {
-
-        showError(phoneError,"Please enter a valid Pakistani phone number.");
-
-        isValid = false;
-
-    }
-
-
-    // BOOKING DATE
 
     if (!bookingDate.value) {
 
-        showError(bookingDateError,"Please select a booking date.");
+        showError(bookingDateError, "Please select a booking date.");
+
+        isValid = false;
+
+    } else if (bookingDate.value < today) {
+
+        showError(bookingDateError, "Booking date cannot be in the past.");
 
         isValid = false;
 
     }
-    else if (bookingDate.value < today) {
 
-        showError(bookingDateError,"Booking date cannot be in the past.");
-
-        isValid = false;
-
-    }
-
-    // PEOPLE
-
-    const people =
-        Number(numberOfPeople.value);
-
+    const people = Number(numberOfPeople.value);
 
     if (!numberOfPeople.value) {
 
-        showError(peopleError,"Please enter the number of people.");
+        showError(peopleError, "Please enter the number of people.");
 
         isValid = false;
 
-    }
-    else if (people < 1 ||people > 50) {
+    } else if (people < 1 || people > 50) {
 
-        showError(peopleError,"Number of people must be between 1 and 50.");
+        showError(peopleError, "Number of people must be between 1 and 50.");
 
         isValid = false;
 
@@ -453,20 +300,13 @@ function validateForm() {
     return isValid;
 }
 
-
-// CREATE BOOKING SUMMARY
-
 function createBookingSummary(booking) {
 
-    if (!bookingSummary) {
-
-        return;
-
-    }
+    if (!bookingSummary) return;
 
     bookingSummary.innerHTML = `
 
-        <div class=" flex justify-between gap-4 border-b border-gray-100 pb-4">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-3">
 
             <span class="text-gray-500">
                 Customer Name
@@ -478,8 +318,7 @@ function createBookingSummary(booking) {
 
         </div>
 
-
-        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-3">
 
             <span class="text-gray-500">
                 Selected Service
@@ -491,8 +330,7 @@ function createBookingSummary(booking) {
 
         </div>
 
-
-        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-3">
 
             <span class="text-gray-500">
                 Booking Date
@@ -504,8 +342,7 @@ function createBookingSummary(booking) {
 
         </div>
 
-
-        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-3">
 
             <span class="text-gray-500">
                 Number of People
@@ -517,8 +354,7 @@ function createBookingSummary(booking) {
 
         </div>
 
-
-        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-3">
 
             <span class="text-gray-500">
                 Price Per Person
@@ -530,8 +366,7 @@ function createBookingSummary(booking) {
 
         </div>
 
-
-        <div class="flex justify-between gap-4 border-b border-gray-100 pb-4">
+        <div class="flex justify-between gap-4 border-b border-gray-100 pb-3">
 
             <span class="text-gray-500">
                 Total Amount
@@ -542,7 +377,6 @@ function createBookingSummary(booking) {
             </strong>
 
         </div>
-
 
         <div class="flex justify-between gap-4">
 
@@ -561,7 +395,7 @@ function createBookingSummary(booking) {
                 ? `
                     <div class="bg-gray-50 rounded-xl p-4 mt-4">
 
-                        <p class=" text-sm text-gray-500 mb-1">
+                        <p class="text-sm text-gray-500 mb-1">
                             Special Request
                         </p>
 
@@ -573,202 +407,125 @@ function createBookingSummary(booking) {
                 `
                 : ""
         }
-
     `;
-
 }
-
-
-// FORM SUBMIT
 
 let currentBooking = null;
 
-
+// FORM SUBMIT -> SHOW SUMMARY & HIDE FORM
 if (bookingForm) {
 
-    bookingForm.addEventListener("submit",(event) => {
+    bookingForm.addEventListener("submit", (event) => {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            // VALIDATION
+        if (!validateForm()) return;
 
-            if (!validateForm()) {
+        const people = Number(numberOfPeople.value);
 
-                return;
+        const total = calculateTotal();
 
-            }
+        currentBooking = {
 
-            // CALCULATE TOTAL
+            id: Date.now().toString(),
 
-            const people =
-                Number(numberOfPeople.value);
+            bookingId: "TRV-" + Math.floor(10000 + Math.random() * 90000),
 
+            tripId: selectedTripId,
 
-            const total =
-                calculateTotal();
+            fullName: fullName.value.trim(),
 
+            email: email.value.trim(),
 
-            // CREATE BOOKING OBJECT
+            phone: phone.value.trim(),
 
-            currentBooking = {
+            service: serviceName,
 
-                id:
-                    Date.now().toString(),
+            serviceId: selectedService.id || "",
 
-                bookingId:
-                    "TRV-" +Math.floor(10000 +Math.random() *90000),
+            category: serviceCategory,
 
-                tripId:
-                    selectedTripId,
+            location: serviceLocation,
 
-                fullName:
-                    fullName.value.trim(),
+            date: bookingDate.value,
 
-                email:
-                    email.value.trim(),
+            people: people,
 
-                phone:
-                    phone.value.trim(),
+            price: servicePrice,
 
-                service:
-                    serviceName,
+            total: total,
 
-                serviceId:
-                    selectedService.id ||"",
+            specialRequest: specialRequest.value.trim(),
 
-                category:
-                    serviceCategory,
+            status: "Pending",
 
-                location:
-                    serviceLocation,
+            createdAt: new Date().toISOString()
 
-                date:
-                    bookingDate.value,
+        };
 
-                people:
-                    people,
+        createBookingSummary(currentBooking);
 
-                price:
-                    servicePrice,
+        // Hide Form, Show Summary
+        if (formSection) formSection.classList.add("hidden");
 
-                total:
-                    total,
+        bookingSummarySection.classList.remove("hidden");
 
-                specialRequest:
-                    specialRequest.value.trim(),
+        bookingSummarySection.scrollIntoView({ behavior: "smooth" });
 
-                status:
-                    "Pending",
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-            // SHOW SUMMARY
-
-            createBookingSummary(currentBooking);
-
-
-            bookingForm.parentElement.classList.add("hidden");
-
-            bookingSummarySection.classList.remove("hidden");
-
-            bookingSummarySection.scrollIntoView({behavior: "smooth"});
-
-        }
-    );
-
+    });
 }
 
-
-// CONFIRM BOOKING
-
+// CONFIRM BOOKING -> HIDE FORM & SUMMARY, SHOW CONFIRMATION
 if (confirmBookingBtn) {
 
-    confirmBookingBtn.addEventListener("click",() => {
+    confirmBookingBtn.addEventListener("click", () => {
 
-            if (!currentBooking) {
+        if (!currentBooking) return;
 
-                return;
+        const bookings =    
+            JSON.parse(localStorage.getItem("natureNestBookings")) || [];
 
-            }
+        bookings.push(currentBooking);
 
-            // GET EXISTING BOOKINGS
-                    
-            const bookings =
-                JSON.parse(localStorage.getItem("natureNestBookings")) || [];
+        localStorage.setItem("natureNestBookings", JSON.stringify(bookings));
 
+        localStorage.setItem("lastBooking", JSON.stringify(currentBooking));
 
-            // SAVE BOOKING
+        // Form aur Summary dono ko hide karna hai
+        if (formSection) formSection.classList.add("hidden");
 
-            bookings.push(currentBooking);
+        if (bookingSummarySection) bookingSummarySection.classList.add("hidden");
 
-            localStorage.setItem("natureNestBookings",JSON.stringify(bookings));
+        // Confirmation section dikhana hai
+        if (confirmationSection) confirmationSection.classList.remove("hidden");
 
+        const bookingId = document.getElementById("bookingId");
 
-            // SAVE SELECTED SERVICE BOOKING
+        if (bookingId) bookingId.textContent = 
+            currentBooking.bookingId;
 
-            localStorage.setItem("lastBooking",JSON.stringify(currentBooking));
+        confirmationSection.scrollIntoView({ behavior: "smooth" });
 
-
-            // SHOW CONFIRMATION
-
-            bookingSummarySection.classList.add("hidden");
-
-
-            confirmationSection.classList.remove("hidden");
-
-
-            const bookingId =
-                document.getElementById("bookingId");
-
-
-            if (bookingId) {
-
-                bookingId.textContent =
-                    currentBooking.bookingId;
-
-            }
-
-            confirmationSection.scrollIntoView({behavior: "smooth"});
-
-        }
-    );
-
+    });
 }
-
-
-// BACK BUTTON
 
 if (backBtn) {
 
-    backBtn.addEventListener("click",() => {
+    backBtn.addEventListener("click", () => {
 
-            window.location.href =
-                "service-details.html";
+        window.location.href = "travel-services.html";
 
-        }
-    );
-
+    });
 }
-
-
-// DONE BUTTON
 
 if (doneBtn) {
 
-    doneBtn.addEventListener("click",() => {
+    doneBtn.addEventListener("click", () => {
 
-            window.location.href =
-                "travel-services.html";
+        window.location.href = "travel-services.html";
 
-        }
-    );
-
+    });
 }
-
-// INITIALIZE
 
 displaySelectedService();
 
