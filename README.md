@@ -125,29 +125,46 @@ travel-torism/<br>
 │    │   ├── Adventure/<br>
 │    │   ├── Culture/<br>
 │    │   ├── Nature & Wildlife/<br>
+│    │   ├── services/<br>
 │    │<br>
 │    ├──app.js<br>
+│    ├── assistant-logic.js <br>
+│    ├── booking.js<br>
 │    ├──counter.js<br>
 │    ├── dashboard.js <br>
 │    ├── destination.js <br>
+│    ├── destination-data.js<br>
 │    ├── dynamic-destination.js <br>
 │    ├── favorites.js <br>
+│    ├── index.js<br>
+│    ├── itinerary.js<br>
 │    ├── main.js<br>
 │    ├── planned-trips.js<br>
 │    ├── profile.js <br>
+│    ├── recommendation.js<br>
+│    ├── review.js<br>
 │    ├── saved.js<br>
-│    └── style.css<br>   
+│    ├── service-details.js<br>
+│    ├── services-data.js<br>
+│    ├── style.css<br> 
+│    ├── travel-services.js<br>
+│    ├── trip.js<br>
+│    └── trip-details.js<br>
 │<br>
+├──  booking.html<br>
+├──  booking-confirmation.html<br>
 ├── dashboard.html<br>
 ├── explore-destination.html<br>
 ├── favorites.html<br>
 ├── index.html<br>
+├── itinerary.html<br>
 ├── planned-trips.html<br>
 ├── profile.html<br>
+├── recommendation.html<br>
 ├── saved.html<br>
-├── package.json<br>
-├── tailwind.config.js<br>
-├── vite.config.js<br>
+├── service-details.html<br>
+├── travel-services.html
+├──trip-details
 └── README.md<br>
 
 
