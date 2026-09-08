@@ -101,13 +101,16 @@ A clean contact section provides sample contact information including:<br>
 - JavaScript<br>
 
 ## Images
-![NatureNest Showcase](naturenest1.jpeg)
-![NatureNest Showcase](github4.jpeg)
+![NatureNest Showcase](travel-tourism-image-1.jpeg)
+![NatureNest Showcase](travel-tourism-image-2.jpeg)
 ![NatureNest Showcase](github5.jpeg)
 ![NatureNest Showcase](github6.jpeg)
-![NatureNest Showcase](profile-setup.jpeg)
-![NatureNest Showcase](profile-display.jpeg)
-![NatureNest Showcase](dashboard.jpeg)
+![NatureNest Showcase](travel-tourism-image-3.jpeg)
+![NatureNest Showcase](travel-tourism-image-4.jpeg)
+![NatureNest Showcase](travel-tourism-image-5.jpeg)
+![NatureNest Showcase](travel-tourism-image-6.jpeg)
+![NatureNest Showcase](travel-tourism-image-7.jpeg)
+![NatureNest Showcase](travel-tourism-image-8.jpeg)
 
 ## 📂 Project Structure<br>
 
