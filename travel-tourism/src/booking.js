@@ -8,8 +8,10 @@ const selectedService =
 const urlParams = 
     new URLSearchParams(window.location.search);
 
+
 const selectedTripId = 
     urlParams.get("tripId");
+
 
 // DOM ELEMENTS
 const formSection = 

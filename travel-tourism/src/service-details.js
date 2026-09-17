@@ -295,6 +295,30 @@ function getServiceReviews() {
 
 }
 
+// SAVE SERVICE REVIEWS
+
+function saveServiceReviews(reviews) {
+    const allReviews =
+        getAllServiceReviews();
+
+    const otherReviews =
+        allReviews.filter(review =>
+            !(
+                review.type === "service" &&
+                String(review.itemId) === String(selectedService.id)
+            )
+        );
+
+    const updatedReviews = [
+        ...otherReviews,
+        ...reviews
+    ];
+
+    localStorage.setItem(
+        "natureNestReviews",
+        JSON.stringify(updatedReviews)
+    );
+}
 
 
 // STAR SELECTION
@@ -452,7 +476,7 @@ function updateServiceRatingStats(reviews) {
 
     if (serviceOneStarCount) {
 
-        serviceThreeStarCount.textContent =
+        serviceOneStarCount.textContent =
             one;
 
     }
